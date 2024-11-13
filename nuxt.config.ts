@@ -1,32 +1,30 @@
 export default defineNuxtConfig({
-	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
+  modules: ['@nuxtjs/tailwindcss', '@vueuse/motion/nuxt'],
 
-	app: {
-		head: {
-			title: "KI KAI DOJO",
-			meta: [
-				{ charset: "utf-8" },
-				{
-					name: "viewport",
-					content: "width=device-width, initial-scale=1",
-				},
-				{
-					hid: "description",
-					name: "description",
-					content:
-						"Scuola di KArate Tradizionale KI KAI DOJO Carbonera. Corsi di karate per tutti i livelli, dalla cintura bianca alla nera. Tradizione, disciplina e crescita personale.",
-				},
-			],
-			link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-		},
-	},
+  app: {
+    head: {
+      title: 'KI KAI DOJO',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { 
+          hid: 'description', 
+          name: 'description', 
+          content: 'Scopri il KI KAI DOJO a Carbonera. Corsi di karate per tutti i livelli, dalla cintura bianca alla nera. Tradizione, disciplina e crescita personale.'
+        }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
+  },
 
-	devtools: { enabled: false },
-	ssr: true,
+  devtools: { enabled: false },
+  ssr: true,
 
-	nitro: {
-		preset: "static",
-	},
+  nitro: {
+    preset: 'node-server'
+  },
 
-	compatibilityDate: "2024-11-12",
+  compatibilityDate: '2024-11-12'
 })

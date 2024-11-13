@@ -5,7 +5,7 @@
 			:slides-per-view="1"
 			:effect="'fade'"
 			:autoplay="{
-				delay: 5000,
+				delay: 3000,
 				disableOnInteraction: false,
 			}"
 			:speed="1000"
@@ -13,7 +13,7 @@
 			class="h-full"
 		>
 			<SwiperSlide
-				v-for="slide in slides"
+				v-for="slide in currentSlides"
 				:key="slide.image"
 				class="h-full"
 			>
@@ -45,6 +45,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue"
 import { Autoplay, EffectFade } from "swiper/modules"
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import "swiper/css"
 import "swiper/css/effect-fade"
 
@@ -56,12 +57,44 @@ const heroImages = import.meta.glob(
 	}
 )
 
-const slides = Object.entries(heroImages).map(([path, image]) => ({
+const heroMobileImages = import.meta.glob(
+	"/public/images/hero-mobile/*.{jpg,jpeg,png,svg}",
+	{
+		eager: true,
+		import: "default",
+	}
+)
+
+const isMobile = ref(false)
+
+const desktopSlides = Object.entries(heroImages).map(([path, image]) => ({
 	image,
-	alt:
-		path.split("/").pop()?.split(".")[0].replace(/-/g, " ") ||
-		"Karate image",
+	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
 }))
+
+const mobileSlides = Object.entries(heroMobileImages).map(([path, image]) => ({
+	image,
+	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
+}))
+
+const currentSlides = computed(() => isMobile.value ? mobileSlides : desktopSlides)
+
+const handleResize = () => {
+	isMobile.value = window?.innerWidth < 768
+}
+
+onMounted(() => {
+	if (process.client) {
+		isMobile.value = window.innerWidth < 768
+		window.addEventListener('resize', handleResize)
+	}
+})
+
+onUnmounted(() => {
+	if (process.client) {
+		window.removeEventListener('resize', handleResize)
+	}
+})
 
 const SwiperAutoplay = Autoplay
 const SwiperEffectFade = EffectFade
