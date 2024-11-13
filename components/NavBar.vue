@@ -136,7 +136,7 @@ onUnmounted(() => {
 const menuItems = [
 	{ text: "Home", href: "#hero" },
 	{ text: "La Palestra", href: "#about-dojo" },
-	{ text: "Chi Sono", href: "#about-me" },
+	{ text: "Istruttori", href: "#about-me" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Contatti", href: "#contact" },
 ]
