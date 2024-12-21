@@ -1,14 +1,15 @@
 <template>
 	<nav class="fixed w-full z-[40]">
 		<!-- Mobile Menu Button -->
-		<div 
-			class="md:hidden fixed top-4 left-4 z-[999]"
-			@click="toggleMenu"
-		>
-			<div 
+		<div class="md:hidden fixed top-4 left-4 z-[999]" @click="toggleMenu">
+			<div
 				class="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
 				:class="[
-					isMenuOpen ? 'bg-white' : (isScrolled ? 'bg-white/90' : 'bg-black/20'),
+					isMenuOpen
+						? 'bg-white'
+						: isScrolled
+						? 'bg-white/90'
+						: 'bg-black/20',
 				]"
 			>
 				<img
@@ -32,21 +33,21 @@
 		>
 			<div class="text-center">
 				<div class="space-y-8">
-					<a
+					<NuxtLink
 						v-for="item in menuItems"
 						:key="item.href"
-						:href="item.href"
+						:to="item.href"
 						class="block text-white text-2xl font-semibold hover:text-red-500 transition-colors"
 						@click="closeMenu"
 					>
 						{{ item.text }}
-					</a>
+					</NuxtLink>
 				</div>
 			</div>
 		</div>
 
 		<!-- Desktop Navigation -->
-		<div 
+		<div
 			class="hidden md:block transition-all duration-300"
 			:class="[
 				isScrolled
@@ -56,8 +57,8 @@
 		>
 			<div class="container mx-auto px-4 py-2">
 				<div class="flex justify-between items-center">
-					<a
-						href="#hero"
+					<NuxtLink
+						to="/"
 						class="flex items-center gap-3 hover:opacity-90 transition-opacity"
 					>
 						<img
@@ -72,16 +73,18 @@
 						/>
 						<h1
 							class="text-2xl font-bold transition-colors duration-300"
-							:class="[isScrolled ? 'text-gray-900' : 'text-white']"
+							:class="[
+								isScrolled ? 'text-gray-900' : 'text-white',
+							]"
 						>
 							KI KAI DOJO
 						</h1>
-					</a>
+					</NuxtLink>
 					<div class="hidden md:flex space-x-6">
-						<a
+						<NuxtLink
 							v-for="item in menuItems"
 							:key="item.href"
-							:href="item.href"
+							:to="item.href"
 							class="transition-colors duration-300"
 							:class="[
 								isScrolled
@@ -90,7 +93,7 @@
 							]"
 						>
 							{{ item.text }}
-						</a>
+						</NuxtLink>
 					</div>
 				</div>
 			</div>
@@ -112,15 +115,15 @@ const checkScroll = () => {
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value
 	if (isMenuOpen.value) {
-		document.body.style.overflow = 'hidden'
+		document.body.style.overflow = "hidden"
 	} else {
-		document.body.style.overflow = ''
+		document.body.style.overflow = ""
 	}
 }
 
 const closeMenu = () => {
 	isMenuOpen.value = false
-	document.body.style.overflow = ''
+	document.body.style.overflow = ""
 }
 
 onMounted(() => {
@@ -130,15 +133,14 @@ onMounted(() => {
 
 onUnmounted(() => {
 	window.removeEventListener("scroll", checkScroll)
-	document.body.style.overflow = ''
+	document.body.style.overflow = ""
 })
 
 const menuItems = [
-	{ text: "Home", href: "#hero" },
-	{ text: "La Palestra", href: "#about-dojo" },
-	{ text: "Istruttori", href: "#about-me" },
-	{ text: "Corsi", href: "#courses" },
-	{ text: "Contatti", href: "#contact" },
+	{ text: "Home", href: "/" },
+	{ text: "La Palestra", href: "/palestra" },
+	{ text: "Istruttori", href: "/istruttori" },
+	{ text: "Corsi e Contatti", href: "/corsi-e-contatti" },
 ]
 
 const logoImages = import.meta.glob("/public/images/logo/*.{svg,png}", {

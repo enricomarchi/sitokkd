@@ -1,7 +1,7 @@
 <template>
 	<section id="about-me" class="py-20">
 		<div class="container mx-auto px-4">
-			<h2 class="text-4xl font-bold text-center mb-12">
+			<h2 class="text-4xl font-bold text-center mb-12 font-merienda">
 				I Nostri Istruttori
 			</h2>
 
@@ -25,7 +25,7 @@
 					:initial="{ opacity: 0, x: 100 }"
 					:visible="{ opacity: 1, x: 0 }"
 				>
-					<h3 class="text-3xl font-bold mb-6">
+					<h3 class="text-3xl font-bold mb-6 font-merienda">
 						Il Maestro Moreno Donà
 					</h3>
 					<div class="prose lg:prose-xl">
@@ -74,7 +74,9 @@
 					:initial="{ opacity: 0, x: -100 }"
 					:visible="{ opacity: 1, x: 0 }"
 				>
-					<h3 class="text-3xl font-bold mb-6">Gioia Donà</h3>
+					<h3 class="text-3xl font-bold mb-6 font-merienda">
+						Gioia Donà
+					</h3>
 					<div class="prose lg:prose-xl">
 						<p>
 							Istruttrice qualificata e appassionata di karate,

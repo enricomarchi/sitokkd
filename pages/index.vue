@@ -4,14 +4,14 @@
 		<main>
 			<HeroSection />
 			<AboutDojo />
-			<AboutMe />
-			<Courses />
-			<ContactSection />
+			<KaratePhilosophy />
 		</main>
 		<FooterSection />
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import KaratePhilosophy from "~/components/KaratePhilosophy.vue"
+</script>
 
 <style></style>

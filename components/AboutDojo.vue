@@ -1,53 +1,62 @@
 <template>
-  <section id="about-dojo" class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-12">La Nostra Palestra</h2>
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div 
-          class="prose lg:prose-xl"
-          v-motion
-          :initial="{ opacity: 0, x: -100 }"
-          :visible="{ opacity: 1, x: 0 }"
-        >
-          <p>
-            La nostra palestra di karate è un luogo dove la tradizione incontra il moderno. 
-            Con oltre 20 anni di esperienza nell'insegnamento delle arti marziali, 
-            offriamo un ambiente accogliente e professionale per tutti gli appassionati.
-          </p>
-          <p>
-            Il nostro dojo è equipaggiato con:
-          </p>
-          <ul>
-            <li>Area tatami professionale di 200mq</li>
-            <li>Spogliatoi moderni con docce</li>
-            <li>Area riscaldamento e preparazione fisica</li>
-            <li>Sala meditation</li>
-          </ul>
-        </div>
-        <div 
-          class="grid grid-cols-2 gap-4"
-          v-motion
-          :initial="{ opacity: 0, x: 100 }"
-          :visible="{ opacity: 1, x: 0 }"
-        >
-          <img 
-            v-for="(image, index) in dojoImages" 
-            :key="index"
-            :src="image"
-            :alt="`Immagine ${index + 1} del dojo`"
-            class="rounded-lg shadow-lg w-full h-48 object-cover"
-          >
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
+	<section id="about-dojo" class="py-20 bg-gray-50">
+		<div class="container mx-auto px-4">
+			<div
+				class="max-w-3xl mx-auto text-center space-y-12"
+				v-motion
+				:initial="{ opacity: 0, y: 50 }"
+				:visible="{ opacity: 1, y: 0 }"
+			>
+				<p class="text-lg md:text-xl leading-relaxed">
+					<strong
+						class="text-2xl md:text-3xl text-red-600 font-merienda block mb-4"
+						>Ki</strong
+					>
+					<span class="text-gray-600"
+						>(気) significa "energia" o "forza vitale".</span
+					><br class="mb-4" />
+					<span class="text-gray-800"
+						>Rappresenta l'energia interiore che fluisce attraverso
+						il corpo e che può essere coltivata attraverso la
+						pratica.</span
+					>
+				</p>
 
-<script setup>
-const dojoImages = Object.values(
-  import.meta.glob('/public/images/dojo/*.{jpg,jpeg,png,svg}', {
-    eager: true,
-    import: 'default'
-  })
-)
-</script>
+				<p class="text-lg md:text-xl leading-relaxed">
+					<strong
+						class="text-2xl md:text-3xl text-red-600 font-merienda block mb-4"
+						>Kai</strong
+					>
+					<span class="text-gray-600"
+						>(会) significa "associazione" o "gruppo".</span
+					><br class="mb-4" />
+					<span class="text-gray-800"
+						>Indica una comunità di persone unite dallo stesso scopo
+						e dalla stessa passione.</span
+					>
+				</p>
+
+				<p class="text-lg md:text-xl leading-relaxed">
+					<strong
+						class="text-2xl md:text-3xl text-red-600 font-merienda block mb-4"
+						>Dojo</strong
+					>
+					<span class="text-gray-600"
+						>(道場) letteralmente significa "luogo della Via".</span
+					><br class="mb-4" />
+					<span class="text-gray-800"
+						>È il luogo sacro dove si pratica e si studia l'arte
+						marziale, non solo come spazio fisico ma anche come
+						ambiente di crescita spirituale e personale.</span
+					>
+				</p>
+
+				<p class="text-xl md:text-2xl font-semibold text-gray-900 mt-8">
+					"Ki Kai Dojo" è quindi il luogo dove un gruppo di persone si
+					unisce per coltivare l'energia interiore attraverso la
+					pratica delle arti marziali.
+				</p>
+			</div>
+		</div>
+	</section>
+</template>

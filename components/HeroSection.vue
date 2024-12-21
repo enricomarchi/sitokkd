@@ -29,13 +29,36 @@
 			<div
 				class="container mx-auto px-4 h-full flex items-center justify-center"
 			>
-				<div class="text-center text-white">
-					<h1 class="text-5xl md:text-7xl font-bold mb-6">
-						La Via del Karate
-					</h1>
-					<p class="text-xl md:text-2xl">
-						Tradizione, Disciplina, Eccellenza
+				<div class="text-center text-white space-y-6">
+					<div class="space-y-2">
+						<h2
+							class="text-2xl md:text-3xl font-merienda text-red-500"
+						>
+							Benvenuti al Ki Kai Dojo
+						</h2>
+						<h1
+							class="text-5xl md:text-7xl font-bold font-merienda"
+						>
+							L'Energia che Unisce
+						</h1>
+					</div>
+					<p
+						class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
+					>
+						Scopri l'antica arte del Karate,<br
+							class="hidden md:block"
+						/>
+						dove l'energia interiore si trasforma in forza
+						collettiva
 					</p>
+					<div class="pt-8">
+						<NuxtLink
+							to="/palestra"
+							class="inline-block bg-red-600 text-white px-8 py-4 rounded-lg hover:bg-red-700 transition-colors text-lg"
+						>
+							Inizia il Tuo Percorso
+						</NuxtLink>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,7 +68,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue"
 import { Autoplay, EffectFade } from "swiper/modules"
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from "vue"
 import "swiper/css"
 import "swiper/css/effect-fade"
 
@@ -69,15 +92,21 @@ const isMobile = ref(false)
 
 const desktopSlides = Object.entries(heroImages).map(([path, image]) => ({
 	image,
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
+	alt:
+		path.split("/").pop()?.split(".")[0].replace(/-/g, " ") ||
+		"Karate image",
 }))
 
 const mobileSlides = Object.entries(heroMobileImages).map(([path, image]) => ({
 	image,
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
+	alt:
+		path.split("/").pop()?.split(".")[0].replace(/-/g, " ") ||
+		"Karate image",
 }))
 
-const currentSlides = computed(() => isMobile.value ? mobileSlides : desktopSlides)
+const currentSlides = computed(() =>
+	isMobile.value ? mobileSlides : desktopSlides
+)
 
 const handleResize = () => {
 	isMobile.value = window?.innerWidth < 768
@@ -86,13 +115,13 @@ const handleResize = () => {
 onMounted(() => {
 	if (process.client) {
 		isMobile.value = window.innerWidth < 768
-		window.addEventListener('resize', handleResize)
+		window.addEventListener("resize", handleResize)
 	}
 })
 
 onUnmounted(() => {
 	if (process.client) {
-		window.removeEventListener('resize', handleResize)
+		window.removeEventListener("resize", handleResize)
 	}
 })
 

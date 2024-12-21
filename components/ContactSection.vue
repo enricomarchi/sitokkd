@@ -1,7 +1,9 @@
 <template>
 	<section id="contact" class="py-20">
 		<div class="container mx-auto px-4">
-			<h2 class="text-4xl font-bold text-center mb-12">Contattaci</h2>
+			<h2 class="text-4xl font-bold text-center mb-12 font-merienda">
+				Contattaci
+			</h2>
 			<div class="grid md:grid-cols-2 gap-12">
 				<div
 					class="space-y-8"
@@ -10,7 +12,7 @@
 					:visible="{ opacity: 1, x: 0 }"
 				>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4">
+						<h3 class="text-2xl font-semibold mb-4 font-merienda">
 							Informazioni
 						</h3>
 						<div class="space-y-3">
@@ -78,7 +80,7 @@
 						</div>
 					</div>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4">
+						<h3 class="text-2xl font-semibold mb-4 font-merienda">
 							Orari Segreteria
 						</h3>
 						<div class="space-y-2">
