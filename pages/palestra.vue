@@ -78,20 +78,26 @@
 						<h3 class="text-2xl font-bold mb-8 text-center">
 							Galleria Fotografica
 						</h3>
-						<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-							<div
+						<Splide
+							:options="sliderOptions"
+							:aria-label="'Foto Carbonera'"
+						>
+							<SplideSlide
 								v-for="(img, index) in carboneraPics"
 								:key="index"
-								@click="openModal(carboneraPics, index)"
-								class="cursor-pointer transform hover:scale-105 transition-transform"
 							>
-								<img
-									:src="img"
-									:alt="`Palestra Carbonera ${index + 1}`"
-									class="w-full h-48 object-cover rounded-lg shadow-lg"
-								/>
-							</div>
-						</div>
+								<div
+									@click="openModal(carboneraPics, index)"
+									class="cursor-pointer mx-2 transform hover:scale-105 transition-transform"
+								>
+									<img
+										:src="img"
+										:alt="`Palestra Carbonera ${index + 1}`"
+										class="w-full h-48 object-cover rounded-lg shadow-lg"
+									/>
+								</div>
+							</SplideSlide>
+						</Splide>
 					</div>
 				</div>
 			</section>
@@ -154,20 +160,26 @@
 						<h3 class="text-2xl font-bold mb-8 text-center">
 							Galleria Fotografica
 						</h3>
-						<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-							<div
+						<Splide
+							:options="sliderOptions"
+							:aria-label="'Foto Saletto'"
+						>
+							<SplideSlide
 								v-for="(img, index) in salettoPics"
 								:key="index"
-								@click="openModal(salettoPics, index)"
-								class="cursor-pointer transform hover:scale-105 transition-transform"
 							>
-								<img
-									:src="img"
-									:alt="`Palestra Saletto ${index + 1}`"
-									class="w-full h-48 object-cover rounded-lg shadow-lg"
-								/>
-							</div>
-						</div>
+								<div
+									@click="openModal(salettoPics, index)"
+									class="cursor-pointer mx-2 transform hover:scale-105 transition-transform"
+								>
+									<img
+										:src="img"
+										:alt="`Palestra Saletto ${index + 1}`"
+										class="w-full h-48 object-cover rounded-lg shadow-lg"
+									/>
+								</div>
+							</SplideSlide>
+						</Splide>
 					</div>
 				</div>
 			</section>
@@ -206,6 +218,24 @@
 </template>
 
 <script setup>
+import "@splidejs/vue-splide/css"
+import { Splide, SplideSlide } from "@splidejs/vue-splide"
+
+const sliderOptions = {
+	perPage: 4,
+	gap: "1rem",
+	arrows: true,
+	pagination: true,
+	breakpoints: {
+		768: {
+			perPage: 2,
+		},
+		480: {
+			perPage: 1,
+		},
+	},
+}
+
 const { getImagesFromFolder } = useGalleryImages()
 
 const carboneraPics = getImagesFromFolder("carbonera")
@@ -242,3 +272,13 @@ const prevImage = (e) => {
 			: currentImageIndex.value - 1
 }
 </script>
+
+<style>
+.splide__arrow {
+	background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.splide__pagination__page.is-active {
+	background: #dc2626 !important;
+}
+</style>

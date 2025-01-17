@@ -1,6 +1,6 @@
 <template>
 	<div class="overflow-x-hidden">
-		<NavBar />
+		<NavBar :isHome="true" />
 		<main>
 			<HeroSection />
 			<AboutDojo />

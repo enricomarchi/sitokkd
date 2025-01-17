@@ -1,7 +1,11 @@
 <template>
 	<nav class="fixed w-full z-[40]">
 		<!-- Mobile Menu Button -->
-		<div class="md:hidden fixed top-4 left-4 z-[999]" @click="toggleMenu">
+		<div
+			class="md:hidden fixed top-4 left-4 z-[999]"
+			:class="[isHome && !isScrolled ? 'opacity-0' : 'opacity-100']"
+			@click="toggleMenu"
+		>
 			<div
 				class="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
 				:class="[
@@ -50,9 +54,9 @@
 		<div
 			class="hidden md:block transition-all duration-300"
 			:class="[
-				isScrolled
-					? 'bg-white/90 backdrop-blur-sm shadow-sm'
-					: 'bg-transparent',
+				isHome && !isScrolled
+					? 'bg-transparent'
+					: 'bg-white/90 backdrop-blur-sm shadow-sm',
 			]"
 		>
 			<div class="container mx-auto px-4 py-2">
@@ -64,17 +68,19 @@
 						<img
 							:src="logoImage"
 							alt="KI KAI DOJO Logo"
-							class="h-12 w-12"
+							class="h-12 w-12 transition-all"
 							:class="[
-								isScrolled
-									? 'brightness-100'
-									: 'brightness-0 invert',
+								isHome && !isScrolled
+									? 'brightness-0 invert'
+									: 'brightness-100',
 							]"
 						/>
 						<h1
 							class="text-2xl font-bold transition-colors duration-300"
 							:class="[
-								isScrolled ? 'text-gray-900' : 'text-white',
+								isHome && !isScrolled
+									? 'text-white'
+									: 'text-gray-900',
 							]"
 						>
 							KI KAI DOJO
@@ -87,9 +93,9 @@
 							:href="item.href"
 							class="transition-colors duration-300"
 							:class="[
-								isScrolled
-									? 'text-gray-700 hover:text-black'
-									: 'text-white/90 hover:text-white',
+								isHome && !isScrolled
+									? 'text-white/90 hover:text-white'
+									: 'text-gray-700 hover:text-black',
 							]"
 						>
 							{{ item.text }}
@@ -102,6 +108,13 @@
 </template>
 
 <script setup>
+defineProps({
+	isHome: {
+		type: Boolean,
+		default: false,
+	},
+})
+
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 
