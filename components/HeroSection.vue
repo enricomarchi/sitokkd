@@ -34,30 +34,27 @@
 						<h2
 							class="text-2xl md:text-3xl font-merienda text-red-500"
 						>
-							Benvenuti al Ki Kai Dojo
+							Scuola di Karate
 						</h2>
 						<h1
 							class="text-5xl md:text-7xl font-bold font-merienda"
 						>
-							L'Energia che Unisce
+							KI KAI DOJO
 						</h1>
 					</div>
 					<p
 						class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
 					>
-						Scopri l'antica arte del Karate,<br
-							class="hidden md:block"
-						/>
-						dove l'energia interiore si trasforma in forza
-						collettiva
+						一期一会 (Ichigo Ichie)<br class="hidden md:block" />
+						Ogni momento è unico e irripetibile
 					</p>
 					<div class="pt-8">
-						<NuxtLink
-							to="/palestra"
+						<a
+							href="#contact"
 							class="inline-block bg-red-600 text-white px-8 py-4 rounded-lg hover:bg-red-700 transition-colors text-lg"
 						>
 							Inizia il Tuo Percorso
-						</NuxtLink>
+						</a>
 					</div>
 				</div>
 			</div>

@@ -57,8 +57,8 @@
 		>
 			<div class="container mx-auto px-4 py-2">
 				<div class="flex justify-between items-center">
-					<NuxtLink
-						to="/"
+					<a
+						href="/"
 						class="flex items-center gap-3 hover:opacity-90 transition-opacity"
 					>
 						<img
@@ -79,12 +79,12 @@
 						>
 							KI KAI DOJO
 						</h1>
-					</NuxtLink>
+					</a>
 					<div class="hidden md:flex space-x-6">
-						<NuxtLink
+						<a
 							v-for="item in menuItems"
 							:key="item.href"
-							:to="item.href"
+							:href="item.href"
 							class="transition-colors duration-300"
 							:class="[
 								isScrolled
@@ -93,7 +93,7 @@
 							]"
 						>
 							{{ item.text }}
-						</NuxtLink>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -138,9 +138,8 @@ onUnmounted(() => {
 
 const menuItems = [
 	{ text: "Home", href: "/" },
-	{ text: "La Palestra", href: "/palestra" },
-	{ text: "Istruttori", href: "/istruttori" },
-	{ text: "Corsi e Contatti", href: "/corsi-e-contatti" },
+	{ text: "Le Palestre", href: "/palestra" },
+	{ text: "Lo staff", href: "/istruttori" },
 ]
 
 const logoImages = import.meta.glob("/public/images/logo/*.{svg,png}", {
