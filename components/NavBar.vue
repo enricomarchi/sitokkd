@@ -129,8 +129,8 @@ onUnmounted(() => {
 
 const menuItems = [
 	{ text: "Home", href: "/" },
-	{ text: "Le Palestre", href: "/palestra" },
-	{ text: "Lo staff", href: "/istruttori" },
+	{ text: "Palestre", href: "/palestra" },
+	{ text: "Istruttori", href: "/istruttori" },
 ]
 
 const logoImages = import.meta.glob("/public/images/logo/*.{svg,png}", {

@@ -2,25 +2,6 @@
 	<div class="overflow-x-hidden">
 		<NavBar />
 		<main>
-			<!-- Header section -->
-			<div class="h-[40vh] relative">
-				<div class="absolute inset-0 bg-black/50 z-10"></div>
-				<img
-					src="/images/palestra/banner.jpg"
-					alt="Le nostre palestre"
-					class="w-full h-full object-cover"
-				/>
-				<div
-					class="absolute inset-0 z-20 flex items-center justify-center"
-				>
-					<h1
-						class="text-4xl md:text-6xl text-white font-bold font-merienda"
-					>
-						Le Nostre Sedi
-					</h1>
-				</div>
-			</div>
-
 			<!-- Sede di Carbonera -->
 			<section
 				class="py-20 bg-cover bg-center bg-no-repeat relative"
@@ -32,6 +13,11 @@
 				<div class="absolute inset-0 bg-black/60"></div>
 
 				<div class="container mx-auto px-4 relative z-10">
+					<h1
+						class="text-4xl md:text-6xl font-bold font-merienda text-center text-white mb-16"
+					>
+						Le Nostre Sedi
+					</h1>
 					<h2
 						class="text-3xl font-bold mb-12 text-center font-merienda text-white"
 					>
@@ -72,9 +58,8 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Ampio tatami
-												professionale</span
-											>
+												>Ampio area per il tatami
+											</span>
 										</li>
 										<li class="flex items-center space-x-2">
 											<span class="text-red-400 text-lg"
@@ -114,7 +99,8 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Pavimento riscaldato</span
+												>Pavimento in parquet
+												riscaldato</span
 											>
 										</li>
 									</ul>
@@ -220,7 +206,8 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Spogliatoi rinnovati</span
+												>Spogliatoi completi con
+												docce</span
 											>
 										</li>
 										<li class="flex items-center space-x-2">
@@ -228,7 +215,7 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Parcheggio dedicato</span
+												>Tribuna per il pubblico</span
 											>
 										</li>
 										<li class="flex items-center space-x-2">
@@ -236,8 +223,7 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Accesso facilitato per
-												disabili</span
+												>Ambiente climatizzato</span
 											>
 										</li>
 										<li class="flex items-center space-x-2">
@@ -245,7 +231,8 @@
 												>•</span
 											>
 											<span class="text-gray-300"
-												>Illuminazione ottimizzata</span
+												>Pavimento in parquet
+												riscaldato</span
 											>
 										</li>
 									</ul>

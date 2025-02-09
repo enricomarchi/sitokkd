@@ -49,14 +49,6 @@
 						><br class="hidden md:block" />
 						Ogni momento è unico e irripetibile
 					</p>
-					<div class="pt-8">
-						<a
-							href="#contact"
-							class="inline-block bg-red-600 text-white px-8 py-4 rounded-lg hover:bg-red-700 transition-colors text-lg"
-						>
-							Inizia il Tuo Percorso
-						</a>
-					</div>
 				</div>
 			</div>
 		</div>

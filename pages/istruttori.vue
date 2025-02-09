@@ -2,32 +2,6 @@
 	<div>
 		<NavBar :isHome="false" />
 		<main>
-			<!-- Hero Section -->
-			<section class="relative bg-black text-white py-32">
-				<div class="absolute inset-0 z-0">
-					<img
-						src="https://images.unsplash.com/photo-1614849963640-9cc74b2a826f?q=80&w=2900"
-						alt="Karate Background"
-						class="w-full h-full object-cover opacity-40"
-					/>
-					<!-- Aggiungi overlay gradient -->
-					<div
-						class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20"
-					></div>
-				</div>
-				<div class="relative z-10 container mx-auto px-4 text-center">
-					<h1 class="text-5xl font-bold mb-6 font-merienda">
-						Lo Staff
-					</h1>
-					<p class="max-w-2xl mx-auto text-lg text-gray-300">
-						Il Ki Kai Dojo si avvale di uno staff tecnico altamente
-						qualificato, composto da Maestri, Istruttori, Arbitri e
-						Presidenti di Giuria Federali, tutti regolarmente
-						riconosciuti dalla FIKTA.
-					</p>
-				</div>
-			</section>
-
 			<div class="relative">
 				<!-- Decorative Elements -->
 				<div
@@ -52,14 +26,15 @@
 						<h2
 							class="text-4xl font-bold text-center mb-6 font-merienda"
 						>
-							I Nostri Istruttori
+							Gli Istruttori del Ki Kai Dojo
 						</h2>
 						<p
 							class="text-gray-600 text-center max-w-3xl mx-auto mb-16"
 						>
-							Gli istruttori del Ki Kai Dojo garantiscono un
-							percorso formativo completo per tutti i livelli, dal
-							principiante all'agonista.
+							Il Ki Kai Dojo si avvale di uno staff tecnico
+							altamente qualificato, composto da Maestri,
+							Istruttori, Arbitri e Presidenti di Giuria, tutti
+							regolarmente riconosciuti dalla FIKTA.
 						</p>
 
 						<div class="grid md:grid-cols-2 gap-16">
