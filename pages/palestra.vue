@@ -6,7 +6,7 @@
 			<div class="h-[40vh] relative">
 				<div class="absolute inset-0 bg-black/50 z-10"></div>
 				<img
-					src="https://images.unsplash.com/photo-1518611012118-696072aa579a"
+					src="/images/palestra/banner.jpg"
 					alt="Le nostre palestre"
 					class="w-full h-full object-cover"
 				/>
@@ -22,263 +22,292 @@
 			</div>
 
 			<!-- Sede di Carbonera -->
-			<section class="py-20 bg-white">
-				<div class="container mx-auto px-4">
+			<section
+				class="py-20 bg-cover bg-center bg-no-repeat relative"
+				style="
+					background-image: url('/images/sfondi-sezioni/sezione-1.jpg');
+				"
+			>
+				<!-- Overlay scuro -->
+				<div class="absolute inset-0 bg-black/60"></div>
+
+				<div class="container mx-auto px-4 relative z-10">
 					<h2
-						class="text-3xl font-bold mb-12 text-center font-merienda"
+						class="text-3xl font-bold mb-12 text-center font-merienda text-white"
 					>
 						Sede di Carbonera
 					</h2>
-					<div class="grid md:grid-cols-2 gap-12 items-center">
+					<div class="grid md:grid-cols-12 gap-12 items-start">
 						<div
-							class="prose lg:prose-xl"
+							class="md:col-span-4"
 							v-motion
 							:initial="{ opacity: 0, x: -100 }"
 							:visible="{ opacity: 1, x: 0 }"
 						>
-							<p>
-								La nostra sede principale si trova presso il
-								Palazzetto dello Sport di Carbonera, una
-								struttura moderna e polivalente nel cuore del
-								comune. Il palazzetto, situato in una zona
-								facilmente raggiungibile, offre ampi spazi per
-								la pratica del karate in un ambiente
-								professionale e confortevole.
-							</p>
-							<p>La struttura offre:</p>
-							<ul>
-								<li>Ampio tatami professionale</li>
-								<li>Spogliatoi completi con docce</li>
-								<li>Ampio parcheggio gratuito</li>
-								<li>Tribuna per il pubblico</li>
-								<li>Ambiente climatizzato</li>
-							</ul>
-							<p>
-								Indirizzo: Via IV Novembre 30, 31030 Carbonera
-								TV
-							</p>
+							<div
+								class="bg-black/50 rounded-xl p-6 h-full space-y-8"
+							>
+								<div>
+									<p class="text-lg text-gray-300">
+										La nostra sede principale si trova
+										presso il Palazzetto dello Sport di
+										Carbonera, una struttura moderna e
+										polivalente nel cuore del comune. Il
+										palazzetto, situato in una zona
+										facilmente raggiungibile, offre ampi
+										spazi per la pratica del karate in un
+										ambiente professionale e confortevole.
+									</p>
+								</div>
+
+								<div>
+									<h3
+										class="text-xl font-merienda text-red-400 mb-2"
+									>
+										La struttura offre:
+									</h3>
+									<ul class="space-y-4">
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Ampio tatami
+												professionale</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Spogliatoi completi con
+												docce</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Ampio parcheggio gratuito</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Tribuna per il pubblico</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Ambiente climatizzato</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Pavimento riscaldato</span
+											>
+										</li>
+									</ul>
+								</div>
+
+								<div>
+									<p class="text-gray-400">
+										Indirizzo: Via IV Novembre 30, 31030
+										Carbonera TV
+									</p>
+								</div>
+							</div>
 						</div>
 						<div
-							class="grid grid-cols-2 gap-4"
+							class="md:col-span-8 grid grid-cols-2 gap-4"
 							v-motion
 							:initial="{ opacity: 0, x: 100 }"
 							:visible="{ opacity: 1, x: 0 }"
 						>
 							<img
-								v-for="i in 4"
-								:key="i"
-								:src="`https://picsum.photos/400/300?random=${i}`"
-								:alt="`Palestra Carbonera ${i}`"
-								class="rounded-lg shadow-lg w-full h-48 object-cover"
+								v-for="img in carboneraImages"
+								:key="img"
+								:src="img"
+								:alt="'Palestra Carbonera'"
+								class="rounded-lg shadow-lg w-full h-48 object-cover cursor-pointer transition-all duration-300 hover:opacity-75 hover:scale-105 hover:shadow-xl"
+								@click="openImage(img, 'Palestra Carbonera')"
 							/>
 						</div>
-					</div>
-					<!-- Galleria Carbonera -->
-					<div class="mt-16">
-						<h3 class="text-2xl font-bold mb-8 text-center">
-							Galleria Fotografica
-						</h3>
-						<Splide
-							:options="sliderOptions"
-							:aria-label="'Foto Carbonera'"
-						>
-							<SplideSlide
-								v-for="(img, index) in carboneraPics"
-								:key="index"
-							>
-								<div
-									@click="openModal(carboneraPics, index)"
-									class="cursor-pointer mx-2 transform hover:scale-105 transition-transform"
-								>
-									<img
-										:src="img"
-										:alt="`Palestra Carbonera ${index + 1}`"
-										class="w-full h-48 object-cover rounded-lg shadow-lg"
-									/>
-								</div>
-							</SplideSlide>
-						</Splide>
 					</div>
 				</div>
 			</section>
 
 			<!-- Sede di Saletto di Piave -->
-			<section class="py-20 bg-gray-50">
-				<div class="container mx-auto px-4">
+			<section
+				class="py-20 bg-cover bg-center bg-no-repeat relative"
+				style="
+					background-image: url('/images/sfondi-sezioni/sezione-1.jpg');
+				"
+			>
+				<!-- Overlay scuro -->
+				<div class="absolute inset-0 bg-black/60"></div>
+
+				<div class="container mx-auto px-4 relative z-10">
 					<h2
-						class="text-3xl font-bold mb-12 text-center font-merienda"
+						class="text-3xl font-bold mb-12 text-center font-merienda text-white"
 					>
 						Sede di Saletto di Piave
 					</h2>
-					<div class="grid md:grid-cols-2 gap-12 items-center">
+					<div class="grid md:grid-cols-12 gap-12 items-start">
 						<div
-							class="prose lg:prose-xl order-2 md:order-1"
+							class="md:col-span-8 grid grid-cols-2 gap-4 order-1"
 							v-motion
 							:initial="{ opacity: 0, x: -100 }"
 							:visible="{ opacity: 1, x: 0 }"
 						>
-							<p>
-								La nostra sede di Saletto di Piave si trova
-								presso la Palestra Comunale, una struttura
-								polivalente vicina al centro del paese. La
-								palestra, recentemente ristrutturata, è parte
-								del complesso scolastico e offre un ambiente
-								ideale per la pratica del karate.
-							</p>
-							<p>La struttura dispone di:</p>
-							<ul>
-								<li>Ampia area per il tatami</li>
-								<li>Spogliatoi rinnovati</li>
-								<li>Parcheggio dedicato</li>
-								<li>Accesso facilitato per disabili</li>
-								<li>Illuminazione ottimizzata</li>
-							</ul>
-							<p>
-								Indirizzo: Via San Pio X, Saletto di Piave,
-								31030 Breda di Piave TV
-							</p>
+							<img
+								v-for="img in salettoImages"
+								:key="img"
+								:src="img"
+								:alt="'Palestra Saletto'"
+								class="rounded-lg shadow-lg w-full h-48 object-cover cursor-pointer transition-all duration-300 hover:opacity-75 hover:scale-105 hover:shadow-xl"
+								@click="openImage(img, 'Palestra Saletto')"
+							/>
 						</div>
 						<div
-							class="grid grid-cols-2 gap-4 order-1 md:order-2"
+							class="md:col-span-4 order-2"
 							v-motion
 							:initial="{ opacity: 0, x: 100 }"
 							:visible="{ opacity: 1, x: 0 }"
 						>
-							<img
-								v-for="i in 4"
-								:key="i"
-								:src="`https://picsum.photos/400/300?random=${
-									i + 4
-								}`"
-								:alt="`Palestra Saletto ${i}`"
-								class="rounded-lg shadow-lg w-full h-48 object-cover"
-							/>
-						</div>
-					</div>
-					<!-- Galleria Saletto -->
-					<div class="mt-16">
-						<h3 class="text-2xl font-bold mb-8 text-center">
-							Galleria Fotografica
-						</h3>
-						<Splide
-							:options="sliderOptions"
-							:aria-label="'Foto Saletto'"
-						>
-							<SplideSlide
-								v-for="(img, index) in salettoPics"
-								:key="index"
+							<div
+								class="bg-black/50 rounded-xl p-6 h-full space-y-8"
 							>
-								<div
-									@click="openModal(salettoPics, index)"
-									class="cursor-pointer mx-2 transform hover:scale-105 transition-transform"
-								>
-									<img
-										:src="img"
-										:alt="`Palestra Saletto ${index + 1}`"
-										class="w-full h-48 object-cover rounded-lg shadow-lg"
-									/>
+								<div>
+									<p class="text-lg text-gray-300">
+										La nostra sede di Saletto di Piave si
+										trova presso la Palestra Comunale, una
+										struttura polivalente vicina al centro
+										del paese. La palestra, recentemente
+										ristrutturata, è parte del complesso
+										scolastico e offre un ambiente ideale
+										per la pratica del karate.
+									</p>
 								</div>
-							</SplideSlide>
-						</Splide>
+
+								<div>
+									<h3
+										class="text-xl font-merienda text-red-400 mb-2"
+									>
+										La struttura dispone di:
+									</h3>
+									<ul class="space-y-4">
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Ampia area per il tatami</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Spogliatoi rinnovati</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Parcheggio dedicato</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Accesso facilitato per
+												disabili</span
+											>
+										</li>
+										<li class="flex items-center space-x-2">
+											<span class="text-red-400 text-lg"
+												>•</span
+											>
+											<span class="text-gray-300"
+												>Illuminazione ottimizzata</span
+											>
+										</li>
+									</ul>
+								</div>
+
+								<div>
+									<p class="text-gray-400">
+										Indirizzo: Via San Pio X, Saletto di
+										Piave, 31030 Breda di Piave TV
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<!-- Modal per visualizzazione immagini -->
-			<div
-				v-if="showModal"
-				class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
-				@click="closeModal"
-			>
-				<div
-					class="relative w-full h-full flex items-center justify-center"
-				>
-					<button
-						@click="prevImage"
-						class="absolute left-4 text-white text-4xl hover:text-gray-300"
-					>
-						&#8249;
-					</button>
-					<img
-						:src="currentModalImage"
-						class="max-h-[90vh] max-w-[90vw] object-contain"
-						:alt="`Immagine ${currentImageIndex + 1}`"
-					/>
-					<button
-						@click="nextImage"
-						class="absolute right-4 text-white text-4xl hover:text-gray-300"
-					>
-						&#8250;
-					</button>
-				</div>
-			</div>
+			<ImageModal
+				:is-open="isModalOpen"
+				:image-src="selectedImage"
+				:image-alt="selectedImageAlt"
+				@close="closeImage"
+			/>
 		</main>
 		<FooterSection />
 	</div>
 </template>
 
 <script setup>
-import "@splidejs/vue-splide/css"
-import { Splide, SplideSlide } from "@splidejs/vue-splide"
-
-const sliderOptions = {
-	perPage: 4,
-	gap: "1rem",
-	arrows: true,
-	pagination: true,
-	breakpoints: {
-		768: {
-			perPage: 2,
-		},
-		480: {
-			perPage: 1,
-		},
-	},
-}
-
 const { getImagesFromFolder } = useGalleryImages()
 
-const carboneraPics = getImagesFromFolder("carbonera")
-const salettoPics = getImagesFromFolder("saletto")
+const carboneraImages = getImagesFromFolder("palestra/carbonera")
+const salettoImages = getImagesFromFolder("palestra/saletto")
 
-const showModal = ref(false)
-const currentImages = ref([])
-const currentImageIndex = ref(0)
-const currentModalImage = computed(
-	() => currentImages.value[currentImageIndex.value]
-)
+// Debug migliorato
+console.log("=== Debug Immagini ===")
+console.log("Carbonera:", carboneraImages)
+console.log("Saletto:", salettoImages)
 
-const openModal = (images, index) => {
-	currentImages.value = images
-	currentImageIndex.value = index
-	showModal.value = true
+// Verifica se le immagini sono state caricate
+onMounted(() => {
+	console.log("Component mounted")
+	console.log("Numero immagini Carbonera:", carboneraImages.length)
+	console.log("Numero immagini Saletto:", salettoImages.length)
+})
+
+// Gestione modal
+const isModalOpen = ref(false)
+const selectedImage = ref("")
+const selectedImageAlt = ref("")
+
+const openImage = (src, alt) => {
+	selectedImage.value = src
+	selectedImageAlt.value = alt
+	isModalOpen.value = true
 }
 
-const closeModal = () => {
-	showModal.value = false
-}
-
-const nextImage = (e) => {
-	e.stopPropagation()
-	currentImageIndex.value =
-		(currentImageIndex.value + 1) % currentImages.value.length
-}
-
-const prevImage = (e) => {
-	e.stopPropagation()
-	currentImageIndex.value =
-		currentImageIndex.value === 0
-			? currentImages.value.length - 1
-			: currentImageIndex.value - 1
+const closeImage = () => {
+	isModalOpen.value = false
+	selectedImage.value = ""
+	selectedImageAlt.value = ""
 }
 </script>
 
-<style>
-.splide__arrow {
-	background: rgba(255, 255, 255, 0.8) !important;
-}
-
-.splide__pagination__page.is-active {
-	background: #dc2626 !important;
-}
-</style>
+<style></style>

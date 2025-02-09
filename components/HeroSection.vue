@@ -45,7 +45,8 @@
 					<p
 						class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
 					>
-						一期一会 (Ichigo Ichie)<br class="hidden md:block" />
+						<span class="text-red-500">一期一会 Ichigo Ichie</span
+						><br class="hidden md:block" />
 						Ogni momento è unico e irripetibile
 					</p>
 					<div class="pt-8">
@@ -69,36 +70,27 @@ import { ref, computed, onMounted, onUnmounted } from "vue"
 import "swiper/css"
 import "swiper/css/effect-fade"
 
-const heroImages = import.meta.glob(
-	"/public/images/hero/*.{jpg,jpeg,png,svg}",
-	{
-		eager: true,
-		import: "default",
-	}
-)
+// Importazione dinamica di tutte le immagini
+const heroImages = import.meta.glob("/public/images/hero/*", {
+	eager: true,
+	import: "default",
+})
 
-const heroMobileImages = import.meta.glob(
-	"/public/images/hero-mobile/*.{jpg,jpeg,png,svg}",
-	{
-		eager: true,
-		import: "default",
-	}
-)
+const heroMobileImages = import.meta.glob("/public/images/hero-mobile/*", {
+	eager: true,
+	import: "default",
+})
 
 const isMobile = ref(false)
 
 const desktopSlides = Object.entries(heroImages).map(([path, image]) => ({
 	image,
-	alt:
-		path.split("/").pop()?.split(".")[0].replace(/-/g, " ") ||
-		"Karate image",
+	alt: "Immagine Karate",
 }))
 
 const mobileSlides = Object.entries(heroMobileImages).map(([path, image]) => ({
 	image,
-	alt:
-		path.split("/").pop()?.split(".")[0].replace(/-/g, " ") ||
-		"Karate image",
+	alt: "Immagine Karate",
 }))
 
 const currentSlides = computed(() =>

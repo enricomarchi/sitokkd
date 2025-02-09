@@ -1,13 +1,33 @@
 export const useGalleryImages = () => {
 	const getImagesFromFolder = (folder: string) => {
-		// Genera 8 immagini casuali per ogni palestra
-		const dummyImages = Array.from({ length: 8 }, (_, i) => {
-			// Usiamo categorie diverse per ogni palestra per simulare foto diverse
-			const category = folder === "carbonera" ? "sport" : "fitness"
-			return `https://source.unsplash.com/800x600/?${category}&sig=${i}`
-		})
+		try {
+			// Importa tutte le immagini dalla cartella public/images
+			const images = import.meta.glob(
+				"/public/images/**/*.{jpg,jpeg,png,gif}",
+				{
+					eager: true,
+					import: "default",
+				}
+			)
 
-		return dummyImages
+			console.log("Tutte le immagini disponibili:", Object.keys(images))
+
+			// Filtra solo le immagini della cartella richiesta
+			const filteredImages = Object.keys(images)
+				.filter((path) => path.includes(folder))
+				.map((path) => {
+					// Converte il percorso per l'uso nel browser
+					const browserPath = path.replace("/public", "")
+					console.log("Percorso convertito:", browserPath)
+					return browserPath
+				})
+
+			console.log(`Immagini trovate per ${folder}:`, filteredImages)
+			return filteredImages
+		} catch (error) {
+			console.error("Errore nel caricamento delle immagini:", error)
+			return []
+		}
 	}
 
 	return {

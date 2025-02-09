@@ -112,13 +112,56 @@
 						</div>
 					</div>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4 font-merienda">
+						<h3
+							class="text-2xl font-semibold mb-4 font-merienda flex items-center"
+						>
 							Orari Segreteria
 						</h3>
 						<div class="space-y-2">
-							<p>Lunedì - Venerdì: 9:00 - 20:00</p>
-							<p>Sabato: 9:00 - 13:00</p>
-							<p>Domenica: Chiuso</p>
+							<p class="flex items-center">
+								<svg
+									class="w-5 h-5 mr-2 fill-current"
+									viewBox="0 0 24 24"
+								>
+									<path
+										d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"
+									/>
+									<path
+										d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"
+									/>
+								</svg>
+								Martedì e Venerdì: 17:00 - 20:00
+							</p>
+							<div class="mt-4 space-y-3">
+								<a
+									href="mailto:fiorellafranceschett@libero.it"
+									class="flex items-center hover:text-red-600 transition-colors"
+								>
+									<svg
+										class="w-5 h-5 mr-2 fill-current"
+										viewBox="0 0 24 24"
+									>
+										<path
+											d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+										/>
+									</svg>
+									fiorellafranceschett@libero.it
+								</a>
+								<a
+									href="tel:+393489960234"
+									class="flex items-center hover:text-red-600 transition-colors"
+								>
+									<svg
+										class="w-5 h-5 mr-2 fill-current"
+										viewBox="0 0 24 24"
+									>
+										<path
+											d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
+										/>
+									</svg>
+									+39 348 996 0234
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -49,7 +49,7 @@
 				>
 					Sede di Saletto di Piave
 				</h3>
-				<div class="grid md:grid-cols-2 gap-8">
+				<div class="grid md:grid-cols-3 gap-8">
 					<div
 						v-for="course in salettoCourses"
 						:key="course.title"
@@ -93,7 +93,7 @@ const carboneraCourses = [
 	{
 		title: "Bambini Avanzato",
 		description:
-			"Per giovani karateka che hanno già esperienza e vogliono perfezionare la loro tecnica.",
+			"Per giovani karateki che hanno già esperienza e vogliono perfezionare la loro tecnica.",
 		schedule: ["Martedì e Venerdì: 18:00 - 19:00"],
 	},
 	{

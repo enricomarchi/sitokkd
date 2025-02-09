@@ -3,8 +3,7 @@
 		<NavBar :isHome="true" />
 		<main>
 			<HeroSection />
-			<AboutDojo />
-			<KaratePhilosophy />
+			<DojoAndPhilosophy />
 			<Courses />
 			<ContactSection />
 		</main>
@@ -13,7 +12,7 @@
 </template>
 
 <script setup>
-import KaratePhilosophy from "~/components/KaratePhilosophy.vue"
+import DojoAndPhilosophy from "~/components/DojoAndPhilosophy.vue"
 import Courses from "~/components/Courses.vue"
 import ContactSection from "~/components/ContactSection.vue"
 </script>

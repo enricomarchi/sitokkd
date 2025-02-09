@@ -10,21 +10,16 @@
 				class="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
 				:class="[
 					isMenuOpen
-						? 'bg-white'
+						? 'bg-black/90'
 						: isScrolled
-						? 'bg-white/90'
+						? 'bg-black/90'
 						: 'bg-black/20',
 				]"
 			>
 				<img
 					:src="logoImage"
 					alt="KI KAI DOJO Logo"
-					class="h-10 w-10 pointer-events-none"
-					:class="[
-						isMenuOpen || isScrolled
-							? 'brightness-100'
-							: 'brightness-0 invert',
-					]"
+					class="h-10 w-10 pointer-events-none brightness-0 invert"
 				/>
 			</div>
 		</div>
@@ -56,7 +51,7 @@
 			:class="[
 				isHome && !isScrolled
 					? 'bg-transparent'
-					: 'bg-white/90 backdrop-blur-sm shadow-sm',
+					: 'bg-black/90 backdrop-blur-sm shadow-sm',
 			]"
 		>
 			<div class="container mx-auto px-4 py-2">
@@ -68,21 +63,9 @@
 						<img
 							:src="logoImage"
 							alt="KI KAI DOJO Logo"
-							class="h-12 w-12 transition-all"
-							:class="[
-								isHome && !isScrolled
-									? 'brightness-0 invert'
-									: 'brightness-100',
-							]"
+							class="h-12 w-12 transition-all brightness-0 invert"
 						/>
-						<h1
-							class="text-2xl font-bold transition-colors duration-300"
-							:class="[
-								isHome && !isScrolled
-									? 'text-white'
-									: 'text-gray-900',
-							]"
-						>
+						<h1 class="text-2xl font-bold text-white">
 							KI KAI DOJO
 						</h1>
 					</a>
@@ -91,12 +74,7 @@
 							v-for="item in menuItems"
 							:key="item.href"
 							:href="item.href"
-							class="transition-colors duration-300"
-							:class="[
-								isHome && !isScrolled
-									? 'text-white/90 hover:text-white'
-									: 'text-gray-700 hover:text-black',
-							]"
+							class="text-white/90 hover:text-white transition-colors duration-300"
 						>
 							{{ item.text }}
 						</a>
