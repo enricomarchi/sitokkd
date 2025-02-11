@@ -1,6 +1,6 @@
 <template>
 	<section id="courses" class="py-20 bg-gray-50">
-		<div class="container mx-auto px-4">
+		<div class="container mx-auto">
 			<h2 class="text-4xl font-bold text-center mb-12 font-merienda">
 				I Nostri Corsi
 			</h2>

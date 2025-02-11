@@ -54,7 +54,9 @@
 					: 'bg-black/90 backdrop-blur-sm shadow-sm',
 			]"
 		>
-			<div class="container mx-auto px-4 py-2">
+			<div
+				class="mx-auto py-2 px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
+			>
 				<div class="flex justify-between items-center">
 					<a
 						href="/"
@@ -69,7 +71,7 @@
 							KI KAI DOJO
 						</h1>
 					</a>
-					<div class="hidden md:flex space-x-6">
+					<div class="hidden md:flex space-x-8 ml-auto">
 						<a
 							v-for="item in menuItems"
 							:key="item.href"
@@ -130,7 +132,9 @@ onUnmounted(() => {
 const menuItems = [
 	{ text: "Home", href: "/" },
 	{ text: "Palestre", href: "/palestra" },
-	{ text: "Istruttori", href: "/istruttori" },
+	{ text: "Chi siamo", href: "/team" },
+	{ text: "Corsi", href: "/corsi" },
+	{ text: "Contatti", href: "/contatti" },
 ]
 
 const logoImages = import.meta.glob("/public/images/logo/*.{svg,png}", {

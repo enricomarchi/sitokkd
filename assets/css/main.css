@@ -12,6 +12,10 @@
 	.ki-kai-text strong.font-merienda {
 		@apply text-2xl text-red-600 font-bold;
 	}
+
+	.container {
+		@apply mx-auto max-w-[1920px];
+	}
 }
 
 @layer base {
@@ -45,6 +49,15 @@
 	li {
 		margin-bottom: 0.75rem;
 		font-size: 1.125rem;
+	}
+
+	ul.ki-kai-list li {
+		@apply relative pl-6;
+	}
+
+	ul.ki-kai-list li::before {
+		content: "•";
+		@apply absolute left-0 text-red-600 text-lg;
 	}
 
 	@screen md {
