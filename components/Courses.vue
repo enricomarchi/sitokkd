@@ -17,12 +17,16 @@
 				</h3>
 				<div class="grid md:grid-cols-3 gap-8">
 					<div
-						v-for="course in carboneraCourses"
+						v-for="(course, index) in carboneraCourses"
 						:key="course.title"
 						class="bg-white rounded-lg shadow-lg p-6 flex flex-col h-full"
 						v-motion
-						:initial="{ opacity: 0, y: 100 }"
+						:initial="{
+							opacity: 0,
+							y: window.innerWidth < 768 ? 50 : 100,
+						}"
 						:visible="{ opacity: 1, y: 0 }"
+						:when-in-view="window.innerWidth >= 768"
 					>
 						<h3 class="text-2xl font-bold mb-4 text-red-600">
 							{{ course.title }}
@@ -54,7 +58,7 @@
 				</h3>
 				<div class="grid md:grid-cols-3 gap-8">
 					<div
-						v-for="course in salettoCourses"
+						v-for="(course, index) in salettoCourses"
 						:key="course.title"
 						class="bg-white rounded-lg shadow-lg p-6 flex flex-col h-full"
 						v-motion
@@ -86,6 +90,8 @@
 </template>
 
 <script setup>
+const window = process.client ? globalThis.window : { innerWidth: 0 }
+
 const carboneraCourses = [
 	{
 		title: "Bambini Principianti",

@@ -101,11 +101,9 @@
 							</h2>
 
 							<div>
-								<h3
-									class="text-xl font-merienda text-red-600 mb-2"
-								>
+								<h2 class="text-xl font-merienda text-red-600">
 									Benefici per Bambini e Ragazzi
-								</h3>
+								</h2>
 								<ul class="space-y-4">
 									<li>
 										<h3 class="text-gray-700">
@@ -161,7 +159,7 @@
 							</div>
 
 							<div>
-								<h2 class="text-xl text-red-600 mb-2">
+								<h2 class="text-xl text-red-600">
 									I Pilastri del Nostro Insegnamento
 								</h2>
 								<ul class="space-y-4">

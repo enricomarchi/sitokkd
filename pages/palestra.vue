@@ -25,8 +25,13 @@
 								<div
 									class="md:col-span-4"
 									v-motion
-									:initial="{ opacity: 0, x: -100 }"
-									:visible="{ opacity: 1, x: 0 }"
+									:initial="{
+										opacity: 0,
+										x: window.innerWidth < 768 ? 0 : -100,
+										y: window.innerWidth < 768 ? 50 : 0,
+									}"
+									:visible="{ opacity: 1, x: 0, y: 0 }"
+									:when-in-view="window.innerWidth >= 768"
 								>
 									<div
 										class="rounded-xl p-6 h-full space-y-8"
@@ -44,36 +49,6 @@
 												karate in un ambiente
 												professionale e confortevole.
 											</p>
-										</div>
-
-										<div>
-											<h3
-												class="text-xl font-merienda text-red-600 mb-2"
-											>
-												La struttura offre:
-											</h3>
-											<ul class="space-y-4 ki-kai-list">
-												<li class="text-gray-700">
-													Ampia area per il tatami
-												</li>
-												<li class="text-gray-700">
-													Spogliatoi completi con
-													docce
-												</li>
-												<li class="text-gray-700">
-													Ampio parcheggio gratuito
-												</li>
-												<li class="text-gray-700">
-													Tribuna per il pubblico
-												</li>
-												<li class="text-gray-700">
-													Ambiente climatizzato
-												</li>
-												<li class="text-gray-700">
-													Pavimento in parquet
-													riscaldato
-												</li>
-											</ul>
 										</div>
 
 										<div>
@@ -144,8 +119,13 @@
 								<div
 									class="md:col-span-4 order-2"
 									v-motion
-									:initial="{ opacity: 0, x: 100 }"
-									:visible="{ opacity: 1, x: 0 }"
+									:initial="{
+										opacity: 0,
+										x: window.innerWidth < 768 ? 0 : 100,
+										y: window.innerWidth < 768 ? 50 : 0,
+									}"
+									:visible="{ opacity: 1, x: 0, y: 0 }"
+									:when-in-view="window.innerWidth >= 768"
 								>
 									<div
 										class="rounded-xl p-6 h-full space-y-8"
@@ -162,33 +142,6 @@
 												ambiente ideale per la pratica
 												del karate.
 											</p>
-										</div>
-
-										<div>
-											<h3
-												class="text-xl font-merienda text-red-600 mb-2"
-											>
-												La struttura dispone di:
-											</h3>
-											<ul class="space-y-4 ki-kai-list">
-												<li class="text-gray-700">
-													Ampia area per il tatami
-												</li>
-												<li class="text-gray-700">
-													Spogliatoi completi con
-													docce
-												</li>
-												<li class="text-gray-700">
-													Tribuna per il pubblico
-												</li>
-												<li class="text-gray-700">
-													Ambiente climatizzato
-												</li>
-												<li class="text-gray-700">
-													Pavimento in parquet
-													riscaldato
-												</li>
-											</ul>
 										</div>
 
 										<div>
@@ -249,6 +202,8 @@
 </template>
 
 <script setup>
+const window = process.client ? globalThis.window : { innerWidth: 0 }
+
 const { getImagesFromFolder } = useGalleryImages()
 
 const carboneraImages = getImagesFromFolder("palestra/carbonera")

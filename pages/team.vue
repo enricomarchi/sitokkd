@@ -9,10 +9,12 @@
 				<h2 class="text-3xl font-bold text-center mb-16 font-merienda">
 					Gli istruttori
 				</h2>
-				<div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+				<div
+					class="flex flex-wrap justify-around gap-8 max-w-5xl mx-auto"
+				>
 					<!-- Maestro Card -->
 					<div
-						class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl"
+						class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl w-full md:w-[calc(50%-1rem)]"
 					>
 						<!-- Badge ruolo -->
 						<div class="relative z-10 py-3 bg-red-600">
@@ -58,7 +60,7 @@
 
 					<!-- Istruttrice Card -->
 					<div
-						class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl"
+						class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl w-full md:w-[calc(50%-1rem)]"
 					>
 						<!-- Badge ruolo -->
 						<div class="relative z-10 py-3 bg-red-600">
@@ -105,7 +107,7 @@
 
 				<!-- Staff di Supporto -->
 
-				<h2 class="text-3xl font-bold text-center mb-16 font-merienda">
+				<h2 class="text-3xl font-bold text-center my-16 font-merienda">
 					Staff Tecnico e Organizzativo
 				</h2>
 
@@ -213,16 +215,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<!-- Foto di Gruppo -->
-
-				<div class="w-full overflow-hidden rounded-xl shadow-xl">
-					<img
-						src="/images/atleti/gruppo.jpg"
-						alt="Foto di gruppo Ki Kai Dojo"
-						class="w-full h-auto object-cover"
-					/>
 				</div>
 			</section>
 		</main>
