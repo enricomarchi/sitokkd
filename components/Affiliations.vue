@@ -3,7 +3,8 @@
 		class="py-16 bg-[#e6d5c3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
 	>
 		<div class="container mx-auto px-4">
-			<div class="flex flex-wrap justify-center items-center gap-8">
+			<h2 class="text-3xl font-bold text-center my-0">Affiliazioni</h2>
+			<div class="flex flex-wrap justify-center items-center gap-8 pt-12">
 				<a
 					v-for="affiliation in affiliations"
 					:key="affiliation.id"
@@ -15,7 +16,7 @@
 					<img
 						:src="affiliation.logo"
 						:alt="affiliation.name"
-						class="h-48 w-auto"
+						class="h-12 md:h-48 w-auto"
 					/>
 				</a>
 			</div>

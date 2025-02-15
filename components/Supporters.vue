@@ -4,7 +4,9 @@
 			<h2 class="text-3xl font-bold text-center my-0">
 				I Nostri Sostenitori
 			</h2>
-			<div class="flex flex-wrap justify-center items-center gap-12">
+			<div
+				class="flex flex-wrap justify-center items-center gap-12 pt-12"
+			>
 				<a
 					v-for="supporter in supporters"
 					:key="supporter.id"
