@@ -1,13 +1,12 @@
 <template>
 	<div>
 		<NavBar :isHome="false" />
-		<main class="bg-gradient-to-b from-white to-gray-50">
-			<div class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]">
-				<!-- Header Section -->
-				<div class="container mx-auto pt-24 pb-4"></div>
-
+		<main class="bg-[#f5e6d3]">
+			<div
+				class="pt-24 px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
+			>
 				<!-- Staff Tecnico Principale -->
-				<section class="container mx-auto pt-8">
+				<section class="container mx-auto">
 					<h2
 						class="text-3xl font-bold text-center mb-16 font-merienda"
 					>
@@ -16,7 +15,7 @@
 					<div class="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
 						<!-- Maestro Card -->
 						<div
-							class="group bg-white rounded-2xl overflow-hidden shadow-2xl"
+							class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl"
 						>
 							<!-- Badge ruolo -->
 							<div class="relative z-10 py-3 bg-red-600">
@@ -28,7 +27,7 @@
 							</div>
 
 							<!-- Contenitore immagine e informazioni -->
-							<div class="relative h-[600px] bg-gray-100">
+							<div class="relative h-[600px] bg-[#f5e6d3]">
 								<img
 									:src="senseiMorenoImage"
 									alt="Maestro Moreno Donà"
@@ -62,7 +61,7 @@
 
 						<!-- Istruttrice Card -->
 						<div
-							class="group bg-white rounded-2xl overflow-hidden shadow-2xl"
+							class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-2xl overflow-hidden shadow-2xl"
 						>
 							<!-- Badge ruolo -->
 							<div class="relative z-10 py-3 bg-red-600">
@@ -74,7 +73,7 @@
 							</div>
 
 							<!-- Contenitore immagine e informazioni -->
-							<div class="relative h-[600px] bg-gray-100">
+							<div class="relative h-[600px] bg-[#f5e6d3]">
 								<img
 									:src="senseiGioiaImage"
 									alt="Istruttrice Gioia Donà"
@@ -123,7 +122,7 @@
 								<div
 									v-for="arbitro in arbitriList"
 									:key="arbitro.nome"
-									class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+									class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
 								>
 									<!-- Badge ruolo sempre visibile -->
 									<div class="relative z-10 py-2 bg-red-600">
@@ -139,7 +138,7 @@
 										<img
 											:src="`/images/staff/${arbitro.foto}`"
 											:alt="arbitro.nome"
-											class="absolute inset-0 w-full h-full object-contain bg-gray-100"
+											class="absolute inset-0 w-full h-full object-contain bg-[#f5e6d3]"
 										/>
 										<!-- Overlay con gradiente sempre visibile ma che si intensifica all'hover -->
 										<div
@@ -170,28 +169,30 @@
 
 					<!-- Presidenti di Giuria -->
 					<div>
-						<div class="max-w-6xl mx-auto">
-							<div class="grid md:grid-cols-3 gap-8">
-								<div
-									v-for="presidente in presidentiList"
-									:key="presidente.nome"
-									class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-								>
-									<!-- Badge ruolo sempre visibile -->
-									<div class="relative z-10 py-2 bg-red-600">
-										<span
-											class="text-sm font-semibold text-white block text-center"
-										>
-											{{ presidente.ruolo }}
-										</span>
-									</div>
+						<div class="flex flex-wrap justify-center gap-8">
+							<div
+								v-for="presidente in presidentiList"
+								:key="presidente.nome"
+								class="group bg-gradient-to-b from-[#f5e6d3] to-[#e6d5c3] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 w-full md:w-[calc(33.333%-1.33rem)] max-w-sm max-h-[480px]"
+							>
+								<!-- Badge ruolo sempre visibile -->
+								<div class="relative z-10 py-2 bg-red-600">
+									<span
+										class="text-sm font-semibold text-white block text-center"
+									>
+										{{ presidente.ruolo }}
+									</span>
+								</div>
 
-									<!-- Contenitore immagine e informazioni -->
-									<div class="aspect-[3/4] relative">
+								<!-- Contenitore immagine e informazioni -->
+								<div class="h-[calc(480px-2.5rem)] relative">
+									<div
+										class="absolute inset-0 w-full h-full object-contain bg-[#f5e6d3]"
+									>
 										<img
 											:src="`/images/staff/${presidente.foto}`"
 											:alt="presidente.nome"
-											class="absolute inset-0 w-full h-full object-contain bg-gray-100"
+											class="absolute inset-0 w-full h-full object-contain bg-[#f5e6d3]"
 										/>
 										<!-- Overlay con gradiente sempre visibile ma che si intensifica all'hover -->
 										<div
@@ -249,11 +250,10 @@ const arbitri = [
 
 const presidenti = [
 	{ nome: "Gioia Donà", foto: "gioia.jpg", grado: "3° Dan" },
-	{ nome: "Marzia Moro", foto: "marzia.jpg", grado: "2° Dan" },
 	{ nome: "Manuela Orlando", foto: "manuela.jpg", grado: "1° Dan" },
 	{ nome: "Silvia Poliak", foto: "silvia.jpg", grado: "1° Dan" },
 	{ nome: "Giovanna Di Blasi", foto: "giovanna.jpg", grado: "1° Dan" },
-	{ nome: "Enrico Marchi", foto: "enrico.jpg", grado: "" },
+	{ nome: "Enrico Marchi", foto: "enrico.jpg" },
 ]
 
 const arbitriList = arbitri.map((a) => ({ ...a, ruolo: "Arbitro" }))

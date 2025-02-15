@@ -3,7 +3,7 @@
 		<NavBar />
 		<main>
 			<!-- Sede di Carbonera -->
-			<div class="bg-white">
+			<div class="bg-[#f5e6d3]">
 				<div
 					class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
 				>
@@ -77,10 +77,12 @@
 										</div>
 
 										<div>
-											<p class="text-gray-600">
-												Indirizzo: Via IV Novembre 30,
-												31030 Carbonera TV
-											</p>
+											<span
+												class="font-semibold text-gray-700"
+											>
+												Via IV Novembre 30, 31030
+												Carbonera TV
+											</span>
 										</div>
 									</div>
 								</div>
@@ -108,7 +110,7 @@
 			</div>
 
 			<!-- Sede di Saletto di Piave -->
-			<div class="bg-gray-50">
+			<div class="bg-[#e6d5c3]">
 				<div
 					class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
 				>
@@ -190,11 +192,12 @@
 										</div>
 
 										<div>
-											<p class="text-gray-600">
-												Indirizzo: Via San Pio X,
-												Saletto di Piave, 31030 Breda di
-												Piave TV
-											</p>
+											<span
+												class="font-semibold text-gray-700"
+											>
+												Via San Pio X, Saletto di Piave,
+												31030 Breda di Piave TV
+											</span>
 										</div>
 									</div>
 								</div>
@@ -205,6 +208,43 @@
 			</div>
 		</main>
 		<FooterSection />
+
+		<!-- Image Modal -->
+		<div
+			v-if="isModalOpen"
+			class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75"
+			@click="closeImage"
+		>
+			<div
+				class="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+			>
+				<img
+					:src="selectedImage"
+					:alt="selectedImageAlt"
+					class="max-w-full max-h-[90vh] object-contain rounded-lg"
+					@click.stop
+				/>
+				<button
+					@click.stop="closeImage"
+					class="absolute top-2 right-2 text-white hover:text-gray-300"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-8 w-8"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+				</button>
+			</div>
+		</div>
 	</div>
 </template>
 

@@ -4,15 +4,9 @@
 		<main>
 			<HeroSection />
 			<Affiliations />
-			<div>
-				<div class="bg-white">
-					<div
-						class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
-					>
-						<DojoAndPhilosophy />
-					</div>
-				</div>
-			</div>
+
+			<DojoAndPhilosophy />
+
 			<Supporters />
 		</main>
 		<FooterSection />

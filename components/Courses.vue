@@ -1,5 +1,8 @@
 <template>
-	<section id="courses" class="py-20 bg-gray-50">
+	<section
+		id="courses"
+		class="py-20 bg-[#f5e6d3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
+	>
 		<div class="container mx-auto">
 			<h2 class="text-4xl font-bold text-center mb-12 font-merienda">
 				I Nostri Corsi
@@ -16,18 +19,18 @@
 					<div
 						v-for="course in carboneraCourses"
 						:key="course.title"
-						class="bg-white rounded-lg shadow-lg p-6"
+						class="bg-white rounded-lg shadow-lg p-6 flex flex-col h-full"
 						v-motion
 						:initial="{ opacity: 0, y: 100 }"
 						:visible="{ opacity: 1, y: 0 }"
 					>
-						<h3 class="text-2xl font-bold mb-4 font-merienda">
+						<h3 class="text-2xl font-bold mb-4 text-red-600">
 							{{ course.title }}
 						</h3>
 						<p class="text-gray-600 mb-4">
 							{{ course.description }}
 						</p>
-						<div>
+						<div class="mt-auto">
 							<h4 class="font-semibold mb-2">Orari:</h4>
 							<ul class="space-y-2">
 								<li
@@ -53,18 +56,18 @@
 					<div
 						v-for="course in salettoCourses"
 						:key="course.title"
-						class="bg-white rounded-lg shadow-lg p-6"
+						class="bg-white rounded-lg shadow-lg p-6 flex flex-col h-full"
 						v-motion
 						:initial="{ opacity: 0, y: 100 }"
 						:visible="{ opacity: 1, y: 0 }"
 					>
-						<h3 class="text-2xl font-bold mb-4 font-merienda">
+						<h3 class="text-2xl font-bold mb-4 text-red-600">
 							{{ course.title }}
 						</h3>
 						<p class="text-gray-600 mb-4">
 							{{ course.description }}
 						</p>
-						<div>
+						<div class="mt-auto">
 							<h4 class="font-semibold mb-2">Orari:</h4>
 							<ul class="space-y-2">
 								<li

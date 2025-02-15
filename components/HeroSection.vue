@@ -32,7 +32,7 @@
 				<div class="text-center text-white space-y-6">
 					<div class="space-y-2">
 						<h2
-							class="text-2xl md:text-3xl font-merienda text-red-500"
+							class="text-3xl md:text-4xl font-merienda text-red-500"
 						>
 							Scuola di Karate
 						</h2>
@@ -42,13 +42,15 @@
 							KI KAI DOJO
 						</h1>
 					</div>
-					<p
-						class="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed"
-					>
-						<span class="text-red-500">一期一会 Ichigo Ichie</span
-						><br class="hidden md:block" />
-						Ogni momento è unico e irripetibile
-					</p>
+					<div class="max-w-2xl mx-auto leading-relaxed">
+						<h2 class="text-red-500 text-3xl md:text-4xl">
+							一期一会 Ichigo Ichie
+						</h2>
+
+						<span class="italic font-light"
+							>(Ogni momento è unico e irripetibile)</span
+						>
+					</div>
 				</div>
 			</div>
 		</div>

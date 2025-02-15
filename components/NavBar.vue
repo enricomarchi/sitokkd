@@ -67,9 +67,9 @@
 							alt="KI KAI DOJO Logo"
 							class="h-12 w-12 transition-all brightness-0 invert"
 						/>
-						<h1 class="text-2xl font-bold text-white">
+						<span class="text-2xl font-bold text-white">
 							KI KAI DOJO
-						</h1>
+						</span>
 					</a>
 					<div class="hidden md:flex space-x-8 ml-auto">
 						<a

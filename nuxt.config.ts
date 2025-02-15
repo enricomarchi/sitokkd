@@ -1,6 +1,15 @@
 export default defineNuxtConfig({
 	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
 
+	// Rimuoviamo la configurazione cssPath poiché useremo un singolo file
+	tailwindcss: {
+		exposeConfig: true,
+		viewer: false,
+	},
+
+	// Aggiungiamo il nostro CSS dopo Tailwind per dargli priorità
+	css: ["~/assets/css/main.css"],
+
 	app: {
 		head: {
 			title: "KI KAI DOJO",

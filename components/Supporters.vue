@@ -1,7 +1,7 @@
 <template>
-	<section class="py-16">
+	<section class="py-16 bg-[#e6d5c3]">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold text-center mb-12">
+			<h2 class="text-3xl font-bold text-center my-0">
 				I Nostri Sostenitori
 			</h2>
 			<div class="flex flex-wrap justify-center items-center gap-12">

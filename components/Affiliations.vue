@@ -1,5 +1,7 @@
 <template>
-	<section class="py-16 bg-gray-50">
+	<section
+		class="py-16 bg-[#e6d5c3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
+	>
 		<div class="container mx-auto px-4">
 			<div class="flex flex-wrap justify-center items-center gap-8">
 				<a

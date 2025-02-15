@@ -1,9 +1,10 @@
 <template>
-	<section id="contact" class="py-20">
+	<section
+		id="contact"
+		class="py-20 bg-[#f5e6d3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
+	>
 		<div class="container mx-auto">
-			<h2 class="text-4xl font-bold text-center mb-12 font-merienda">
-				Contattaci
-			</h2>
+			<h2 class="text-4xl font-bold text-center mb-12">Contattaci</h2>
 			<div class="grid md:grid-cols-2 gap-12">
 				<div
 					class="space-y-8"
@@ -12,7 +13,7 @@
 					:visible="{ opacity: 1, x: 0 }"
 				>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4 font-merienda">
+						<h3 class="text-2xl font-semibold mb-4 text-red-600">
 							Informazioni
 						</h3>
 						<div class="space-y-3">
@@ -113,7 +114,7 @@
 					</div>
 					<div>
 						<h3
-							class="text-2xl font-semibold mb-4 font-merienda flex items-center"
+							class="text-2xl font-semibold mb-4 font-merienda flex items-center text-red-600"
 						>
 							Orari Segreteria
 						</h3>
@@ -172,7 +173,7 @@
 					class="space-y-8"
 				>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4">
+						<h3 class="text-2xl font-semibold mb-4 text-red-600">
 							Vieni a Trovarci
 						</h3>
 						<p class="text-gray-600 mb-4">
@@ -188,7 +189,7 @@
 						</p>
 					</div>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4">
+						<h3 class="text-2xl font-semibold mb-4 text-red-600">
 							Come Raggiungerci
 						</h3>
 						<p class="text-gray-600">
@@ -199,7 +200,7 @@
 						</p>
 					</div>
 					<div>
-						<h3 class="text-2xl font-semibold mb-4">
+						<h3 class="text-2xl font-semibold mb-4 text-red-600">
 							Cosa Portare
 						</h3>
 						<ul
