@@ -1,6 +1,6 @@
 <template>
 	<section
-		class="py-20 bg-[#f5e6d3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
+		class="py-10 md:py-20 bg-[#f5e6d3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
 	>
 		<div class="container mx-auto">
 			<div class="flex flex-col lg:flex-row gap-8">

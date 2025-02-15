@@ -4,19 +4,21 @@
 	>
 		<div class="container mx-auto px-4">
 			<h2 class="text-3xl font-bold text-center my-0">Affiliazioni</h2>
-			<div class="flex flex-wrap justify-center items-center gap-8 pt-12">
+			<div
+				class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 place-items-center"
+			>
 				<a
 					v-for="affiliation in affiliations"
 					:key="affiliation.id"
 					:href="affiliation.url"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="hover:opacity-80 transition-opacity"
+					class="hover:opacity-80 transition-opacity w-32 md:w-48"
 				>
 					<img
 						:src="affiliation.logo"
 						:alt="affiliation.name"
-						class="h-12 md:h-48 w-auto"
+						class="w-full h-auto"
 					/>
 				</a>
 			</div>

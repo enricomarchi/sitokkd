@@ -1,20 +1,10 @@
 <template>
-	<nav class="fixed w-full z-[40]">
+	<nav class="fixed top-0 left-0 right-0 z-20">
 		<!-- Mobile Menu Button -->
-		<div
-			class="md:hidden fixed top-4 left-4 z-[999]"
-			:class="[isHome && !isScrolled ? 'opacity-0' : 'opacity-100']"
-			@click="toggleMenu"
-		>
+		<div class="md:hidden fixed top-4 left-4 z-[999]" @click="toggleMenu">
 			<div
 				class="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
-				:class="[
-					isMenuOpen
-						? 'bg-black/90'
-						: isScrolled
-						? 'bg-black/90'
-						: 'bg-black/20',
-				]"
+				:class="[isMenuOpen ? 'bg-black/90' : 'bg-black/20']"
 			>
 				<img
 					:src="logoImage"

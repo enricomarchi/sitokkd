@@ -7,7 +7,7 @@
 				<div
 					class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
 				>
-					<section class="py-20">
+					<section class="py-10 md:py-20">
 						<div class="container mx-auto">
 							<h1
 								class="text-4xl md:text-6xl font-bold font-merienda text-center mb-16"
@@ -114,7 +114,7 @@
 				<div
 					class="px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
 				>
-					<section class="py-20">
+					<section class="py-10 md:py-20">
 						<div class="container mx-auto">
 							<h2
 								class="text-3xl font-bold mb-12 text-center font-merienda text-red-600"
