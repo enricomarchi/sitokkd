@@ -4,7 +4,11 @@
 		class="py-10 md:py-20 bg-[#f5e6d3] mx-auto px-8 md:px-12 lg:px-16 xl:px-24 max-w-[1920px]"
 	>
 		<div class="container mx-auto">
-			<h2 class="text-4xl font-bold text-center mb-12">Contattaci</h2>
+			<h1
+				class="text-4xl md:text-6xl font-bold font-merienda text-center mb-16"
+			>
+				Contattaci
+			</h1>
 			<div class="grid md:grid-cols-2 gap-12">
 				<div
 					class="space-y-8"

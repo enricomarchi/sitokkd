@@ -1,43 +1,7 @@
 <template>
 	<nav class="fixed top-0 left-0 right-0 z-20">
-		<!-- Mobile Menu Button -->
-		<div class="md:hidden fixed top-4 left-4 z-[999]" @click="toggleMenu">
-			<div
-				class="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer"
-				:class="[isMenuOpen ? 'bg-black/90' : 'bg-black/20']"
-			>
-				<img
-					:src="logoImage"
-					alt="KI KAI DOJO Logo"
-					class="h-10 w-10 pointer-events-none brightness-0 invert"
-				/>
-			</div>
-		</div>
-
-		<!-- Mobile Menu Overlay -->
 		<div
-			v-if="isMenuOpen"
-			class="fixed inset-0 bg-black/95 z-[998] md:hidden flex items-center justify-center"
-			@click.self="closeMenu"
-		>
-			<div class="text-center">
-				<div class="space-y-8">
-					<NuxtLink
-						v-for="item in menuItems"
-						:key="item.href"
-						:to="item.href"
-						class="block text-white text-2xl font-semibold hover:text-red-500 transition-colors"
-						@click="closeMenu"
-					>
-						{{ item.text }}
-					</NuxtLink>
-				</div>
-			</div>
-		</div>
-
-		<!-- Desktop Navigation -->
-		<div
-			class="hidden md:block transition-all duration-300"
+			class="transition-all duration-300"
 			:class="[
 				isHome && !isScrolled
 					? 'bg-transparent'
@@ -61,6 +25,7 @@
 							KI KAI DOJO
 						</span>
 					</a>
+					<!-- Menu Links (Desktop) -->
 					<div class="hidden md:flex space-x-8 ml-auto">
 						<a
 							v-for="item in menuItems"
@@ -71,9 +36,49 @@
 							{{ item.text }}
 						</a>
 					</div>
+					<!-- Menu Button (Mobile) -->
+					<button
+						class="md:hidden text-white p-2"
+						@click="toggleMenu"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-8 w-8"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+						</svg>
+					</button>
 				</div>
 			</div>
 		</div>
+
+		<!-- Mobile Menu Dropdown -->
+		<Transition name="slide-fade">
+			<div
+				v-if="isMenuOpen"
+				class="md:hidden w-full bg-black/90 backdrop-blur-sm"
+			>
+				<div class="px-8 py-4 flex flex-col space-y-4">
+					<a
+						v-for="item in menuItems"
+						:key="item.href"
+						:href="item.href"
+						class="text-white/90 hover:text-white transition-colors duration-300 text-lg"
+						@click="closeMenu"
+					>
+						{{ item.text }}
+					</a>
+				</div>
+			</div>
+		</Transition>
 	</nav>
 </template>
 
@@ -143,6 +148,17 @@ const logoImage = "/images/logo/logo.svg"
 
 .mobile-menu-enter-from,
 .mobile-menu-leave-to {
+	opacity: 0;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+	transition: all 0.3s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+	transform: translateY(-20px);
 	opacity: 0;
 }
 </style>

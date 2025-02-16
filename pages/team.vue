@@ -6,9 +6,11 @@
 			<section
 				class="container py-10 md:py-20 px-8 md:px-12 lg:px-16 xl:px-24 mx-auto max-w-[1920px]"
 			>
-				<h2 class="text-3xl font-bold text-center mb-16 font-merienda">
+				<h1
+					class="text-4xl md:text-6xl font-bold font-merienda text-center mb-16"
+				>
 					Gli istruttori
-				</h2>
+				</h1>
 				<div
 					class="flex flex-wrap justify-around gap-8 max-w-5xl mx-auto"
 				>
