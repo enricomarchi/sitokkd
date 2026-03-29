@@ -1,123 +1,161 @@
 <template>
 	<section id="hero" class="h-screen relative overflow-hidden">
-		<Swiper
-			:modules="[SwiperAutoplay, SwiperEffectFade]"
-			:slides-per-view="1"
-			:effect="'fade'"
-			:autoplay="{
-				delay: 3000,
-				disableOnInteraction: false,
-			}"
-			:speed="1000"
-			:loop="true"
-			class="h-full"
-		>
-			<SwiperSlide
-				v-for="slide in currentSlides"
-				:key="slide.image"
-				class="h-full"
-			>
+		<!-- Background slideshow -->
+		<div class="absolute inset-0">
+			<TransitionGroup name="hero-fade">
 				<img
+					v-for="(slide, i) in currentSlides"
+					v-show="i === activeIndex"
+					:key="slide.image"
 					:src="slide.image"
 					:alt="slide.alt"
-					class="h-full w-full object-cover"
+					class="absolute inset-0 h-full w-full object-cover"
 				/>
-			</SwiperSlide>
-		</Swiper>
+			</TransitionGroup>
+		</div>
 
-		<div class="absolute inset-0 bg-black/50 z-10">
-			<div
-				class="container mx-auto px-4 h-full flex items-center justify-center"
+		<!-- Dark overlay -->
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"
+		/>
+
+		<!-- Content -->
+		<div
+			class="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center"
+		>
+			<p
+				class="text-white/60 text-xs md:text-sm uppercase tracking-[0.4em] mb-6"
+				v-motion
+				:initial="{ opacity: 0, y: 20 }"
+				:enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
 			>
-				<div class="text-center text-white">
-					<h1 class="text-5xl md:text-7xl font-bold mb-6">
-						La Via del Karate
-					</h1>
-					<p class="text-xl md:text-2xl">
-						Tradizione, Disciplina, Eccellenza
-					</p>
-				</div>
+				Carbonera (TV)
+			</p>
+			<h1
+				class="text-5xl sm:text-6xl md:text-8xl font-heading font-bold text-white tracking-wide leading-none mb-6"
+				v-motion
+				:initial="{ opacity: 0, y: 30 }"
+				:enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
+			>
+				KI KAI DOJO
+			</h1>
+			<div
+				class="w-16 h-px bg-accent-500 mb-6"
+				v-motion
+				:initial="{ opacity: 0, scale: 0 }"
+				:enter="{ opacity: 1, scale: 1, transition: { delay: 600 } }"
+			/>
+			<p
+				class="text-white/70 text-lg md:text-xl font-light max-w-lg leading-relaxed mb-12"
+				v-motion
+				:initial="{ opacity: 0, y: 20 }"
+				:enter="{ opacity: 1, y: 0, transition: { delay: 700 } }"
+			>
+				La via del karate è un cammino di disciplina,<br
+					class="hidden sm:block"
+				/>
+				rispetto e crescita interiore
+			</p>
+			<div
+				class="flex flex-col sm:flex-row gap-4"
+				v-motion
+				:initial="{ opacity: 0, y: 20 }"
+				:enter="{ opacity: 1, y: 0, transition: { delay: 900 } }"
+			>
+				<a
+					href="#courses"
+					class="px-8 py-3 bg-white text-ink-900 text-sm uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors duration-300"
+				>
+					Scopri i Corsi
+				</a>
+				<a
+					href="#contact"
+					class="px-8 py-3 border border-white/40 text-white text-sm uppercase tracking-[0.15em] font-light hover:bg-white/10 transition-colors duration-300"
+				>
+					Prova Gratuita
+				</a>
+			</div>
+		</div>
+
+		<!-- Scroll indicator -->
+		<div
+			class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+			v-motion
+			:initial="{ opacity: 0 }"
+			:enter="{ opacity: 1, transition: { delay: 1200 } }"
+		>
+			<div class="w-px h-12 bg-white/30 mx-auto mb-2 overflow-hidden">
+				<div class="w-full h-full bg-white/70 animate-scroll-line" />
 			</div>
 		</div>
 	</section>
 </template>
 
-<script setup>
-import { Swiper, SwiperSlide } from "swiper/vue"
-import { Autoplay, EffectFade } from "swiper/modules"
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import "swiper/css"
-import "swiper/css/effect-fade"
-
+<script setup lang="ts">
 const heroImages = import.meta.glob(
 	"/public/images/hero/*.{jpg,jpeg,png,svg}",
-	{
-		eager: true,
-		import: "default",
-	}
+	{ eager: true, import: "default" },
 )
-
 const heroMobileImages = import.meta.glob(
 	"/public/images/hero-mobile/*.{jpg,jpeg,png,svg}",
-	{
-		eager: true,
-		import: "default",
-	}
+	{ eager: true, import: "default" },
 )
 
 const isMobile = ref(false)
+const activeIndex = ref(0)
+let interval: ReturnType<typeof setInterval>
 
 const desktopSlides = Object.entries(heroImages).map(([path, image]) => ({
 	image,
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
+	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
 }))
 
 const mobileSlides = Object.entries(heroMobileImages).map(([path, image]) => ({
 	image,
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate image",
+	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
 }))
 
-const currentSlides = computed(() => isMobile.value ? mobileSlides : desktopSlides)
+const currentSlides = computed(() =>
+	isMobile.value ? mobileSlides : desktopSlides,
+)
 
 const handleResize = () => {
-	isMobile.value = window?.innerWidth < 768
+	isMobile.value = window.innerWidth < 768
 }
 
 onMounted(() => {
-	if (process.client) {
-		isMobile.value = window.innerWidth < 768
-		window.addEventListener('resize', handleResize)
-	}
+	isMobile.value = window.innerWidth < 768
+	window.addEventListener("resize", handleResize)
+	interval = setInterval(() => {
+		activeIndex.value = (activeIndex.value + 1) % currentSlides.value.length
+	}, 5000)
 })
 
 onUnmounted(() => {
-	if (process.client) {
-		window.removeEventListener('resize', handleResize)
-	}
+	window.removeEventListener("resize", handleResize)
+	clearInterval(interval)
 })
-
-const SwiperAutoplay = Autoplay
-const SwiperEffectFade = EffectFade
 </script>
 
 <style>
-.swiper {
-	width: 100%;
-	height: 100%;
+.hero-fade-enter-active,
+.hero-fade-leave-active {
+	transition: opacity 1.5s ease;
+}
+.hero-fade-enter-from,
+.hero-fade-leave-to {
+	opacity: 0;
 }
 
-.swiper-slide {
-	width: 100%;
-	height: 100%;
+@keyframes scroll-line {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(100%);
+	}
 }
-
-.swiper-slide img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-:root {
-	--swiper-theme-color: #dc2626;
+.animate-scroll-line {
+	animation: scroll-line 2s ease-in-out infinite;
 }
 </style>

@@ -3,15 +3,17 @@
 		<NavBar />
 		<main>
 			<HeroSection />
+			<PhilosophySection />
 			<AboutDojo />
-			<AboutMe />
 			<Courses />
+			<AboutMe />
 			<ContactSection />
 		</main>
 		<FooterSection />
+		<ScrollToTop />
 	</div>
 </template>
 
-<script setup></script>
-
-<style></style>
+<script setup>
+useHead({ title: "La Via del Karate a Carbonera" })
+</script>

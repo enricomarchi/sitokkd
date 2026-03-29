@@ -11,13 +11,39 @@ export default defineNuxtConfig({
 					content: "width=device-width, initial-scale=1",
 				},
 				{
-					hid: "description",
 					name: "description",
 					content:
 						"Scopri il KI KAI DOJO a Carbonera. Corsi di karate per tutti i livelli, dalla cintura bianca alla nera. Tradizione, disciplina e crescita personale.",
 				},
+				{ property: "og:type", content: "website" },
+				{
+					property: "og:title",
+					content: "KI KAI DOJO | Karate Carbonera",
+				},
+				{
+					property: "og:description",
+					content:
+						"Scopri il KI KAI DOJO a Carbonera. Corsi di karate per tutti i livelli, dalla cintura bianca alla nera.",
+				},
+				{ property: "og:locale", content: "it_IT" },
+				{ name: "twitter:card", content: "summary_large_image" },
 			],
-			link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+			link: [
+				{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
+				{
+					rel: "preconnect",
+					href: "https://fonts.gstatic.com",
+					crossorigin: "",
+				},
+				{
+					rel: "stylesheet",
+					href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap",
+				},
+			],
+			htmlAttrs: {
+				lang: "it",
+			},
 		},
 	},
 
