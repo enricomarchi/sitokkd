@@ -105,19 +105,30 @@
 				</p>
 				<div class="flex items-start gap-10">
 					<a
-						v-for="aff in affiliazioni"
+						v-for="(aff, idx) in affiliazioni"
 						:key="aff.nome"
+						:ref="(el) => trackAff(el, idx)"
 						:href="aff.url"
 						target="_blank"
 						rel="noopener noreferrer"
 						:aria-label="aff.nome"
-						class="flex flex-col items-center gap-2 text-white/30 hover:text-white/70 transition-all duration-300"
+						:class="[
+							'flex flex-col items-center gap-2 transition-all duration-1000',
+							visibleAffs.has(idx)
+								? 'text-white/70'
+								: 'text-white/30 hover:text-white/70',
+						]"
 					>
 						<img
 							v-if="aff.logoLoaded"
 							:src="aff.logo"
 							:alt="aff.nome"
-							class="h-12 opacity-50 hover:opacity-100 transition-opacity duration-300"
+							:class="[
+								'h-12 transition-opacity duration-1000',
+								visibleAffs.has(idx)
+									? 'opacity-100'
+									: 'opacity-50 hover:opacity-100',
+							]"
 						/>
 						<span
 							class="text-[10px] uppercase tracking-wider text-center leading-tight max-w-[100px]"
@@ -142,6 +153,8 @@
 </template>
 
 <script setup>
+import { reactive, onMounted, onBeforeUnmount } from "vue"
+
 const menuItems = [
 	{ text: "Filosofia", href: "#philosophy" },
 	{ text: "Gallery", href: "#gallery" },
@@ -182,4 +195,37 @@ const affiliazioni = [
 		logoLoaded: !!findLogo("libertas"),
 	},
 ]
+
+const visibleAffs = reactive(new Set())
+const affElementMap = new Map()
+let affObserver = null
+
+function trackAff(el, idx) {
+	if (el) {
+		affElementMap.set(idx, el)
+		affObserver?.observe(el)
+	}
+}
+
+onMounted(() => {
+	if (!window.matchMedia("(max-width: 767px)").matches) return
+	affObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const idx = [...affElementMap.entries()].find(
+					([, el]) => el === entry.target,
+				)?.[0]
+				if (idx == null) return
+				if (entry.isIntersecting) visibleAffs.add(idx)
+				else visibleAffs.delete(idx)
+			})
+		},
+		{ threshold: 0.5 },
+	)
+	affElementMap.forEach((el) => affObserver.observe(el))
+})
+
+onBeforeUnmount(() => {
+	affObserver?.disconnect()
+})
 </script>

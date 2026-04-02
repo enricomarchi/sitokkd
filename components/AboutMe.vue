@@ -23,6 +23,7 @@
 				<!-- Moreno -->
 				<div
 					class="group"
+					:ref="(el) => trackInstructor(el, 0)"
 					v-motion
 					:initial="{ opacity: 0, y: 40 }"
 					:visible="{ opacity: 1, y: 0 }"
@@ -32,7 +33,12 @@
 							:src="senseiMorenoImage"
 							alt="Maestro Moreno Donà"
 							loading="lazy"
-							class="w-full aspect-[3/4] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+							class="w-full aspect-[3/4] object-cover object-top transition-all duration-1000"
+							:class="
+								visibleInstructors.has(0)
+									? 'grayscale-0'
+									: 'grayscale group-hover:grayscale-0'
+							"
 						/>
 					</div>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
@@ -51,6 +57,7 @@
 				<!-- Gioia -->
 				<div
 					class="group"
+					:ref="(el) => trackInstructor(el, 1)"
 					v-motion
 					:initial="{ opacity: 0, y: 40 }"
 					:visible="{ opacity: 1, y: 0 }"
@@ -60,7 +67,12 @@
 							:src="senseiGioiaImage"
 							alt="Istruttrice Gioia Donà"
 							loading="lazy"
-							class="w-full aspect-[3/4] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+							class="w-full aspect-[3/4] object-cover object-top transition-all duration-1000"
+							:class="
+								visibleInstructors.has(1)
+									? 'grayscale-0'
+									: 'grayscale group-hover:grayscale-0'
+							"
 						/>
 					</div>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
@@ -88,4 +100,40 @@ const senseiImages = import.meta.glob(
 const sortedImages = Object.values(senseiImages)
 const senseiMorenoImage = sortedImages[0]
 const senseiGioiaImage = sortedImages[1] || sortedImages[0]
+
+// Mobile: attiva effetto colore quando l'istruttore è visibile
+const visibleInstructors = reactive(new Set())
+const instructorElMap = new Map()
+let observer = null
+
+const trackInstructor = (el, idx) => {
+	if (el) {
+		instructorElMap.set(idx, el)
+		if (observer) observer.observe(el)
+	}
+}
+
+onMounted(() => {
+	if (window.matchMedia("(max-width: 767px)").matches) {
+		observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const idx = [...instructorElMap.entries()].find(
+						([, el]) => el === entry.target,
+					)?.[0]
+					if (idx !== undefined) {
+						if (entry.isIntersecting) visibleInstructors.add(idx)
+						else visibleInstructors.delete(idx)
+					}
+				})
+			},
+			{ threshold: 0.3 },
+		)
+		instructorElMap.forEach((el) => observer.observe(el))
+	}
+})
+
+onUnmounted(() => {
+	if (observer) observer.disconnect()
+})
 </script>

@@ -75,7 +75,7 @@
 				<div
 					v-for="course in currentCourses"
 					:key="course.title"
-					class="group relative bg-ink-50 p-8 hover:bg-ink-900 transition-colors duration-500"
+					class="relative p-8 bg-ink-50"
 					v-motion
 					:initial="{ opacity: 0, y: 40 }"
 					:visible="{ opacity: 1, y: 0 }"
@@ -86,27 +86,25 @@
 					/>
 
 					<span
-						class="inline-block text-xs font-medium px-3 py-1 mb-6 border transition-colors duration-500"
+						class="inline-block text-xs font-medium px-3 py-1 mb-6 border"
 						:class="course.badgeClass"
 					>
 						{{ course.badge }}
 					</span>
 
 					<h3
-						class="text-xl font-heading font-bold text-ink-900 group-hover:text-white mb-4 transition-colors duration-500"
+						class="text-xl font-heading font-bold mb-4 text-ink-900"
 					>
 						{{ course.title }}
 					</h3>
 
-					<p
-						class="text-ink-400 group-hover:text-white/60 text-sm leading-relaxed mb-8 transition-colors duration-500"
-					>
+					<p class="text-sm leading-relaxed mb-8 text-ink-400">
 						{{ course.description }}
 					</p>
 
 					<div>
 						<p
-							class="text-xs uppercase tracking-wider text-ink-300 group-hover:text-white/40 mb-3 transition-colors duration-500"
+							class="text-xs uppercase tracking-wider mb-3 text-ink-300"
 						>
 							Orari
 						</p>
@@ -114,10 +112,10 @@
 							<li
 								v-for="(time, index) in course.schedule"
 								:key="index"
-								class="text-ink-600 group-hover:text-white/80 text-sm flex items-start gap-2 transition-colors duration-500"
+								class="text-sm flex items-start gap-2 text-ink-600"
 							>
 								<span
-									class="w-1 h-1 rounded-full mt-2 flex-shrink-0 transition-colors duration-500"
+									class="w-1 h-1 rounded-full mt-2 flex-shrink-0"
 									:class="course.dotColor"
 								/>
 								{{ time }}
@@ -128,7 +126,7 @@
 					<!-- Sede diversa -->
 					<div
 						v-if="course.sede"
-						class="mt-6 pt-4 border-t border-ink-200 group-hover:border-white/20 transition-colors duration-500"
+						class="mt-6 pt-4 border-t border-ink-200"
 					>
 						<div class="flex items-start gap-2">
 							<svg
@@ -149,9 +147,7 @@
 									d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
 								/>
 							</svg>
-							<p
-								class="text-xs font-semibold text-orange-600 group-hover:text-orange-300 transition-colors duration-500"
-							>
+							<p class="text-xs font-semibold text-orange-600">
 								{{ course.sede }}
 							</p>
 						</div>
@@ -195,10 +191,9 @@ const coursesBySede = {
 		{
 			title: "Tigrotti dello Shotokan",
 			badge: "Età prescolare",
-			badgeClass:
-				"border-orange-300 text-orange-700 group-hover:border-orange-400/40 group-hover:text-orange-300",
+			badgeClass: "border-orange-300 text-orange-700",
 			lineColor: "bg-orange-500",
-			dotColor: "bg-orange-400 group-hover:bg-orange-300",
+			dotColor: "bg-orange-400",
 			description:
 				"Un percorso ludico-motorio per i più piccoli in età prescolare. Gioco, movimento e prime basi del karate.",
 			schedule: ["Giovedì: 17:00 – 18:00"],
@@ -207,10 +202,9 @@ const coursesBySede = {
 		{
 			title: "Bambini Principianti",
 			badge: "Cintura bianca",
-			badgeClass:
-				"border-emerald-300 text-emerald-700 group-hover:border-emerald-400/40 group-hover:text-emerald-300",
+			badgeClass: "border-emerald-300 text-emerald-700",
 			lineColor: "bg-emerald-500",
-			dotColor: "bg-emerald-400 group-hover:bg-emerald-300",
+			dotColor: "bg-emerald-400",
 			description:
 				"Per i bambini che si avvicinano al karate per la prima volta. Le basi della tecnica, l'etichetta del dojo e i primi kata.",
 			schedule: ["Martedì e Venerdì: 17:00 – 18:00"],
@@ -218,10 +212,9 @@ const coursesBySede = {
 		{
 			title: "Bambini Cinture Colorate",
 			badge: "Cinture colorate",
-			badgeClass:
-				"border-amber-300 text-amber-700 group-hover:border-amber-400/40 group-hover:text-amber-300",
+			badgeClass: "border-amber-300 text-amber-700",
 			lineColor: "bg-amber-500",
-			dotColor: "bg-amber-400 group-hover:bg-amber-300",
+			dotColor: "bg-amber-400",
 			description:
 				"Perfezionamento della tecnica, kata più avanzati e avviamento al kumite per i bambini con esperienza.",
 			schedule: ["Martedì e Venerdì: 18:00 – 19:00"],
@@ -229,10 +222,9 @@ const coursesBySede = {
 		{
 			title: "Ragazzi e Agonisti",
 			badge: "Agonismo",
-			badgeClass:
-				"border-sky-300 text-sky-700 group-hover:border-sky-400/40 group-hover:text-sky-300",
+			badgeClass: "border-sky-300 text-sky-700",
 			lineColor: "bg-sky-500",
-			dotColor: "bg-sky-400 group-hover:bg-sky-300",
+			dotColor: "bg-sky-400",
 			description:
 				"Allenamento intensivo per ragazzi e agonisti. Kumite, kata avanzati e preparazione alle competizioni.",
 			schedule: ["Martedì e Venerdì: 18:30 – 20:00"],
@@ -240,10 +232,9 @@ const coursesBySede = {
 		{
 			title: "Adulti Principianti e Colorate",
 			badge: "Adulti",
-			badgeClass:
-				"border-violet-300 text-violet-700 group-hover:border-violet-400/40 group-hover:text-violet-300",
+			badgeClass: "border-violet-300 text-violet-700",
 			lineColor: "bg-violet-500",
-			dotColor: "bg-violet-400 group-hover:bg-violet-300",
+			dotColor: "bg-violet-400",
 			description:
 				"Per adulti che iniziano o proseguono il percorso nel karate. Tecnica, kata e kumite in un ambiente stimolante.",
 			schedule: ["Martedì e Venerdì: 20:00 – 21:00"],
@@ -251,10 +242,9 @@ const coursesBySede = {
 		{
 			title: "Adulti Cinture Nere",
 			badge: "Dan",
-			badgeClass:
-				"border-accent-300 text-accent-600 group-hover:border-accent-400/40 group-hover:text-accent-300",
+			badgeClass: "border-accent-300 text-accent-600",
 			lineColor: "bg-accent-500",
-			dotColor: "bg-accent-400 group-hover:bg-accent-300",
+			dotColor: "bg-accent-400",
 			description:
 				"Sessione dedicata alle cinture nere. Perfezionamento, bunkai, kata superiori e preparazione esami.",
 			schedule: ["Martedì e Venerdì: 20:00 – 22:00"],
@@ -264,10 +254,9 @@ const coursesBySede = {
 		{
 			title: "Bambini Principianti",
 			badge: "Cintura bianca",
-			badgeClass:
-				"border-emerald-300 text-emerald-700 group-hover:border-emerald-400/40 group-hover:text-emerald-300",
+			badgeClass: "border-emerald-300 text-emerald-700",
 			lineColor: "bg-emerald-500",
-			dotColor: "bg-emerald-400 group-hover:bg-emerald-300",
+			dotColor: "bg-emerald-400",
 			description:
 				"Per i bambini che si avvicinano al karate per la prima volta. Le basi della tecnica, l'etichetta del dojo e i primi kata.",
 			schedule: ["Lunedì e Mercoledì: 17:00 – 18:00"],
@@ -275,10 +264,9 @@ const coursesBySede = {
 		{
 			title: "Bambini Cinture Colorate",
 			badge: "Cinture colorate",
-			badgeClass:
-				"border-amber-300 text-amber-700 group-hover:border-amber-400/40 group-hover:text-amber-300",
+			badgeClass: "border-amber-300 text-amber-700",
 			lineColor: "bg-amber-500",
-			dotColor: "bg-amber-400 group-hover:bg-amber-300",
+			dotColor: "bg-amber-400",
 			description:
 				"Perfezionamento della tecnica, kata più avanzati e avviamento al kumite per i bambini con esperienza.",
 			schedule: ["Lunedì e Mercoledì: 18:00 – 19:00"],
