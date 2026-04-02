@@ -49,139 +49,138 @@
 				</a>
 			</div>
 
-			<!-- Info grid -->
-			<div class="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
-				<!-- Address -->
-				<div
-					class="text-center"
-					v-motion
-					:initial="{ opacity: 0, y: 30 }"
-					:visible="{ opacity: 1, y: 0 }"
+			<!-- Info contatti -->
+			<div
+				class="flex flex-col sm:flex-row justify-center items-center gap-8 max-w-2xl mx-auto mb-16"
+			>
+				<a
+					href="tel:+393495630438"
+					class="text-ink-400 text-sm hover:text-accent-500 transition-colors flex items-center gap-2"
 				>
-					<div
-						class="w-10 h-10 mx-auto mb-4 flex items-center justify-center"
+					<svg
+						class="w-4 h-4 text-ink-300"
+						fill="currentColor"
+						viewBox="0 0 24 24"
 					>
-						<svg
-							class="w-5 h-5 text-ink-300"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								d="M12 0C7.802 0 4 3.403 4 7.602C4 11.8 7.469 16.812 12 24C16.531 16.812 20 11.8 20 7.602C20 3.403 16.199 0 12 0ZM12 11C10.343 11 9 9.657 9 8C9 6.343 10.343 5 12 5C13.657 5 15 6.343 15 8C15 9.657 13.657 11 12 11Z"
-							/>
-						</svg>
-					</div>
-					<h3
-						class="text-sm font-heading font-bold text-ink-900 uppercase tracking-wider mb-3"
-					>
-						Dove Siamo
-					</h3>
-					<a
-						href="https://maps.google.com/?q=Via+IV+Novembre+30,+31030+Carbonera+TV"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-ink-400 text-sm leading-relaxed hover:text-accent-500 transition-colors"
-					>
-						Palazzetto dello Sport<br />
-						Via IV Novembre 30<br />
-						31030 Carbonera (TV)
-					</a>
-				</div>
-
-				<!-- Phone / WhatsApp -->
-				<div
-					class="text-center"
-					v-motion
-					:initial="{ opacity: 0, y: 30 }"
-					:visible="{ opacity: 1, y: 0 }"
+						<path
+							d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
+						/>
+					</svg>
+					+39 349 563 0438
+				</a>
+				<a
+					href="mailto:moreno@karatecarbonera.com"
+					class="text-ink-400 text-sm hover:text-accent-500 transition-colors flex items-center gap-2"
 				>
-					<div
-						class="w-10 h-10 mx-auto mb-4 flex items-center justify-center"
+					<svg
+						class="w-4 h-4 text-ink-300"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
 					>
-						<svg
-							class="w-5 h-5 text-ink-300"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
-							/>
-						</svg>
-					</div>
-					<h3
-						class="text-sm font-heading font-bold text-ink-900 uppercase tracking-wider mb-3"
-					>
-						Telefono
-					</h3>
-					<a
-						href="tel:+393495630438"
-						class="text-ink-400 text-sm hover:text-accent-500 transition-colors block mb-1"
-					>
-						+39 349 563 0438
-					</a>
-					<a
-						href="mailto:moreno@karatecarbonera.com"
-						class="text-ink-400 text-sm hover:text-accent-500 transition-colors block"
-					>
-						moreno@karatecarbonera.com
-					</a>
-				</div>
-
-				<!-- Orari -->
-				<div
-					class="text-center"
-					v-motion
-					:initial="{ opacity: 0, y: 30 }"
-					:visible="{ opacity: 1, y: 0 }"
-				>
-					<div
-						class="w-10 h-10 mx-auto mb-4 flex items-center justify-center"
-					>
-						<svg
-							class="w-5 h-5 text-ink-300"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
-								d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-							/>
-						</svg>
-					</div>
-					<h3
-						class="text-sm font-heading font-bold text-ink-900 uppercase tracking-wider mb-3"
-					>
-						Orari Segreteria
-					</h3>
-					<p class="text-ink-400 text-sm leading-relaxed">
-						Lun – Ven: 9:00 – 20:00<br />
-						Sabato: 9:00 – 13:00<br />
-						Domenica: Chiuso
-					</p>
-				</div>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="1.5"
+							d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+						/>
+					</svg>
+					moreno@karatecarbonera.com
+				</a>
 			</div>
 
-			<!-- Map -->
-			<div
-				class="max-w-4xl mx-auto mt-16 overflow-hidden"
-				v-motion
-				:initial="{ opacity: 0, y: 30 }"
-				:visible="{ opacity: 1, y: 0 }"
-			>
-				<iframe
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2789!3d45.6669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477957b0a3c6b8e1%3A0x0!2sVia%20IV%20Novembre%2030%2C%2031030%20Carbonera%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"
-					width="100%"
-					height="300"
-					style="border: 0; filter: grayscale(1) contrast(1.1)"
-					allowfullscreen=""
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-					title="Mappa KI KAI DOJO - Via IV Novembre 30, Carbonera"
-				></iframe>
+			<!-- Le nostre sedi con mappe -->
+			<div class="max-w-5xl mx-auto">
+				<h3
+					class="text-xs font-bold text-ink-500 uppercase tracking-[0.2em] text-center mb-10"
+				>
+					Le Nostre Sedi
+				</h3>
+				<div class="grid md:grid-cols-3 gap-8">
+					<div
+						v-for="sede in sedi"
+						:key="sede.nome"
+						class="bg-white overflow-hidden"
+						v-motion
+						:initial="{ opacity: 0, y: 30 }"
+						:visible="{ opacity: 1, y: 0 }"
+					>
+						<iframe
+							:src="sede.embedUrl"
+							width="100%"
+							height="200"
+							style="
+								border: 0;
+								filter: grayscale(1) contrast(1.1);
+							"
+							allowfullscreen=""
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+							:title="`Mappa ${sede.nome}`"
+						></iframe>
+						<div class="p-5 text-center">
+							<h4
+								class="text-sm font-heading font-bold text-ink-900 uppercase tracking-wider mb-2"
+							>
+								{{ sede.nome }}
+							</h4>
+							<a
+								:href="sede.mapsLink"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-ink-400 text-xs leading-relaxed hover:text-accent-500 transition-colors"
+							>
+								{{ sede.indirizzo }}
+							</a>
+							<div class="mt-3 pt-3 border-t border-ink-100">
+								<p
+									class="text-xs font-semibold text-ink-700 mb-1"
+								>
+									{{ sede.giorni }}
+								</p>
+								<p class="text-xs text-ink-400">
+									{{ sede.orario }}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 </template>
+
+<script setup>
+const sedi = [
+	{
+		name: "Palestra Scuole Medie",
+		indirizzo: "Viale Brigata Marche, 9 – Carbonera",
+		giorni: "Martedì e Venerdì",
+		orario: "17:00 – 22:00",
+		mapsLink:
+			"https://maps.google.com/?q=Viale+Brigata+Marche+9,+31030+Carbonera+TV",
+		embedUrl:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2789!3d45.6669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477957b0a3c6b8e1%3A0x0!2sViale%20Brigata%20Marche%209%2C%2031030%20Carbonera%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
+	},
+	{
+		nome: "Scuola Primaria Saletto",
+		indirizzo: "Via Davanzo Sergente, 52 – Saletto",
+		giorni: "Lunedì e Mercoledì",
+		orario: "17:00 – 19:00",
+		mapsLink:
+			"https://maps.google.com/?q=Via+Davanzo+Sergente+52,+31030+Saletto+TV",
+		embedUrl:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2650!3d45.6550!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia%20Davanzo%20Sergente%2052%2C%2031030%20Saletto%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
+	},
+	{
+		nome: "Scuola Primaria Tino Anselmi",
+		indirizzo: "Via IV Novembre, 30 – Carbonera",
+		giorni: "Giovedì",
+		orario: "17:00 – 18:00",
+		mapsLink:
+			"https://maps.google.com/?q=Via+IV+Novembre+30,+31030+Carbonera+TV",
+		embedUrl:
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2789!3d45.6669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477957b0a3c6b8e1%3A0x0!2sVia%20IV%20Novembre%2030%2C%2031030%20Carbonera%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
+	},
+]
+</script>

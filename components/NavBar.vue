@@ -57,7 +57,7 @@
 			<div
 				v-if="isMenuOpen"
 				id="mobile-menu"
-				class="fixed inset-0 bg-ink-950/98 z-[998] md:hidden flex items-center justify-center"
+				class="fixed inset-0 bg-ink-950 z-[998] md:hidden flex items-center justify-center"
 				@click.self="closeMenu"
 				role="dialog"
 				aria-modal="true"
@@ -160,13 +160,13 @@ onUnmounted(() => {
 
 const menuItems = [
 	{ text: "Filosofia", href: "#philosophy" },
-	{ text: "Dojo", href: "#dojo" },
+	{ text: "Gallery", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
 	{ text: "Contatti", href: "#contact" },
 ]
 
-const logoImage = "/images/logo/logo.svg"
+const logoImage = useRuntimeConfig().app.baseURL + "images/logo/logo.svg"
 </script>
 
 <style scoped>

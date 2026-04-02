@@ -2,6 +2,7 @@ export default defineNuxtConfig({
 	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
 
 	app: {
+		baseURL: "/test-sito/",
 		head: {
 			title: "KI KAI DOJO",
 			meta: [
@@ -29,7 +30,7 @@ export default defineNuxtConfig({
 				{ name: "twitter:card", content: "summary_large_image" },
 			],
 			link: [
-				{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+				{ rel: "icon", type: "image/svg+xml", href: "/test-sito/favicon.svg" },
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 				{
 					rel: "preconnect",

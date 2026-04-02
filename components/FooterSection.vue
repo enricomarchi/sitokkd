@@ -15,7 +15,7 @@
 					</p>
 					<div class="flex gap-4">
 						<a
-							href="https://www.facebook.com/"
+							href="https://www.facebook.com/kikaidojo"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="Seguici su Facebook"
@@ -31,7 +31,7 @@
 							</svg>
 						</a>
 						<a
-							href="https://www.instagram.com/"
+							href="https://www.instagram.com/kikaidojokaratecarbonera/"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="Seguici su Instagram"
@@ -76,7 +76,7 @@
 						Contatti
 					</h3>
 					<div class="space-y-2 text-white/40 text-sm">
-						<p>Via IV Novembre 30</p>
+						<p>Viale Brigata Marche, 9</p>
 						<p>31030 Carbonera (TV)</p>
 						<a
 							href="tel:+393495630438"
@@ -94,9 +94,43 @@
 				</div>
 			</div>
 
-			<!-- Divider + Copyright -->
+			<!-- Affiliazioni -->
 			<div
-				class="max-w-4xl mx-auto mt-12 pt-8 border-t border-white/10 text-center"
+				class="max-w-4xl mx-auto mt-12 pt-8 border-t border-white/10 flex flex-col items-center"
+			>
+				<p
+					class="text-white/30 text-xs uppercase tracking-[0.2em] mb-4"
+				>
+					Affiliato a
+				</p>
+				<div class="flex items-start gap-10">
+					<a
+						v-for="aff in affiliazioni"
+						:key="aff.nome"
+						:href="aff.url"
+						target="_blank"
+						rel="noopener noreferrer"
+						:aria-label="aff.nome"
+						class="flex flex-col items-center gap-2 text-white/30 hover:text-white/70 transition-all duration-300"
+					>
+						<img
+							v-if="aff.logoLoaded"
+							:src="aff.logo"
+							:alt="aff.nome"
+							class="h-12 opacity-50 hover:opacity-100 transition-opacity duration-300"
+						/>
+						<span
+							class="text-[10px] uppercase tracking-wider text-center leading-tight max-w-[100px]"
+						>
+							{{ aff.nome }}
+						</span>
+					</a>
+				</div>
+			</div>
+
+			<!-- Copyright -->
+			<div
+				class="max-w-4xl mx-auto mt-8 pt-8 border-t border-white/10 text-center"
 			>
 				<p class="text-white/25 text-xs tracking-wider">
 					&copy; {{ new Date().getFullYear() }} KI KAI DOJO. Tutti i
@@ -110,9 +144,42 @@
 <script setup>
 const menuItems = [
 	{ text: "Filosofia", href: "#philosophy" },
-	{ text: "Il Dojo", href: "#dojo" },
+	{ text: "Gallery", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
 	{ text: "Contatti", href: "#contact" },
+]
+
+const logoFiles = import.meta.glob(
+	"/public/images/logo/{fikta,aics,libertas}.{png,svg,jpg,jpeg,webp}",
+	{ eager: true, import: "default" },
+)
+
+const findLogo = (name) => {
+	const entry = Object.entries(logoFiles).find(([path]) =>
+		path.toLowerCase().includes(name.toLowerCase()),
+	)
+	return entry ? entry[1] : null
+}
+
+const affiliazioni = [
+	{
+		nome: "FIKTA",
+		url: "https://www.fikta.it/",
+		logo: findLogo("fikta"),
+		logoLoaded: !!findLogo("fikta"),
+	},
+	{
+		nome: "AICS",
+		url: "https://www.aics.it/",
+		logo: findLogo("aics"),
+		logoLoaded: !!findLogo("aics"),
+	},
+	{
+		nome: "Libertas",
+		url: "https://www.libertasnazionale.it/",
+		logo: findLogo("libertas"),
+		logoLoaded: !!findLogo("libertas"),
+	},
 ]
 </script>

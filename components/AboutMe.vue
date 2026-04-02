@@ -35,11 +35,6 @@
 							class="w-full aspect-[3/4] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
 						/>
 					</div>
-					<p
-						class="text-accent-400 text-xs uppercase tracking-[0.2em] mb-1"
-					>
-						Fondatore &amp; Maestro
-					</p>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
 						Moreno Donà
 					</h3>
@@ -68,11 +63,6 @@
 							class="w-full aspect-[3/4] object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
 						/>
 					</div>
-					<p
-						class="text-accent-400 text-xs uppercase tracking-[0.2em] mb-1"
-					>
-						Istruttrice
-					</p>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
 						Gioia Donà
 					</h3>

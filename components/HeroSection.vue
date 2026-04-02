@@ -31,14 +31,25 @@
 			>
 				Carbonera (TV)
 			</p>
-			<h1
-				class="text-5xl sm:text-6xl md:text-8xl font-heading font-bold text-white tracking-wide leading-none mb-6"
+			<div
+				class="flex items-center gap-3 md:gap-6 mb-6"
 				v-motion
 				:initial="{ opacity: 0, y: 30 }"
 				:enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
 			>
-				KI KAI DOJO
-			</h1>
+				<img
+					:src="
+						useRuntimeConfig().app.baseURL + 'images/logo/logo.svg'
+					"
+					alt="Ki Kai Dojo logo"
+					class="h-12 sm:h-20 md:h-28 w-auto drop-shadow-lg brightness-0 invert"
+				/>
+				<h1
+					class="text-3xl sm:text-6xl md:text-8xl font-heading font-bold text-white tracking-wide leading-none whitespace-nowrap"
+				>
+					KI KAI DOJO
+				</h1>
+			</div>
 			<div
 				class="w-16 h-px bg-accent-500 mb-6"
 				v-motion
@@ -96,43 +107,24 @@ const heroImages = import.meta.glob(
 	"/public/images/hero/*.{jpg,jpeg,png,svg}",
 	{ eager: true, import: "default" },
 )
-const heroMobileImages = import.meta.glob(
-	"/public/images/hero-mobile/*.{jpg,jpeg,png,svg}",
-	{ eager: true, import: "default" },
-)
 
-const isMobile = ref(false)
 const activeIndex = ref(0)
 let interval: ReturnType<typeof setInterval>
 
-const desktopSlides = Object.entries(heroImages).map(([path, image]) => ({
+const slides = Object.entries(heroImages).map(([path, image]) => ({
 	image,
 	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
 }))
 
-const mobileSlides = Object.entries(heroMobileImages).map(([path, image]) => ({
-	image,
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
-}))
-
-const currentSlides = computed(() =>
-	isMobile.value ? mobileSlides : desktopSlides,
-)
-
-const handleResize = () => {
-	isMobile.value = window.innerWidth < 768
-}
+const currentSlides = computed(() => slides)
 
 onMounted(() => {
-	isMobile.value = window.innerWidth < 768
-	window.addEventListener("resize", handleResize)
 	interval = setInterval(() => {
 		activeIndex.value = (activeIndex.value + 1) % currentSlides.value.length
 	}, 5000)
 })
 
 onUnmounted(() => {
-	window.removeEventListener("resize", handleResize)
 	clearInterval(interval)
 })
 </script>
