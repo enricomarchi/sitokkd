@@ -20,9 +20,15 @@
 
 			<div
 				v-if="galleryImages.length"
-				class="gallery-marquee overflow-hidden -mx-6"
+				ref="galleryEl"
+				class="gallery-marquee overflow-x-auto -mx-6 px-6 pb-2 cursor-grab active:cursor-grabbing"
+				@pointerdown="onDragStart"
+				@wheel.passive="onInteractionStart"
 			>
-				<div class="marquee-track flex gap-3 md:gap-4">
+				<div
+					class="marquee-track flex gap-3 md:gap-4"
+					:class="{ 'is-paused': isPaused }"
+				>
 					<div
 						v-for="(image, index) in galleryImages"
 						:key="'a-' + index"
@@ -32,7 +38,8 @@
 							:src="image.src"
 							:alt="image.alt"
 							loading="lazy"
-							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer"
+							draggable="false"
+							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer select-none"
 							@click="openLightbox(index)"
 						/>
 					</div>
@@ -46,7 +53,8 @@
 							:src="image.src"
 							:alt="image.alt"
 							loading="lazy"
-							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer"
+							draggable="false"
+							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer select-none"
 							@click="openLightbox(index)"
 						/>
 					</div>
@@ -112,8 +120,13 @@ const galleryImages = Object.entries(images)
 	}))
 
 const lightboxIndex = ref(null)
+let dragMoved = false
 
 const openLightbox = (index) => {
+	if (dragMoved) {
+		dragMoved = false
+		return
+	}
 	lightboxIndex.value = index
 }
 
@@ -134,6 +147,60 @@ const handleKeydown = (e) => {
 
 onMounted(() => window.addEventListener("keydown", handleKeydown))
 onUnmounted(() => window.removeEventListener("keydown", handleKeydown))
+
+// Gallery interaction: pause auto-scroll on manual interaction, resume after 4s
+const galleryEl = ref(null)
+const isPaused = ref(false)
+let resumeTimeout = null
+
+const onInteractionStart = () => {
+	isPaused.value = true
+	if (resumeTimeout) clearTimeout(resumeTimeout)
+	resumeTimeout = setTimeout(() => {
+		isPaused.value = false
+	}, 4000)
+}
+
+// Drag-to-scroll
+let isDragging = false
+let startX = 0
+let scrollStart = 0
+
+const onDragStart = (e) => {
+	onInteractionStart()
+	const el = galleryEl.value
+	if (!el) return
+	isDragging = true
+	startX = e.clientX
+	scrollStart = el.scrollLeft
+	el.setPointerCapture(e.pointerId)
+	el.addEventListener("pointermove", onDragMove)
+	el.addEventListener("pointerup", onDragEnd)
+	el.addEventListener("pointercancel", onDragEnd)
+}
+
+const onDragMove = (e) => {
+	if (!isDragging) return
+	const el = galleryEl.value
+	if (!el) return
+	const dx = e.clientX - startX
+	if (Math.abs(dx) > 5) dragMoved = true
+	el.scrollLeft = scrollStart - dx
+}
+
+const onDragEnd = (e) => {
+	isDragging = false
+	const el = galleryEl.value
+	if (!el) return
+	el.releasePointerCapture(e.pointerId)
+	el.removeEventListener("pointermove", onDragMove)
+	el.removeEventListener("pointerup", onDragEnd)
+	el.removeEventListener("pointercancel", onDragEnd)
+}
+
+onUnmounted(() => {
+	if (resumeTimeout) clearTimeout(resumeTimeout)
+})
 </script>
 
 <style scoped>
@@ -141,8 +208,28 @@ onUnmounted(() => window.removeEventListener("keydown", handleKeydown))
 	animation: marquee 30s linear infinite;
 }
 
+.marquee-track.is-paused,
 .gallery-marquee:hover .marquee-track {
 	animation-play-state: paused;
+}
+
+.gallery-marquee {
+	scrollbar-width: thin;
+	scrollbar-color: #d1d1d1 transparent;
+}
+
+.gallery-marquee::-webkit-scrollbar {
+	height: 6px;
+}
+.gallery-marquee::-webkit-scrollbar-track {
+	background: transparent;
+}
+.gallery-marquee::-webkit-scrollbar-thumb {
+	background: #d1d1d1;
+	border-radius: 3px;
+}
+.gallery-marquee::-webkit-scrollbar-thumb:hover {
+	background: #b0b0b0;
 }
 
 @keyframes marquee {

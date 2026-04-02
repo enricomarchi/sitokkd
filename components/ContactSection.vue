@@ -153,9 +153,9 @@
 <script setup>
 const sedi = [
 	{
-		name: "Palestra Scuole Medie",
+		nome: "Scuole Medie Carbonera",
 		indirizzo: "Viale Brigata Marche, 9 – Carbonera",
-		giorni: "Martedì e Venerdì",
+		giorni: "Martedì, Giovedì e Venerdì",
 		orario: "17:00 – 22:00",
 		mapsLink:
 			"https://maps.google.com/?q=Viale+Brigata+Marche+9,+31030+Carbonera+TV",

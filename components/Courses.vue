@@ -36,6 +36,31 @@
 				</button>
 			</div>
 
+			<!-- Indirizzo sede attiva -->
+			<div class="flex items-center justify-center gap-2 mb-12">
+				<svg
+					class="w-5 h-5 text-accent-500 flex-shrink-0"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+					/>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+					/>
+				</svg>
+				<p class="text-ink-600 text-sm font-medium tracking-wide">
+					{{ currentSede?.indirizzo }}
+				</p>
+			</div>
+
 			<!-- Corsi per sede attiva -->
 			<div
 				class="grid gap-8 max-w-5xl mx-auto"
@@ -99,32 +124,39 @@
 							</li>
 						</ul>
 					</div>
-				</div>
-			</div>
 
-			<!-- Indirizzo sede attiva -->
-			<div class="flex items-center justify-center gap-2 mt-10">
-				<svg
-					class="w-5 h-5 text-accent-500 flex-shrink-0"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-					/>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-					/>
-				</svg>
-				<p class="text-ink-600 text-sm font-medium tracking-wide">
-					{{ currentSede?.indirizzo }}
-				</p>
+					<!-- Sede diversa -->
+					<div
+						v-if="course.sede"
+						class="mt-6 pt-4 border-t border-ink-200 group-hover:border-white/20 transition-colors duration-500"
+					>
+						<div class="flex items-start gap-2">
+							<svg
+								class="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+								/>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+								/>
+							</svg>
+							<p
+								class="text-xs font-semibold text-orange-600 group-hover:text-orange-300 transition-colors duration-500"
+							>
+								{{ course.sede }}
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- CTA -->
@@ -152,20 +184,26 @@ const sedi = [
 	},
 	{
 		nome: "saletto",
-		label: "Saletto",
+		label: "Saletto (Breda di Piave)",
 		indirizzo:
 			"Palestra Scuola Primaria – Via Davanzo Sergente, 52 – Saletto-San Bartolomeo",
-	},
-	{
-		nome: "anselmi",
-		label: "Tigrotti",
-		indirizzo:
-			"Palestra Scuola Primaria Tino Anselmi – Via IV Novembre, 30 – Carbonera",
 	},
 ]
 
 const coursesBySede = {
 	carbonera: [
+		{
+			title: "Tigrotti dello Shotokan",
+			badge: "Età prescolare",
+			badgeClass:
+				"border-orange-300 text-orange-700 group-hover:border-orange-400/40 group-hover:text-orange-300",
+			lineColor: "bg-orange-500",
+			dotColor: "bg-orange-400 group-hover:bg-orange-300",
+			description:
+				"Un percorso ludico-motorio per i più piccoli in età prescolare. Gioco, movimento e prime basi del karate.",
+			schedule: ["Giovedì: 17:00 – 18:00"],
+			sede: "Scuola Primaria Tino Anselmi – Via IV Novembre, 30 – Carbonera",
+		},
 		{
 			title: "Bambini Principianti",
 			badge: "Cintura bianca",
@@ -211,7 +249,7 @@ const coursesBySede = {
 			schedule: ["Martedì e Venerdì: 20:00 – 21:00"],
 		},
 		{
-			title: "Cinture Nere",
+			title: "Adulti Cinture Nere",
 			badge: "Dan",
 			badgeClass:
 				"border-accent-300 text-accent-600 group-hover:border-accent-400/40 group-hover:text-accent-300",
@@ -244,19 +282,6 @@ const coursesBySede = {
 			description:
 				"Perfezionamento della tecnica, kata più avanzati e avviamento al kumite per i bambini con esperienza.",
 			schedule: ["Lunedì e Mercoledì: 18:00 – 19:00"],
-		},
-	],
-	anselmi: [
-		{
-			title: "Tigrotti dello Shotokan",
-			badge: "Età prescolare",
-			badgeClass:
-				"border-orange-300 text-orange-700 group-hover:border-orange-400/40 group-hover:text-orange-300",
-			lineColor: "bg-orange-500",
-			dotColor: "bg-orange-400 group-hover:bg-orange-300",
-			description:
-				"Un percorso ludico-motorio per i più piccoli in età prescolare. Gioco, movimento e prime basi del karate.",
-			schedule: ["Giovedì: 17:00 – 18:00"],
 		},
 	],
 }
