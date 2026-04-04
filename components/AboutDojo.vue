@@ -105,15 +105,17 @@
 </template>
 
 <script setup>
-const images = import.meta.glob(
-	"/public/images/gallery/*.{jpg,jpeg,png,webp}",
-	{ eager: true, import: "default" },
+const base = useRuntimeConfig().app.baseURL
+const imagePaths = Object.keys(
+	import.meta.glob(
+		"/public/images/gallery/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
+	),
 )
 
-const galleryImages = Object.entries(images)
-	.sort(([a], [b]) => b.localeCompare(a))
-	.map(([path, src]) => ({
-		src,
+const galleryImages = imagePaths
+	.sort((a, b) => b.localeCompare(a))
+	.map((path) => ({
+		src: base + path.replace("/public/", ""),
 		alt:
 			path.split("/").pop()?.split(".")[0].replace(/[-_]/g, " ") ||
 			"Gallery",

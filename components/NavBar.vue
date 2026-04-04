@@ -163,6 +163,7 @@ const menuItems = [
 	{ text: "Gallery", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
+	{ text: "Arbitri e PDG", href: "#referees" },
 	{ text: "Contatti", href: "#contact" },
 ]
 

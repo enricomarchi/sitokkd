@@ -23,16 +23,8 @@
 		<div
 			class="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center"
 		>
-			<p
-				class="text-white/60 text-xs md:text-sm uppercase tracking-[0.4em] mb-6"
-				v-motion
-				:initial="{ opacity: 0, y: 20 }"
-				:enter="{ opacity: 1, y: 0, transition: { delay: 200 } }"
-			>
-				Carbonera (TV)
-			</p>
 			<div
-				class="flex items-center gap-3 md:gap-6 mb-6"
+				class="flex items-center gap-3 md:gap-6 mb-2"
 				v-motion
 				:initial="{ opacity: 0, y: 30 }"
 				:enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
@@ -50,6 +42,14 @@
 					KI KAI DOJO
 				</h1>
 			</div>
+			<p
+				class="text-white/60 text-lg md:text-2xl uppercase tracking-[0.3em] mb-6"
+				v-motion
+				:initial="{ opacity: 0, y: 20 }"
+				:enter="{ opacity: 1, y: 0, transition: { delay: 500 } }"
+			>
+				Scuola Karate Shotokan
+			</p>
 			<div
 				class="w-16 h-px bg-accent-500 mb-6"
 				v-motion
@@ -103,16 +103,16 @@
 </template>
 
 <script setup lang="ts">
-const heroImages = import.meta.glob(
-	"/public/images/hero/*.{jpg,jpeg,png,svg}",
-	{ eager: true, import: "default" },
+const base = useRuntimeConfig().app.baseURL
+const heroPaths = Object.keys(
+	import.meta.glob("/public/images/hero/*.{jpg,jpeg,png,svg,JPG,JPEG,PNG}"),
 )
 
 const activeIndex = ref(0)
 let interval: ReturnType<typeof setInterval>
 
-const slides = Object.entries(heroImages).map(([path, image]) => ({
-	image,
+const slides = heroPaths.map((path) => ({
+	image: base + path.replace("/public/", ""),
 	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
 }))
 

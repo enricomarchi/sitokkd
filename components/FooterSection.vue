@@ -160,19 +160,22 @@ const menuItems = [
 	{ text: "Gallery", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
+	{ text: "Arbitri e PDG", href: "#referees" },
 	{ text: "Contatti", href: "#contact" },
 ]
 
-const logoFiles = import.meta.glob(
-	"/public/images/logo/{fikta,aics,libertas}.{png,svg,jpg,jpeg,webp}",
-	{ eager: true, import: "default" },
+const base = useRuntimeConfig().app.baseURL
+const logoPaths = Object.keys(
+	import.meta.glob(
+		"/public/images/logo/{fikta,aics,libertas,fijlkam,FIJLKAM}.{png,svg,jpg,jpeg,webp,PNG,SVG}",
+	),
 )
 
 const findLogo = (name) => {
-	const entry = Object.entries(logoFiles).find(([path]) =>
-		path.toLowerCase().includes(name.toLowerCase()),
+	const path = logoPaths.find((p) =>
+		p.toLowerCase().includes(name.toLowerCase()),
 	)
-	return entry ? entry[1] : null
+	return path ? base + path.replace("/public/", "") : null
 }
 
 const affiliazioni = [
@@ -193,6 +196,12 @@ const affiliazioni = [
 		url: "https://www.libertasnazionale.it/",
 		logo: findLogo("libertas"),
 		logoLoaded: !!findLogo("libertas"),
+	},
+	{
+		nome: "FIJLKAM",
+		url: "https://www.fijlkam.it/",
+		logo: findLogo("fijlkam"),
+		logoLoaded: !!findLogo("fijlkam"),
 	},
 ]
 

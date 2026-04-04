@@ -19,138 +19,124 @@
 				</p>
 			</div>
 
-			<!-- Sede tabs -->
-			<div class="flex flex-wrap justify-center gap-3 mb-12">
-				<button
-					v-for="sede in sedi"
-					:key="sede.nome"
-					class="px-5 py-2 text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300"
-					:class="
-						activeSede === sede.nome
-							? 'bg-ink-900 text-white'
-							: 'bg-ink-100 text-ink-500 hover:bg-ink-200'
-					"
-					@click="activeSede = sede.nome"
-				>
-					{{ sede.label }}
-				</button>
-			</div>
-
-			<!-- Indirizzo sede attiva -->
-			<div class="flex items-center justify-center gap-2 mb-12">
-				<svg
-					class="w-5 h-5 text-accent-500 flex-shrink-0"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-					/>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-					/>
-				</svg>
-				<p class="text-ink-600 text-sm font-medium tracking-wide">
-					{{ currentSede?.indirizzo }}
-				</p>
-			</div>
-
-			<!-- Corsi per sede attiva -->
-			<div
-				class="grid gap-8 max-w-5xl mx-auto"
-				:class="
-					currentCourses.length >= 3
-						? 'md:grid-cols-3'
-						: currentCourses.length === 2
-							? 'md:grid-cols-2 md:max-w-3xl'
-							: 'md:max-w-lg'
-				"
-			>
+			<!-- Tutte le sedi -->
+			<div v-for="(sezione, idx) in sezioni" :key="sezione.indirizzo">
+				<!-- Indirizzo sede -->
 				<div
-					v-for="course in currentCourses"
-					:key="course.title"
-					class="relative p-8 bg-ink-50"
-					v-motion
-					:initial="{ opacity: 0, y: 40 }"
-					:visible="{ opacity: 1, y: 0 }"
+					class="flex items-center justify-center gap-2 mb-12"
+					:class="idx > 0 ? 'mt-16' : ''"
+				>
+					<svg
+						class="w-5 h-5 text-accent-500 flex-shrink-0"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+						/>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+						/>
+					</svg>
+					<p class="text-ink-600 text-sm font-medium tracking-wide">
+						{{ sezione.indirizzo }}
+					</p>
+				</div>
+
+				<!-- Griglia corsi -->
+				<div
+					class="grid gap-8 max-w-5xl mx-auto"
+					:class="
+						sezione.corsi.length >= 3
+							? 'md:grid-cols-3'
+							: sezione.corsi.length === 2
+								? 'md:grid-cols-2 md:max-w-3xl'
+								: 'md:max-w-lg'
+					"
 				>
 					<div
-						class="absolute top-0 left-0 right-0 h-1"
-						:class="course.lineColor"
-					/>
-
-					<span
-						class="inline-block text-xs font-medium px-3 py-1 mb-6 border"
-						:class="course.badgeClass"
+						v-for="course in sezione.corsi"
+						:key="course.slug"
+						class="relative p-8 bg-ink-50"
+						v-motion
+						:initial="{ opacity: 0, y: 40 }"
+						:visible="{ opacity: 1, y: 0 }"
 					>
-						{{ course.badge }}
-					</span>
+						<div
+							class="absolute top-0 left-0 right-0 h-1"
+							:class="course.lineColor"
+						/>
 
-					<h3
-						class="text-xl font-heading font-bold mb-4 text-ink-900"
-					>
-						{{ course.title }}
-					</h3>
-
-					<p class="text-sm leading-relaxed mb-8 text-ink-400">
-						{{ course.description }}
-					</p>
-
-					<div>
-						<p
-							class="text-xs uppercase tracking-wider mb-3 text-ink-300"
+						<span
+							class="inline-block text-xs font-medium px-3 py-1 mb-6 border"
+							:class="course.badgeClass"
 						>
-							Orari
-						</p>
-						<ul class="space-y-2">
-							<li
-								v-for="(time, index) in course.schedule"
-								:key="index"
-								class="text-sm flex items-start gap-2 text-ink-600"
-							>
-								<span
-									class="w-1 h-1 rounded-full mt-2 flex-shrink-0"
-									:class="course.dotColor"
-								/>
-								{{ time }}
-							</li>
-						</ul>
-					</div>
+							{{ course.badge }}
+						</span>
 
-					<!-- Sede diversa -->
-					<div
-						v-if="course.sede"
-						class="mt-6 pt-4 border-t border-ink-200"
-					>
-						<div class="flex items-start gap-2">
+						<p
+							v-if="course.subtitle"
+							class="text-xl font-heading font-bold text-ink-900 mb-1"
+						>
+							{{ course.subtitle }}
+						</p>
+						<h3
+							class="text-xl font-heading font-bold mb-4 text-ink-900"
+						>
+							{{ course.title }}
+						</h3>
+
+						<p class="text-sm leading-relaxed mb-8 text-ink-400">
+							{{ course.description }}
+						</p>
+
+						<div>
+							<p
+								class="text-xs uppercase tracking-wider mb-3 text-ink-300"
+							>
+								Orari
+							</p>
+							<ul class="space-y-2">
+								<li
+									v-for="(time, index) in course.schedule"
+									:key="index"
+									class="text-sm flex items-start gap-2 text-ink-600"
+								>
+									<span
+										class="w-1 h-1 rounded-full mt-2 flex-shrink-0"
+										:class="course.dotColor"
+									/>
+									{{ time }}
+								</li>
+							</ul>
+						</div>
+
+						<!-- Bottone galleria -->
+						<button
+							class="mt-8 w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm uppercase tracking-[0.15em] font-medium bg-accent-500 text-white hover:bg-accent-600 transition-colors duration-300"
+							@click="openGallery(course)"
+						>
 							<svg
-								class="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5"
+								class="w-5 h-5"
 								fill="none"
 								stroke="currentColor"
-								stroke-width="2"
+								stroke-width="1.5"
 								viewBox="0 0 24 24"
 							>
 								<path
 									stroke-linecap="round"
 									stroke-linejoin="round"
-									d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-								/>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+									d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"
 								/>
 							</svg>
-							<p class="text-xs font-semibold text-orange-600">
-								{{ course.sede }}
-							</p>
-						</div>
+							Foto
+						</button>
 					</div>
 				</div>
 			</div>
@@ -165,31 +151,167 @@
 				</a>
 			</div>
 		</div>
+
+		<!-- Gallery Modal -->
+		<ClientOnly>
+			<Teleport to="body">
+				<Transition name="modal-fade">
+					<div
+						v-if="galleryOpen"
+						class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+						@click.self="closeGallery"
+					>
+						<div
+							class="relative bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10"
+						>
+							<button
+								class="absolute top-4 right-4 text-ink-400 hover:text-ink-900 transition-colors"
+								@click="closeGallery"
+							>
+								<svg
+									class="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M6 18 18 6M6 6l12 12"
+									/>
+								</svg>
+							</button>
+
+							<h3
+								class="text-2xl font-heading font-bold text-ink-900 mb-2"
+							>
+								{{ galleryCourse?.title }}
+							</h3>
+							<p class="text-ink-400 text-sm mb-8">
+								Galleria fotografica
+							</p>
+
+							<div
+								v-if="galleryImages.length"
+								class="grid grid-cols-2 md:grid-cols-3 gap-4"
+							>
+								<img
+									v-for="(img, i) in galleryImages"
+									:key="i"
+									:src="img"
+									:alt="`${galleryCourse?.title} - foto ${i + 1}`"
+									class="w-full aspect-[4/3] object-cover cursor-pointer hover:opacity-80 transition-opacity"
+									@click="openLightbox(i)"
+								/>
+							</div>
+							<p v-else class="text-ink-300 text-center py-12">
+								Foto in arrivo...
+							</p>
+						</div>
+					</div>
+				</Transition>
+			</Teleport>
+		</ClientOnly>
+
+		<!-- Lightbox -->
+		<ClientOnly>
+			<Teleport to="body">
+				<Transition name="modal-fade">
+					<div
+						v-if="lightboxOpen"
+						class="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 p-4"
+						@click.self="lightboxOpen = false"
+					>
+						<button
+							class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors z-10"
+							@click="lightboxOpen = false"
+						>
+							<svg
+								class="w-8 h-8"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M6 18 18 6M6 6l12 12"
+								/>
+							</svg>
+						</button>
+						<button
+							v-if="lightboxIndex > 0"
+							class="absolute left-4 text-white/60 hover:text-white transition-colors"
+							@click="lightboxIndex--"
+						>
+							<svg
+								class="w-8 h-8"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M15.75 19.5 8.25 12l7.5-7.5"
+								/>
+							</svg>
+						</button>
+						<img
+							:src="galleryImages[lightboxIndex]"
+							:alt="`Foto ${lightboxIndex + 1}`"
+							class="max-h-[85vh] max-w-[90vw] object-contain"
+						/>
+						<button
+							v-if="lightboxIndex < galleryImages.length - 1"
+							class="absolute right-4 text-white/60 hover:text-white transition-colors"
+							@click="lightboxIndex++"
+						>
+							<svg
+								class="w-8 h-8"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="m8.25 4.5 7.5 7.5-7.5 7.5"
+								/>
+							</svg>
+						</button>
+					</div>
+				</Transition>
+			</Teleport>
+		</ClientOnly>
 	</section>
 </template>
 
 <script setup>
-const activeSede = ref("carbonera")
+const galleryOpen = ref(false)
+const galleryCourse = ref(null)
+const galleryImages = ref([])
+const lightboxOpen = ref(false)
+const lightboxIndex = ref(0)
 
-const sedi = [
-	{
-		nome: "carbonera",
-		label: "Carbonera",
-		indirizzo:
-			"Palestra Scuole Medie – Viale Brigata Marche, 9 – Carbonera",
-	},
-	{
-		nome: "saletto",
-		label: "Saletto (Breda di Piave)",
-		indirizzo:
-			"Palestra Scuola Primaria – Via Davanzo Sergente, 52 – Saletto-San Bartolomeo",
-	},
-]
+const sedi = {
+	carbonera: "Palestra Scuole Medie – Viale Brigata Marche, 9 – Carbonera",
+	tinaAnselmi:
+		"Scuola Primaria Tino Anselmi – Via IV Novembre, 30 – Carbonera",
+	saletto:
+		"Palestra Scuola Primaria – Via Davanzo Sergente, 52 – Saletto-San Bartolomeo",
+}
 
 const coursesBySede = {
 	carbonera: [
 		{
 			title: "Tigrotti dello Shotokan",
+			subtitle: "Gioco-Karate",
+			slug: "tina-anselmi/tigrotti",
 			badge: "Età prescolare",
 			badgeClass: "border-orange-300 text-orange-700",
 			lineColor: "bg-orange-500",
@@ -197,10 +319,11 @@ const coursesBySede = {
 			description:
 				"Un percorso ludico-motorio per i più piccoli in età prescolare. Gioco, movimento e prime basi del karate.",
 			schedule: ["Giovedì: 17:00 – 18:00"],
-			sede: "Scuola Primaria Tino Anselmi – Via IV Novembre, 30 – Carbonera",
+			altraSede: true,
 		},
 		{
 			title: "Bambini Principianti",
+			slug: "carbonera/bambini-principianti",
 			badge: "Cintura bianca",
 			badgeClass: "border-emerald-300 text-emerald-700",
 			lineColor: "bg-emerald-500",
@@ -211,6 +334,7 @@ const coursesBySede = {
 		},
 		{
 			title: "Bambini Cinture Colorate",
+			slug: "carbonera/bambini-colorate",
 			badge: "Cinture colorate",
 			badgeClass: "border-amber-300 text-amber-700",
 			lineColor: "bg-amber-500",
@@ -221,6 +345,7 @@ const coursesBySede = {
 		},
 		{
 			title: "Ragazzi e Agonisti",
+			slug: "carbonera/ragazzi-agonisti",
 			badge: "Agonismo",
 			badgeClass: "border-sky-300 text-sky-700",
 			lineColor: "bg-sky-500",
@@ -231,6 +356,7 @@ const coursesBySede = {
 		},
 		{
 			title: "Adulti Principianti e Colorate",
+			slug: "carbonera/adulti-principianti",
 			badge: "Adulti",
 			badgeClass: "border-violet-300 text-violet-700",
 			lineColor: "bg-violet-500",
@@ -241,6 +367,7 @@ const coursesBySede = {
 		},
 		{
 			title: "Adulti Cinture Nere",
+			slug: "carbonera/adulti-nere",
 			badge: "Dan",
 			badgeClass: "border-accent-300 text-accent-600",
 			lineColor: "bg-accent-500",
@@ -249,20 +376,35 @@ const coursesBySede = {
 				"Sessione dedicata alle cinture nere. Perfezionamento, bunkai, kata superiori e preparazione esami.",
 			schedule: ["Martedì e Venerdì: 20:00 – 22:00"],
 		},
+		{
+			title: "Difesa Personale",
+			slug: "tina-anselmi/difesa-personale",
+			badge: "Tutti i livelli",
+			badgeClass: "border-rose-300 text-rose-700",
+			lineColor: "bg-rose-500",
+			dotColor: "bg-rose-400",
+			description:
+				"Corso di difesa personale aperto a tutti. Tecniche pratiche e consapevolezza per la sicurezza quotidiana.",
+			schedule: ["Mercoledì: 20:30 – 22:00"],
+			altraSede: true,
+		},
 	],
 	saletto: [
 		{
-			title: "Bambini Principianti",
-			badge: "Cintura bianca",
-			badgeClass: "border-emerald-300 text-emerald-700",
-			lineColor: "bg-emerald-500",
-			dotColor: "bg-emerald-400",
+			title: "Tigrotti dello Shotokan + Bambini Principianti",
+			subtitle: "Gioco-Karate",
+			slug: "saletto/tigrotti",
+			badge: "Età prescolare",
+			badgeClass: "border-orange-300 text-orange-700",
+			lineColor: "bg-orange-500",
+			dotColor: "bg-orange-400",
 			description:
-				"Per i bambini che si avvicinano al karate per la prima volta. Le basi della tecnica, l'etichetta del dojo e i primi kata.",
+				"Un percorso ludico-motorio per i più piccoli in età prescolare. Gioco, movimento e prime basi del karate.",
 			schedule: ["Lunedì e Mercoledì: 17:00 – 18:00"],
 		},
 		{
 			title: "Bambini Cinture Colorate",
+			slug: "saletto/bambini-colorate",
 			badge: "Cinture colorate",
 			badgeClass: "border-amber-300 text-amber-700",
 			lineColor: "bg-amber-500",
@@ -274,9 +416,59 @@ const coursesBySede = {
 	],
 }
 
-const currentSede = computed(() =>
-	sedi.find((s) => s.nome === activeSede.value),
-)
+const carboneraPrincipali = coursesBySede.carbonera.filter((c) => !c.altraSede)
+const carboneraAnselmi = coursesBySede.carbonera.filter((c) => c.altraSede)
 
-const currentCourses = computed(() => coursesBySede[activeSede.value] || [])
+const sezioni = [
+	{ indirizzo: sedi.carbonera, corsi: carboneraPrincipali },
+	{ indirizzo: sedi.tinaAnselmi, corsi: carboneraAnselmi },
+	{ indirizzo: sedi.saletto, corsi: coursesBySede.saletto },
+]
+
+// Gallery images index (from public/images/courses/index.json)
+const courseImagesIndex = ref({})
+const base = useRuntimeConfig().app.baseURL
+
+onMounted(async () => {
+	try {
+		const res = await fetch(`${base}images/courses/index.json`)
+		courseImagesIndex.value = await res.json()
+	} catch {
+		/* silently fail */
+	}
+})
+
+function getImagesForSlug(slug) {
+	const files = courseImagesIndex.value[slug] || []
+	return files.map((f) => `${base}images/courses/${slug}/${f}`)
+}
+
+async function openGallery(course) {
+	galleryCourse.value = course
+	galleryImages.value = getImagesForSlug(course.slug)
+	galleryOpen.value = true
+	if (import.meta.client) document.body.style.overflow = "hidden"
+}
+
+function closeGallery() {
+	galleryOpen.value = false
+	lightboxOpen.value = false
+	if (import.meta.client) document.body.style.overflow = ""
+}
+
+function openLightbox(index) {
+	lightboxIndex.value = index
+	lightboxOpen.value = true
+}
 </script>
+
+<style scoped>
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+	transition: opacity 0.3s ease;
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+	opacity: 0;
+}
+</style>

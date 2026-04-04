@@ -33,12 +33,7 @@
 							:src="senseiMorenoImage"
 							alt="Maestro Moreno Donà"
 							loading="lazy"
-							class="w-full aspect-[3/4] object-cover object-top transition-all duration-1000"
-							:class="
-								visibleInstructors.has(0)
-									? 'grayscale-0'
-									: 'grayscale group-hover:grayscale-0'
-							"
+							class="w-full aspect-[3/4] object-cover object-top"
 						/>
 					</div>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
@@ -67,12 +62,7 @@
 							:src="senseiGioiaImage"
 							alt="Istruttrice Gioia Donà"
 							loading="lazy"
-							class="w-full aspect-[3/4] object-cover object-top transition-all duration-1000"
-							:class="
-								visibleInstructors.has(1)
-									? 'grayscale-0'
-									: 'grayscale group-hover:grayscale-0'
-							"
+							class="w-full aspect-[3/4] object-cover object-top"
 						/>
 					</div>
 					<h3 class="text-2xl font-heading font-bold text-white mb-4">
@@ -92,14 +82,16 @@
 </template>
 
 <script setup>
-const senseiImages = import.meta.glob(
-	"/public/images/sensei/*.{jpg,jpeg,png,svg}",
-	{ eager: true, import: "default" },
-)
-
-const sortedImages = Object.values(senseiImages)
-const senseiMorenoImage = sortedImages[0]
-const senseiGioiaImage = sortedImages[1] || sortedImages[0]
+const base = useRuntimeConfig().app.baseURL
+const senseiPaths = Object.keys(
+	import.meta.glob("/public/images/sensei/*.{jpg,jpeg,png,svg,JPG,JPEG,PNG}"),
+).sort()
+const senseiMorenoImage = senseiPaths[0]
+	? base + senseiPaths[0].replace("/public/", "")
+	: ""
+const senseiGioiaImage = senseiPaths[1]
+	? base + senseiPaths[1].replace("/public/", "")
+	: senseiMorenoImage
 
 // Mobile: attiva effetto colore quando l'istruttore è visibile
 const visibleInstructors = reactive(new Set())

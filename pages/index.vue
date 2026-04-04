@@ -7,6 +7,7 @@
 			<AboutDojo />
 			<Courses />
 			<AboutMe />
+			<RefereesSection />
 			<ContactSection />
 		</main>
 		<FooterSection />
