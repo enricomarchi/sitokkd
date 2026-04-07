@@ -48,10 +48,14 @@ async function cleanRemoteDir(
 	for (const item of items) {
 		if (exclude.includes(item.name)) continue
 		const remotePath = posix.join(remoteDir, item.name)
-		if (item.isDirectory) {
-			await client.removeDir(remotePath)
-		} else {
-			await client.remove(remotePath)
+		try {
+			if (item.isDirectory) {
+				await client.removeDir(remotePath)
+			} else {
+				await client.remove(remotePath)
+			}
+		} catch (err) {
+			console.warn(`⚠️  Impossibile eliminare ${remotePath}, salto.`)
 		}
 	}
 }
