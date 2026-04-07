@@ -21,11 +21,15 @@
 
 			<!-- Tutte le sedi -->
 			<div v-for="(sezione, idx) in sezioni" :key="sezione.indirizzo">
-				<!-- Indirizzo sede -->
-				<div
-					class="flex items-center justify-center gap-2 mb-12"
-					:class="idx > 0 ? 'mt-16' : ''"
+				<!-- Nome sede -->
+				<h3
+					class="text-2xl md:text-3xl font-heading font-bold text-ink-900 text-center tracking-wider"
+					:class="idx > 0 ? 'mt-20' : ''"
 				>
+					{{ sezione.nome }}
+				</h3>
+				<!-- Indirizzo sede -->
+				<div class="flex items-center justify-center gap-2 mb-12 mt-3">
 					<svg
 						class="w-5 h-5 text-accent-500 flex-shrink-0"
 						fill="none"
@@ -220,70 +224,79 @@
 				<Transition name="modal-fade">
 					<div
 						v-if="lightboxOpen"
-						class="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 p-4"
-						@click.self="lightboxOpen = false"
+						class="fixed inset-0 z-[60] bg-black/95 p-4"
 					>
-						<button
-							class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors z-10"
-							@click="lightboxOpen = false"
-						>
-							<svg
-								class="w-8 h-8"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6 18 18 6M6 6l12 12"
-								/>
-							</svg>
-						</button>
-						<button
-							v-if="lightboxIndex > 0"
-							class="absolute left-4 text-white/60 hover:text-white transition-colors"
-							@click="lightboxIndex--"
-						>
-							<svg
-								class="w-8 h-8"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M15.75 19.5 8.25 12l7.5-7.5"
-								/>
-							</svg>
-						</button>
-						<img
-							:src="galleryImages[lightboxIndex]"
-							:alt="`Foto ${lightboxIndex + 1}`"
-							class="max-h-[85vh] max-w-[90vw] object-contain"
+						<!-- Swipe layer – copre tutto lo schermo -->
+						<div
+							ref="lbSwipeRef"
+							class="absolute inset-0 z-[61] touch-none"
 						/>
-						<button
-							v-if="lightboxIndex < galleryImages.length - 1"
-							class="absolute right-4 text-white/60 hover:text-white transition-colors"
-							@click="lightboxIndex++"
+						<div
+							class="relative z-[62] h-full flex items-center justify-center pointer-events-none"
 						>
-							<svg
-								class="w-8 h-8"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								viewBox="0 0 24 24"
+							<button
+								class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
+								@click="lightboxOpen = false"
 							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="m8.25 4.5 7.5 7.5-7.5 7.5"
-								/>
-							</svg>
-						</button>
+								<svg
+									class="w-8 h-8"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M6 18 18 6M6 6l12 12"
+									/>
+								</svg>
+							</button>
+							<button
+								v-if="lightboxIndex > 0"
+								class="absolute left-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
+								@click="lightboxIndex--"
+							>
+								<svg
+									class="w-8 h-8"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M15.75 19.5 8.25 12l7.5-7.5"
+									/>
+								</svg>
+							</button>
+							<img
+								:src="galleryImages[lightboxIndex]"
+								:alt="`Foto ${lightboxIndex + 1}`"
+								class="max-h-[85vh] max-w-[90vw] object-contain"
+								draggable="false"
+							/>
+							<button
+								v-if="lightboxIndex < galleryImages.length - 1"
+								class="absolute right-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
+								@click="lightboxIndex++"
+							>
+								<svg
+									class="w-8 h-8"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="m8.25 4.5 7.5 7.5-7.5 7.5"
+									/>
+								</svg>
+							</button>
+						</div>
 					</div>
 				</Transition>
 			</Teleport>
@@ -420,19 +433,30 @@ const carboneraPrincipali = coursesBySede.carbonera.filter((c) => !c.altraSede)
 const carboneraAnselmi = coursesBySede.carbonera.filter((c) => c.altraSede)
 
 const sezioni = [
-	{ indirizzo: sedi.carbonera, corsi: carboneraPrincipali },
-	{ indirizzo: sedi.tinaAnselmi, corsi: carboneraAnselmi },
-	{ indirizzo: sedi.saletto, corsi: coursesBySede.saletto },
+	{
+		nome: "CARBONERA",
+		indirizzo: sedi.carbonera,
+		corsi: carboneraPrincipali,
+	},
+	{
+		nome: 'CARBONERA "Tina Anselmi"',
+		indirizzo: sedi.tinaAnselmi,
+		corsi: carboneraAnselmi,
+	},
+	{ nome: "SALETTO", indirizzo: sedi.saletto, corsi: coursesBySede.saletto },
 ]
 
-// Gallery images index (from public/images/courses/index.json)
+// Gallery images index (dynamic – dev: Nitro API, prod: PHP endpoint)
 const courseImagesIndex = ref({})
 const base = useRuntimeConfig().app.baseURL
 
 onMounted(async () => {
+	const url = import.meta.dev
+		? "/api/course-images"
+		: `${base}api/course-images.php`
 	try {
-		const res = await fetch(`${base}images/courses/index.json`)
-		courseImagesIndex.value = await res.json()
+		const res = await fetch(url)
+		if (res.ok) courseImagesIndex.value = await res.json()
 	} catch {
 		/* silently fail */
 	}
@@ -440,7 +464,9 @@ onMounted(async () => {
 
 function getImagesForSlug(slug) {
 	const files = courseImagesIndex.value[slug] || []
-	return files.map((f) => `${base}images/courses/${slug}/${f}`)
+	return files.map(
+		(f) => `${base}images/courses/${slug}/${encodeURIComponent(f)}`,
+	)
 }
 
 async function openGallery(course) {
@@ -459,6 +485,54 @@ function closeGallery() {
 function openLightbox(index) {
 	lightboxIndex.value = index
 	lightboxOpen.value = true
+}
+
+// Swipe lightbox
+const lbSwipeRef = ref(null)
+let lbStartX = 0
+let lbSwiped = false
+
+watch(lightboxOpen, (open) => {
+	nextTick(() => {
+		const el = lbSwipeRef.value
+		if (!el) return
+		if (open) {
+			el.addEventListener("pointerdown", onLbPointerDown)
+			el.addEventListener("pointermove", onLbPointerMove)
+			el.addEventListener("pointerup", onLbPointerUp)
+			el.addEventListener("pointercancel", onLbPointerUp)
+		}
+	})
+})
+
+function onLbPointerDown(e) {
+	lbStartX = e.clientX
+	lbSwiped = false
+	e.target.setPointerCapture(e.pointerId)
+}
+
+function onLbPointerMove(e) {
+	e.preventDefault()
+}
+
+function onLbPointerUp(e) {
+	const dx = e.clientX - lbStartX
+	if (Math.abs(dx) > 40) {
+		lbSwiped = true
+		if (dx < 0 && lightboxIndex.value < galleryImages.value.length - 1) {
+			lightboxIndex.value++
+		} else if (dx > 0 && lightboxIndex.value > 0) {
+			lightboxIndex.value--
+		}
+	} else if (!lbSwiped) {
+		lightboxOpen.value = false
+	}
+}
+
+function onLbBackdropClick() {
+	if (!lbSwiped) {
+		lightboxOpen.value = false
+	}
 }
 </script>
 

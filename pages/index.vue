@@ -8,6 +8,7 @@
 			<Courses />
 			<AboutMe />
 			<RefereesSection />
+			<SupportersSection />
 			<ContactSection />
 		</main>
 		<FooterSection />

@@ -15,9 +15,15 @@ if (!FTP_HOST || !FTP_USER || !FTP_PASS) {
 	process.exit(1)
 }
 
-async function uploadDir(client: Client, localDir: string, remoteDir: string) {
+async function uploadDir(
+	client: Client,
+	localDir: string,
+	remoteDir: string,
+	exclude: string[] = [],
+) {
 	await client.ensureDir(remoteDir)
 	for (const entry of readdirSync(localDir, { withFileTypes: true })) {
+		if (exclude.includes(entry.name)) continue
 		const localPath = resolve(localDir, entry.name)
 		const remotePath = posix.join(remoteDir, entry.name)
 		if (entry.isDirectory()) {
@@ -28,7 +34,11 @@ async function uploadDir(client: Client, localDir: string, remoteDir: string) {
 	}
 }
 
-async function cleanRemoteDir(client: Client, remoteDir: string) {
+async function cleanRemoteDir(
+	client: Client,
+	remoteDir: string,
+	exclude: string[] = [],
+) {
 	let items
 	try {
 		items = await client.list(remoteDir)
@@ -36,6 +46,7 @@ async function cleanRemoteDir(client: Client, remoteDir: string) {
 		return
 	}
 	for (const item of items) {
+		if (exclude.includes(item.name)) continue
 		const remotePath = posix.join(remoteDir, item.name)
 		if (item.isDirectory) {
 			await client.removeDir(remotePath)
@@ -69,11 +80,33 @@ async function deploy() {
 		})
 		console.log("✅ Connesso!")
 
-		console.log(`🗑️  Pulizia ${FTP_DIR}...`)
-		await cleanRemoteDir(client, FTP_DIR)
+		console.log(`🗑️  Pulizia ${FTP_DIR} (preservando images/)...`)
+		await cleanRemoteDir(client, FTP_DIR, ["images"])
 
-		console.log(`📤 Upload .output/public → ${FTP_DIR}...`)
-		await uploadDir(client, outputDir, FTP_DIR)
+		console.log(
+			`📤 Upload .output/public → ${FTP_DIR} (escludendo images/)...`,
+		)
+		await uploadDir(client, outputDir, FTP_DIR, ["images"])
+
+		// Upload images/ ma preserva courses/, hero/ e gallery/ (foto caricate dall'utente sul server)
+		const localImages = resolve(outputDir, "images")
+		const remoteImages = posix.join(FTP_DIR, "images")
+		console.log(
+			"🗑️  Pulizia images/ (preservando courses/, hero/ e gallery/)...",
+		)
+		await cleanRemoteDir(client, remoteImages, [
+			"courses",
+			"hero",
+			"gallery",
+		])
+		console.log(
+			"📤 Upload images/ (escludendo courses/, hero/ e gallery/)...",
+		)
+		await uploadDir(client, localImages, remoteImages, [
+			"courses",
+			"hero",
+			"gallery",
+		])
 
 		console.log("🎉 Deploy completato con successo!")
 	} catch (err) {

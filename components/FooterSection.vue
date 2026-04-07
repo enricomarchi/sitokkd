@@ -114,20 +114,15 @@
 						:aria-label="aff.nome"
 						:class="[
 							'flex flex-col items-center gap-2 transition-all duration-1000',
-							visibleAffs.has(idx)
-								? 'text-white/70'
-								: 'text-white/30 hover:text-white/70',
+							'text-white/70',
 						]"
 					>
 						<img
-							v-if="aff.logoLoaded"
 							:src="aff.logo"
 							:alt="aff.nome"
 							:class="[
-								'h-12 transition-opacity duration-1000',
-								visibleAffs.has(idx)
-									? 'opacity-100'
-									: 'opacity-50 hover:opacity-100',
+								'h-12 w-auto object-contain transition-opacity duration-1000',
+								'opacity-100',
 							]"
 						/>
 						<span
@@ -157,7 +152,7 @@ import { reactive, onMounted, onBeforeUnmount } from "vue"
 
 const menuItems = [
 	{ text: "Filosofia", href: "#philosophy" },
-	{ text: "Gallery", href: "#gallery" },
+	{ text: "Foto", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
 	{ text: "Arbitri e PDG", href: "#referees" },
@@ -165,43 +160,27 @@ const menuItems = [
 ]
 
 const base = useRuntimeConfig().app.baseURL
-const logoPaths = Object.keys(
-	import.meta.glob(
-		"/public/images/logo/{fikta,aics,libertas,fijlkam,FIJLKAM}.{png,svg,jpg,jpeg,webp,PNG,SVG}",
-	),
-)
-
-const findLogo = (name) => {
-	const path = logoPaths.find((p) =>
-		p.toLowerCase().includes(name.toLowerCase()),
-	)
-	return path ? base + path.replace("/public/", "") : null
-}
 
 const affiliazioni = [
 	{
 		nome: "FIKTA",
 		url: "https://www.fikta.it/",
-		logo: findLogo("fikta"),
-		logoLoaded: !!findLogo("fikta"),
+		logo: `${base}images/logo/fikta.jpeg`,
 	},
 	{
 		nome: "AICS",
 		url: "https://www.aics.it/",
-		logo: findLogo("aics"),
-		logoLoaded: !!findLogo("aics"),
+		logo: `${base}images/logo/aics.svg`,
 	},
 	{
 		nome: "Libertas",
 		url: "https://www.libertasnazionale.it/",
-		logo: findLogo("libertas"),
-		logoLoaded: !!findLogo("libertas"),
+		logo: `${base}images/logo/libertas.png`,
 	},
 	{
 		nome: "FIJLKAM",
 		url: "https://www.fijlkam.it/",
-		logo: findLogo("fijlkam"),
-		logoLoaded: !!findLogo("fijlkam"),
+		logo: `${base}images/logo/FIJLKAM.png`,
 	},
 ]
 

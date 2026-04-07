@@ -104,24 +104,36 @@
 
 <script setup lang="ts">
 const base = useRuntimeConfig().app.baseURL
-const heroPaths = Object.keys(
-	import.meta.glob("/public/images/hero/*.{jpg,jpeg,png,svg,JPG,JPEG,PNG}"),
-)
 
 const activeIndex = ref(0)
+const slides = ref<{ image: string; alt: string }[]>([])
 let interval: ReturnType<typeof setInterval>
 
-const slides = heroPaths.map((path) => ({
-	image: base + path.replace("/public/", ""),
-	alt: path.split("/").pop()?.split(".")[0].replace(/-/g, " ") || "Karate",
-}))
+const currentSlides = computed(() => slides.value)
 
-const currentSlides = computed(() => slides)
+onMounted(async () => {
+	const url = import.meta.dev
+		? "/api/hero-images"
+		: `${base}api/hero-images.php`
+	try {
+		const res = await fetch(url)
+		if (res.ok) {
+			const files: string[] = await res.json()
+			slides.value = files.map((f) => ({
+				image: `${base}images/hero/${encodeURIComponent(f)}`,
+				alt: f.split(".")[0].replace(/-/g, " "),
+			}))
+		}
+	} catch {
+		/* silently fail */
+	}
 
-onMounted(() => {
-	interval = setInterval(() => {
-		activeIndex.value = (activeIndex.value + 1) % currentSlides.value.length
-	}, 5000)
+	if (currentSlides.value.length > 1) {
+		interval = setInterval(() => {
+			activeIndex.value =
+				(activeIndex.value + 1) % currentSlides.value.length
+		}, 5000)
+	}
 })
 
 onUnmounted(() => {

@@ -10,7 +10,7 @@
 				<h2
 					class="text-3xl md:text-5xl font-heading font-bold text-ink-900 mb-6"
 				>
-					Gallery
+					Foto
 				</h2>
 				<div class="w-12 h-px bg-ink-200 mx-auto mb-6" />
 				<p class="text-ink-400 leading-relaxed">
@@ -35,7 +35,7 @@
 						class="flex-shrink-0 overflow-hidden rounded"
 					>
 						<img
-							:src="image.src"
+							:src="image.thumb"
 							:alt="image.alt"
 							loading="lazy"
 							draggable="false"
@@ -50,7 +50,7 @@
 						class="flex-shrink-0 overflow-hidden rounded"
 					>
 						<img
-							:src="image.src"
+							:src="image.thumb"
 							:alt="image.alt"
 							loading="lazy"
 							draggable="false"
@@ -106,20 +106,38 @@
 
 <script setup>
 const base = useRuntimeConfig().app.baseURL
-const imagePaths = Object.keys(
-	import.meta.glob(
-		"/public/images/gallery/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}",
-	),
-)
 
-const galleryImages = imagePaths
-	.sort((a, b) => b.localeCompare(a))
-	.map((path) => ({
-		src: base + path.replace("/public/", ""),
-		alt:
-			path.split("/").pop()?.split(".")[0].replace(/[-_]/g, " ") ||
-			"Gallery",
-	}))
+const galleryImages = ref([])
+
+const thumbUrl = (filename) => {
+	if (import.meta.dev) {
+		return `${base}images/gallery/${encodeURIComponent(filename)}`
+	}
+	return `${base}api/thumb.php?src=gallery/${encodeURIComponent(filename)}&h=400`
+}
+
+onMounted(async () => {
+	const url = import.meta.dev
+		? "/api/gallery-images"
+		: `${base}api/gallery-images.php`
+	try {
+		const res = await fetch(url)
+		if (res.ok) {
+			const files = await res.json()
+			galleryImages.value = files
+				.sort((a, b) => b.localeCompare(a))
+				.map((f) => ({
+					src: `${base}images/gallery/${encodeURIComponent(f)}`,
+					thumb: thumbUrl(f),
+					alt: f.split(".")[0].replace(/[-_]/g, " ") || "Gallery",
+				}))
+		}
+	} catch {
+		/* silently fail */
+	}
+
+	window.addEventListener("keydown", handleKeydown)
+})
 
 const lightboxIndex = ref(null)
 let dragMoved = false
@@ -141,13 +159,12 @@ const handleKeydown = (e) => {
 	if (e.key === "Escape") closeLightbox()
 	if (
 		e.key === "ArrowRight" &&
-		lightboxIndex.value < galleryImages.length - 1
+		lightboxIndex.value < galleryImages.value.length - 1
 	)
 		lightboxIndex.value++
 	if (e.key === "ArrowLeft" && lightboxIndex.value > 0) lightboxIndex.value--
 }
 
-onMounted(() => window.addEventListener("keydown", handleKeydown))
 onUnmounted(() => window.removeEventListener("keydown", handleKeydown))
 
 // Gallery interaction: pause auto-scroll on manual interaction, resume after 4s

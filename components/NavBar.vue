@@ -160,7 +160,7 @@ onUnmounted(() => {
 
 const menuItems = [
 	{ text: "Filosofia", href: "#philosophy" },
-	{ text: "Gallery", href: "#gallery" },
+	{ text: "Foto", href: "#gallery" },
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
 	{ text: "Arbitri e PDG", href: "#referees" },

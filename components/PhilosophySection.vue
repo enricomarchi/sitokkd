@@ -26,7 +26,6 @@
 				<div
 					v-for="(value, idx) in values"
 					:key="value.title"
-					:ref="(el) => trackValue(el, idx)"
 					class="text-center group"
 					v-motion
 					:initial="{ opacity: 0, y: 40 }"
@@ -35,10 +34,10 @@
 					<!-- Kanji -->
 					<div
 						:class="[
-							'text-5xl md:text-6xl mb-4 transition-colors duration-1000 font-light select-none',
-							visibleValues.has(idx)
+							'text-5xl md:text-6xl mb-4 transition-colors duration-700 font-light select-none',
+							activeKanji === idx
 								? 'text-accent-500'
-								: 'text-ink-200 group-hover:text-accent-500',
+								: 'text-ink-200',
 						]"
 					>
 						{{ value.kanji }}
@@ -81,7 +80,7 @@
 </template>
 
 <script setup>
-import { reactive, onMounted, onBeforeUnmount } from "vue"
+import { ref, onMounted, onBeforeUnmount } from "vue"
 
 const values = [
 	{
@@ -104,36 +103,16 @@ const values = [
 	},
 ]
 
-const visibleValues = reactive(new Set())
-const elementMap = new Map()
-let observer = null
-
-function trackValue(el, idx) {
-	if (el) {
-		elementMap.set(idx, el)
-		observer?.observe(el)
-	}
-}
+const activeKanji = ref(0)
+let interval = null
 
 onMounted(() => {
-	if (!window.matchMedia("(max-width: 767px)").matches) return
-	observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				const idx = [...elementMap.entries()].find(
-					([, el]) => el === entry.target,
-				)?.[0]
-				if (idx == null) return
-				if (entry.isIntersecting) visibleValues.add(idx)
-				else visibleValues.delete(idx)
-			})
-		},
-		{ threshold: 0.5 },
-	)
-	elementMap.forEach((el) => observer.observe(el))
+	interval = setInterval(() => {
+		activeKanji.value = (activeKanji.value + 1) % values.length
+	}, 2000)
 })
 
 onBeforeUnmount(() => {
-	observer?.disconnect()
+	clearInterval(interval)
 })
 </script>

@@ -1,6 +1,10 @@
 export default defineNuxtConfig({
 	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
 
+	vite: {
+		assetsInclude: ["**/*.JPG", "**/*.JPEG", "**/*.PNG"],
+	},
+
 	app: {
 		baseURL: "/test-sito/",
 		head: {
