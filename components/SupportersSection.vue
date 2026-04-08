@@ -38,7 +38,7 @@
 				>
 					<div class="w-full flex items-center justify-center">
 						<img
-							:src="`/images/supporters/${supporter.logo}`"
+							:src="`${base}images/supporters/${supporter.logo}`"
 							:alt="supporter.name"
 							loading="lazy"
 							class="w-full h-auto object-contain transition-all duration-500"
@@ -56,6 +56,8 @@
 </template>
 
 <script setup>
+const base = useRuntimeConfig().app.baseURL
+
 const supporters = [
 	{
 		name: "Metallica Marcon",

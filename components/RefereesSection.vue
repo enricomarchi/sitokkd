@@ -152,8 +152,8 @@ const referees = [
 		description: "PDG Regionale",
 	},
 	{
-		name: "Giovanna De Biasi",
-		slug: "giovanna-de-biasi",
+		name: "Giovanna Di Blasi",
+		slug: "giovanna-di-blasi",
 		badge: "Presidente di Giuria",
 		badgeClass: "border-accent-400/50 text-accent-400",
 		lineColor: "bg-accent-500",
