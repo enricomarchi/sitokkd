@@ -314,9 +314,9 @@ const lightboxIndex = ref(0)
 const sedi = {
 	carbonera: "Palestra Scuole Medie – Viale Brigata Marche, 9 – Carbonera",
 	tinaAnselmi:
-		"Scuola Primaria Tino Anselmi – Via IV Novembre, 30 – Carbonera",
+		"Scuola Primaria Tina Anselmi – Via IV Novembre, 30 – Carbonera",
 	saletto:
-		"Palestra Scuola Primaria – Via Davanzo Sergente, 52 – Saletto-San Bartolomeo",
+		"Palestra Scuola Primaria – Via Sergente Davanzo, 52 – Saletto-San Bartolomeo",
 }
 
 const coursesBySede = {

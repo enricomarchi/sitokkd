@@ -155,7 +155,7 @@ const sedi = [
 	{
 		nome: "Scuole Medie Carbonera",
 		indirizzo: "Viale Brigata Marche, 9 – Carbonera",
-		giorni: "Martedì, Giovedì e Venerdì",
+		giorni: "Martedì e Venerdì",
 		orario: "17:00 – 22:00",
 		mapsLink:
 			"https://maps.google.com/?q=Viale+Brigata+Marche+9,+31030+Carbonera+TV",
@@ -164,16 +164,16 @@ const sedi = [
 	},
 	{
 		nome: "Scuola Primaria Saletto",
-		indirizzo: "Via Davanzo Sergente, 52 – Saletto",
+		indirizzo: "Via Sergente Davanzo, 52 – Saletto",
 		giorni: "Lunedì e Mercoledì",
 		orario: "17:00 – 19:00",
 		mapsLink:
-			"https://maps.google.com/?q=Via+Davanzo+Sergente+52,+31030+Saletto+TV",
+			"https://maps.google.com/?q=Via+Sergente+Davanzo+52,+31030+Saletto+TV",
 		embedUrl:
-			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2650!3d45.6550!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia%20Davanzo%20Sergente%2052%2C%2031030%20Saletto%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
+			"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2789.5!2d12.2650!3d45.6550!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sVia%20Sergente%20Davanzo%2052%2C%2031030%20Saletto%20TV!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit",
 	},
 	{
-		nome: "Scuola Primaria Tino Anselmi",
+		nome: "Scuola Primaria Tina Anselmi",
 		indirizzo: "Via IV Novembre, 30 – Carbonera",
 		giorni: "Giovedì",
 		orario: "17:00 – 18:00",
