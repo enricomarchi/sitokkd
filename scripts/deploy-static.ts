@@ -8,9 +8,9 @@ config()
 const FTP_HOST = process.env.FTP_HOST!
 const FTP_USER = process.env.FTP_USER!
 const FTP_PASS = process.env.FTP_PASS!
-const FTP_DIR = "/public_html/test-sito"
+const FTP_DIR = process.env.FTP_DIR!
 
-if (!FTP_HOST || !FTP_USER || !FTP_PASS) {
+if (!FTP_HOST || !FTP_USER || !FTP_PASS || !FTP_DIR) {
 	console.error("❌ Variabili FTP mancanti nel file .env")
 	process.exit(1)
 }

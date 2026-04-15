@@ -35,7 +35,7 @@ if (!is_dir($cacheDir)) {
     mkdir($cacheDir, 0755, true);
 }
 
-$cacheKey = md5($src . '_' . $maxH) . '.webp';
+$cacheKey = md5($src . '_' . $maxH . '_v2') . '.webp';
 $cachePath = $cacheDir . '/' . $cacheKey;
 
 // Serve cached version if fresh
@@ -66,6 +66,22 @@ switch ($ext) {
 if (!$img) {
     http_response_code(500);
     exit('Cannot read image');
+}
+
+// Correggi orientamento EXIF (JPEG possono avere rotazione nei metadati)
+if (($ext === 'jpg' || $ext === 'jpeg') && function_exists('exif_read_data')) {
+    $exif = @exif_read_data($srcPath);
+    if ($exif && isset($exif['Orientation'])) {
+        switch ($exif['Orientation']) {
+            case 2: imageflip($img, IMG_FLIP_HORIZONTAL); break;
+            case 3: $img = imagerotate($img, 180, 0); break;
+            case 4: imageflip($img, IMG_FLIP_VERTICAL); break;
+            case 5: imageflip($img, IMG_FLIP_HORIZONTAL); $img = imagerotate($img, 270, 0); break;
+            case 6: $img = imagerotate($img, 270, 0); break;
+            case 7: imageflip($img, IMG_FLIP_HORIZONTAL); $img = imagerotate($img, 90, 0); break;
+            case 8: $img = imagerotate($img, 90, 0); break;
+        }
+    }
 }
 
 $origW = imagesx($img);

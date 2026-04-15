@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 	},
 
 	app: {
-		baseURL: "/test-sito/",
+		baseURL: "/",
 		head: {
 			title: "KI KAI DOJO",
 			meta: [
@@ -37,7 +37,7 @@ export default defineNuxtConfig({
 				{
 					rel: "icon",
 					type: "image/svg+xml",
-					href: "/test-sito/favicon.svg",
+					href: "/favicon.svg",
 				},
 				{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 				{
