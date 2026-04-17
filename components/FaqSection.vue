@@ -62,9 +62,7 @@
 						:id="`faq-answer-${idx}`"
 						role="region"
 						class="overflow-hidden transition-all duration-300"
-						:class="
-							openIndex === idx ? 'max-h-96 pb-6' : 'max-h-0'
-						"
+						:class="openIndex === idx ? 'max-h-96 pb-6' : 'max-h-0'"
 					>
 						<p class="px-6 text-ink-400 text-sm leading-relaxed">
 							{{ faq.answer }}
