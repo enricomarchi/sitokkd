@@ -112,9 +112,5 @@ const faqs = [
 		question: "La prima lezione è gratuita?",
 		answer: "Sì! La prima lezione di prova è sempre gratuita e senza impegno. Basta presentarsi in palestra con un abbigliamento comodo o contattarci su WhatsApp per prenotare.",
 	},
-	{
-		question: "Chi è il Maestro Moreno Donà?",
-		answer: "Il Maestro Moreno Donà è il fondatore del Ki Kai Dojo. Con il grado di 7° Dan e oltre 30 anni di esperienza, ha formato più di 500 allievi e oltre 50 cinture nere. Il suo approccio unisce il rigore della tradizione giapponese alla capacità di adattare l'insegnamento a ogni allievo.",
-	},
 ]
 </script>
