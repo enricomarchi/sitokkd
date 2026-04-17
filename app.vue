@@ -4,7 +4,7 @@
 
 <script setup>
 useHead({
-	titleTemplate: "%s | KI KAI DOJO",
+	titleTemplate: "%s | Ki Kai Dojo – Karate Carbonera",
 	htmlAttrs: {
 		class: "overflow-x-hidden",
 	},
