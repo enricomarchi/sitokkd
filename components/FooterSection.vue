@@ -138,6 +138,20 @@
 			<div
 				class="max-w-4xl mx-auto mt-8 pt-8 border-t border-white/10 text-center"
 			>
+				<div class="flex justify-center gap-6 mb-4">
+					<NuxtLink
+						to="/privacy-policy"
+						class="text-white/40 text-xs hover:text-white transition-colors duration-300"
+					>
+						Privacy Policy
+					</NuxtLink>
+					<NuxtLink
+						to="/cookie-policy"
+						class="text-white/40 text-xs hover:text-white transition-colors duration-300"
+					>
+						Cookie Policy
+					</NuxtLink>
+				</div>
 				<p class="text-white/25 text-xs tracking-wider">
 					&copy; {{ new Date().getFullYear() }} KI KAI DOJO. Tutti i
 					diritti riservati.

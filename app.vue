@@ -1,5 +1,6 @@
 <template>
 	<NuxtPage />
+	<CookieBanner />
 </template>
 
 <script setup>

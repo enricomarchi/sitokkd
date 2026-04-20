@@ -27,9 +27,9 @@
 
 <script setup>
 const stats = [
-	{ value: "30+", label: "Anni di esperienza" },
-	{ value: "500+", label: "Allievi formati" },
-	{ value: "50+", label: "Cinture nere" },
-	{ value: "7°", label: "Dan Maestro" },
+	{ value: "3", label: "Sedi attive" },
+	{ value: "7", label: "Corsi disponibili" },
+	{ value: "4", label: "Federazioni affiliate" },
+	{ value: "4+", label: "Anni minimo per iniziare" },
 ]
 </script>

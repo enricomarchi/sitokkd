@@ -27,7 +27,11 @@ useHead({
 				"@context": "https://schema.org",
 				"@graph": [
 					{
-						"@type": ["SportsActivityLocation", "MartialArtsSchool", "LocalBusiness"],
+						"@type": [
+							"SportsActivityLocation",
+							"MartialArtsSchool",
+							"LocalBusiness",
+						],
 						"@id": "https://www.karatecarbonera.com/#organization",
 						name: "Ki Kai Dojo ASD – Scuola di Karate Shotokan",
 						alternateName: "Ki Kai Dojo Karate Carbonera",
@@ -37,7 +41,7 @@ useHead({
 						logo: "https://www.karatecarbonera.com/images/logo/logo.svg",
 						image: "https://www.karatecarbonera.com/images/logo/logo.svg",
 						description:
-							"Ki Kai Dojo ASD è una scuola di Karate Shotokan a Carbonera (Treviso) fondata dal Maestro Moreno Donà, 7° Dan. Corsi per bambini dai 4 anni, ragazzi e adulti. Difesa personale, agonismo e avviamento al karate. Prima lezione gratuita.",
+							"Ki Kai Dojo ASD è una scuola di Karate Shotokan a Carbonera (Treviso) fondata dal Maestro Moreno Donà. Corsi per bambini dai 4 anni, ragazzi e adulti. Difesa personale, agonismo e avviamento al karate. Prima lezione gratuita.",
 						sport: "Karate Shotokan",
 						address: {
 							"@type": "PostalAddress",
@@ -95,10 +99,26 @@ useHead({
 							},
 						],
 						memberOf: [
-							{ "@type": "Organization", name: "FIKTA – Federazione Italiana Karate Tradizionale e Arti Marziali Affini", url: "https://www.fikta.it/" },
-							{ "@type": "Organization", name: "FIJLKAM", url: "https://www.fijlkam.it/" },
-							{ "@type": "Organization", name: "AICS", url: "https://www.aics.it/" },
-							{ "@type": "Organization", name: "Libertas", url: "https://www.libertasnazionale.it/" },
+							{
+								"@type": "Organization",
+								name: "FIKTA – Federazione Italiana Karate Tradizionale e Arti Marziali Affini",
+								url: "https://www.fikta.it/",
+							},
+							{
+								"@type": "Organization",
+								name: "FIJLKAM",
+								url: "https://www.fijlkam.it/",
+							},
+							{
+								"@type": "Organization",
+								name: "AICS",
+								url: "https://www.aics.it/",
+							},
+							{
+								"@type": "Organization",
+								name: "Libertas",
+								url: "https://www.libertasnazionale.it/",
+							},
 						],
 						hasOfferCatalog: {
 							"@type": "OfferCatalog",
@@ -109,7 +129,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Karate Bambini Principianti",
-										description: "Corso di avviamento al karate per bambini dai 4 ai 6 anni. Attività ludico-motoria, primi passi nel karate.",
+										description:
+											"Corso di avviamento al karate per bambini dai 4 ai 6 anni. Attività ludico-motoria, primi passi nel karate.",
 									},
 								},
 								{
@@ -117,7 +138,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Karate Bambini Cinture Colorate",
-										description: "Corso per bambini con cinture colorate. Tecnica, kata e preparazione alle competizioni.",
+										description:
+											"Corso per bambini con cinture colorate. Tecnica, kata e preparazione alle competizioni.",
 									},
 								},
 								{
@@ -125,7 +147,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Karate Ragazzi Agonisti",
-										description: "Preparazione agonistica per ragazzi. Kata, kumite e partecipazione a gare regionali e nazionali.",
+										description:
+											"Preparazione agonistica per ragazzi. Kata, kumite e partecipazione a gare regionali e nazionali.",
 									},
 								},
 								{
@@ -133,7 +156,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Karate Adulti Principianti",
-										description: "Corso per adulti che si avvicinano al karate. Tecnica di base, forma fisica e autodisciplina.",
+										description:
+											"Corso per adulti che si avvicinano al karate. Tecnica di base, forma fisica e autodisciplina.",
 									},
 								},
 								{
@@ -141,7 +165,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Karate Adulti Cinture Nere",
-										description: "Allenamento avanzato per adulti con cintura nera e Dan. Perfezionamento tecnico e kata superiori.",
+										description:
+											"Allenamento avanzato per adulti con cintura nera e Dan. Perfezionamento tecnico e kata superiori.",
 									},
 								},
 								{
@@ -149,7 +174,8 @@ useHead({
 									itemOffered: {
 										"@type": "Course",
 										name: "Difesa Personale",
-										description: "Corso di difesa personale basato sulle tecniche del karate Shotokan, aperto a tutti.",
+										description:
+											"Corso di difesa personale basato sulle tecniche del karate Shotokan, aperto a tutti.",
 									},
 								},
 							],
@@ -159,10 +185,16 @@ useHead({
 						"@type": "Person",
 						"@id": "https://www.karatecarbonera.com/#moreno-dona",
 						name: "Moreno Donà",
-						jobTitle: "Maestro di Karate – 7° Dan",
+						jobTitle: "Maestro di Karate",
 						description:
-							"Fondatore del Ki Kai Dojo, il Maestro Moreno Donà ha oltre 30 anni di esperienza nell'insegnamento del Karate Shotokan. Ha formato più di 500 allievi e oltre 50 cinture nere.",
-						knowsAbout: ["Karate Shotokan", "Arti Marziali", "Kata", "Kumite", "Difesa Personale"],
+							"Fondatore del Ki Kai Dojo, il Maestro Moreno Donà è un istruttore qualificato con una lunga esperienza nell'insegnamento del Karate Shotokan. Ha formato numerosi allievi e molte cinture nere.",
+						knowsAbout: [
+							"Karate Shotokan",
+							"Arti Marziali",
+							"Kata",
+							"Kumite",
+							"Difesa Personale",
+						],
 						worksFor: {
 							"@id": "https://www.karatecarbonera.com/#organization",
 						},
@@ -171,7 +203,8 @@ useHead({
 						"@type": "Person",
 						"@id": "https://www.karatecarbonera.com/#gioia-dona",
 						name: "Gioia Donà",
-						jobTitle: "Istruttrice di Karate – Presidente di Giuria Nazionale FIKTA",
+						jobTitle:
+							"Istruttrice di Karate – Presidente di Giuria Nazionale FIKTA",
 						description:
 							"Istruttrice con particolare attenzione ai giovani atleti. Gioia è anche PDG Nazionale e membro della Commissione Nazionale PDG FIKTA.",
 						knowsAbout: ["Karate Shotokan", "Arbitraggio Karate"],
@@ -227,7 +260,7 @@ useHead({
 								name: "Offrite corsi di difesa personale a Treviso?",
 								acceptedAnswer: {
 									"@type": "Answer",
-								text: "Sì, offriamo un corso di difesa personale basato sul Krav Maga presso la sede Tina Anselmi a Carbonera, a pochi minuti da Treviso. Il corso è aperto a tutti, anche a chi non ha esperienza nelle arti marziali.",
+									text: "Sì, offriamo un corso di difesa personale basato sul Krav Maga presso la sede Tina Anselmi a Carbonera, a pochi minuti da Treviso. Il corso è aperto a tutti, anche a chi non ha esperienza nelle arti marziali.",
 								},
 							},
 						],
