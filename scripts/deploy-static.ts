@@ -5,15 +5,27 @@ import { statSync, readdirSync } from "fs"
 
 config()
 
+const isTest = process.argv.includes("--test")
+
 const FTP_HOST = process.env.FTP_HOST!
 const FTP_USER = process.env.FTP_USER!
 const FTP_PASS = process.env.FTP_PASS!
-const FTP_DIR = process.env.FTP_DIR!
+const FTP_DIR = isTest ? process.env.FTP_DIR_TEST! : process.env.FTP_DIR!
 
 if (!FTP_HOST || !FTP_USER || !FTP_PASS || !FTP_DIR) {
-	console.error("❌ Variabili FTP mancanti nel file .env")
+	console.error(
+		isTest
+			? "❌ Variabili FTP mancanti nel file .env (controlla FTP_DIR_TEST)"
+			: "❌ Variabili FTP mancanti nel file .env",
+	)
 	process.exit(1)
 }
+
+console.log(
+	isTest
+		? "🧪 DEPLOY DI TEST → " + FTP_DIR
+		: "🚀 DEPLOY UFFICIALE → " + FTP_DIR,
+)
 
 async function uploadDir(
 	client: Client,
