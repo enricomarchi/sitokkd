@@ -164,7 +164,6 @@ const menuItems = [
 	{ text: "Corsi", href: "#courses" },
 	{ text: "Istruttori", href: "#instructors" },
 	{ text: "Arbitri e PDG", href: "#referees" },
-	{ text: "FAQ", href: "#faq" },
 	{ text: "Contatti", href: "#contact" },
 ]
 
