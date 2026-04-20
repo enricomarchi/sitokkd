@@ -86,6 +86,11 @@ export default defineNuxtConfig({
 					rel: "canonical",
 					href: "https://www.karatecarbonera.com/",
 				},
+				{
+					rel: "preload",
+					as: "image",
+					href: "/images/hero/2b6f09cf-5eda-4cbe-83c9-f8a055d235fc.JPG",
+				},
 			],
 			htmlAttrs: {
 				lang: "it",

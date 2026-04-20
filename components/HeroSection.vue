@@ -9,6 +9,10 @@
 					:key="slide.image"
 					:src="slide.image"
 					:alt="slide.alt"
+					:fetchpriority="i === 0 ? 'high' : 'low'"
+					:loading="i === 0 ? 'eager' : 'lazy'"
+					width="1920"
+					height="1080"
 					class="absolute inset-0 h-full w-full object-cover"
 				/>
 			</TransitionGroup>
@@ -34,6 +38,8 @@
 						useRuntimeConfig().app.baseURL + 'images/logo/logo.svg'
 					"
 					alt="Ki Kai Dojo logo"
+					width="112"
+					height="112"
 					class="h-12 sm:h-20 md:h-28 w-auto drop-shadow-lg brightness-0 invert"
 				/>
 				<h1
