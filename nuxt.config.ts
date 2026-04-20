@@ -86,11 +86,6 @@ export default defineNuxtConfig({
 					rel: "canonical",
 					href: "https://www.karatecarbonera.com/",
 				},
-				{
-					rel: "preload",
-					as: "image",
-					href: "/images/hero/2b6f09cf-5eda-4cbe-83c9-f8a055d235fc.JPG",
-				},
 			],
 			htmlAttrs: {
 				lang: "it",
@@ -103,6 +98,9 @@ export default defineNuxtConfig({
 
 	nitro: {
 		preset: "static",
+		prerender: {
+			failOnError: false,
+		},
 	},
 
 	compatibilityDate: "2024-11-12",

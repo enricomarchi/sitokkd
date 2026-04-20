@@ -111,6 +111,17 @@
 <script setup lang="ts">
 const base = useRuntimeConfig().app.baseURL
 
+// Preload della prima hero image per migliorare LCP
+useHead({
+	link: [
+		{
+			rel: "preload",
+			as: "image",
+			href: `${base}images/hero/2b6f09cf-5eda-4cbe-83c9-f8a055d235fc.JPG`,
+		},
+	],
+})
+
 const activeIndex = ref(0)
 const slides = ref<{ image: string; alt: string }[]>([])
 let interval: ReturnType<typeof setInterval>
