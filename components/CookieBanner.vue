@@ -2,7 +2,7 @@
 	<Transition name="banner">
 		<div
 			v-if="consent === null"
-			class="fixed bottom-0 inset-x-0 z-50 p-4 md:p-6"
+			class="fixed bottom-0 inset-x-0 z-[9999] p-4 md:p-6"
 		>
 			<div
 				class="max-w-2xl mx-auto bg-ink-900 border border-white/10 p-6 shadow-2xl"
