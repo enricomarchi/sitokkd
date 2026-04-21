@@ -148,6 +148,7 @@
 								La mappa richiede l'accettazione dei cookie.
 							</p>
 							<button
+								type="button"
 								class="text-xs font-semibold text-accent-500 hover:text-accent-600 transition-colors"
 								@click="accept"
 							>

@@ -37,10 +37,10 @@
 						<img
 							:src="image.thumb"
 							:alt="image.alt"
+							:data-gallery-index="index"
 							loading="lazy"
 							draggable="false"
 							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer select-none"
-							@click="openLightbox(index)"
 						/>
 					</div>
 					<!-- Duplicato per loop seamless -->
@@ -52,10 +52,10 @@
 						<img
 							:src="image.thumb"
 							:alt="image.alt"
+							:data-gallery-index="index"
 							loading="lazy"
 							draggable="false"
 							class="h-48 sm:h-64 md:h-80 w-auto object-cover hover:scale-105 transition-transform duration-700 cursor-pointer select-none"
-							@click="openLightbox(index)"
 						/>
 					</div>
 				</div>
@@ -117,12 +117,18 @@ const thumbUrl = (filename) => {
 }
 
 onMounted(async () => {
-	const url = import.meta.dev
-		? "/api/gallery-images"
-		: `${base}api/gallery-images.php`
-	try {
-		const res = await fetch(url)
-		if (res.ok) {
+	const isLocalPreview =
+		import.meta.client &&
+		["localhost", "127.0.0.1"].includes(window.location.hostname)
+	const endpoints =
+		isLocalPreview || import.meta.dev
+			? ["/api/gallery-images", `${base}api/gallery-images.php`]
+			: [`${base}api/gallery-images.php`, "/api/gallery-images"]
+
+	for (const url of endpoints) {
+		try {
+			const res = await fetch(url)
+			if (!res.ok) continue
 			const files = await res.json()
 			galleryImages.value = files
 				.sort((a, b) => b.localeCompare(a))
@@ -131,20 +137,20 @@ onMounted(async () => {
 					thumb: thumbUrl(f),
 					alt: f.split(".")[0].replace(/[-_]/g, " ") || "Gallery",
 				}))
+			break
+		} catch {
+			/* try next endpoint */
 		}
-	} catch {
-		/* silently fail */
 	}
 
 	window.addEventListener("keydown", handleKeydown)
 })
 
 const lightboxIndex = ref(null)
-let dragMoved = false
+let lastDragAt = 0
 
 const openLightbox = (index) => {
-	if (dragMoved) {
-		dragMoved = false
+	if (Date.now() - lastDragAt < 180) {
 		return
 	}
 	lightboxIndex.value = index
@@ -182,6 +188,7 @@ const onInteractionStart = () => {
 
 // Drag-to-scroll
 let isDragging = false
+let dragMoved = false
 let startX = 0
 let scrollStart = 0
 
@@ -189,10 +196,10 @@ const onDragStart = (e) => {
 	onInteractionStart()
 	const el = galleryEl.value
 	if (!el) return
+	dragMoved = false
 	isDragging = true
 	startX = e.clientX
 	scrollStart = el.scrollLeft
-	el.setPointerCapture(e.pointerId)
 	el.addEventListener("pointermove", onDragMove)
 	el.addEventListener("pointerup", onDragEnd)
 	el.addEventListener("pointercancel", onDragEnd)
@@ -203,7 +210,7 @@ const onDragMove = (e) => {
 	const el = galleryEl.value
 	if (!el) return
 	const dx = e.clientX - startX
-	if (Math.abs(dx) > 5) dragMoved = true
+	if (Math.abs(dx) > 8) dragMoved = true
 	el.scrollLeft = scrollStart - dx
 }
 
@@ -211,10 +218,20 @@ const onDragEnd = (e) => {
 	isDragging = false
 	const el = galleryEl.value
 	if (!el) return
-	el.releasePointerCapture(e.pointerId)
 	el.removeEventListener("pointermove", onDragMove)
 	el.removeEventListener("pointerup", onDragEnd)
 	el.removeEventListener("pointercancel", onDragEnd)
+	if (dragMoved) {
+		lastDragAt = Date.now()
+		return
+	}
+
+	const target = e.target
+	if (!(target instanceof Element)) return
+	const image = target.closest("img[data-gallery-index]")
+	if (!image) return
+	const index = Number(image.getAttribute("data-gallery-index"))
+	if (Number.isInteger(index)) openLightbox(index)
 }
 
 onUnmounted(() => {

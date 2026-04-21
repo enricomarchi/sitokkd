@@ -1,7 +1,7 @@
 <template>
 	<div class="overflow-x-hidden">
 		<NavBar />
-		<main>
+		<main id="main-content" tabindex="-1">
 			<HeroSection />
 			<PhilosophySection />
 			<AboutDojo />

@@ -123,8 +123,10 @@
 
 						<!-- Bottone galleria -->
 						<button
+							type="button"
 							class="mt-8 w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm uppercase tracking-[0.15em] font-medium bg-accent-500 text-white hover:bg-accent-600 transition-colors duration-300"
 							@click="openGallery(course)"
+							:aria-label="`Apri foto del corso ${course.title}`"
 						>
 							<svg
 								class="w-5 h-5"
@@ -164,13 +166,18 @@
 						v-if="galleryOpen"
 						class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
 						@click.self="closeGallery"
+						role="dialog"
+						aria-modal="true"
+						aria-label="Galleria corso"
 					>
 						<div
 							class="relative bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10"
 						>
 							<button
+								type="button"
 								class="absolute top-4 right-4 text-ink-400 hover:text-ink-900 transition-colors"
 								@click="closeGallery"
+								aria-label="Chiudi galleria"
 							>
 								<svg
 									class="w-6 h-6"
@@ -205,6 +212,8 @@
 									:key="i"
 									:src="img"
 									:alt="`${galleryCourse?.title} - foto ${i + 1}`"
+									loading="lazy"
+									decoding="async"
 									class="w-full aspect-[4/3] object-cover cursor-pointer hover:opacity-80 transition-opacity"
 									@click="openLightbox(i)"
 								/>
@@ -225,6 +234,9 @@
 					<div
 						v-if="lightboxOpen"
 						class="fixed inset-0 z-[60] bg-black/95 p-4"
+						role="dialog"
+						aria-modal="true"
+						aria-label="Visualizzazione foto a schermo intero"
 					>
 						<!-- Swipe layer – copre tutto lo schermo -->
 						<div
@@ -235,8 +247,10 @@
 							class="relative z-[62] h-full flex items-center justify-center pointer-events-none"
 						>
 							<button
+								type="button"
 								class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
 								@click="lightboxOpen = false"
+								aria-label="Chiudi foto"
 							>
 								<svg
 									class="w-8 h-8"
@@ -254,8 +268,10 @@
 							</button>
 							<button
 								v-if="lightboxIndex > 0"
+								type="button"
 								class="absolute left-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
 								@click="lightboxIndex--"
+								aria-label="Foto precedente"
 							>
 								<svg
 									class="w-8 h-8"
@@ -274,13 +290,16 @@
 							<img
 								:src="galleryImages[lightboxIndex]"
 								:alt="`Foto ${lightboxIndex + 1}`"
+								decoding="async"
 								class="max-h-[85vh] max-w-[90vw] object-contain"
 								draggable="false"
 							/>
 							<button
 								v-if="lightboxIndex < galleryImages.length - 1"
+								type="button"
 								class="absolute right-4 text-white/60 hover:text-white transition-colors pointer-events-auto"
 								@click="lightboxIndex++"
+								aria-label="Foto successiva"
 							>
 								<svg
 									class="w-8 h-8"
@@ -451,14 +470,23 @@ const courseImagesIndex = ref({})
 const base = useRuntimeConfig().app.baseURL
 
 onMounted(async () => {
-	const url = import.meta.dev
-		? "/api/course-images"
-		: `${base}api/course-images.php`
-	try {
-		const res = await fetch(url)
-		if (res.ok) courseImagesIndex.value = await res.json()
-	} catch {
-		/* silently fail */
+	const isLocalPreview =
+		import.meta.client &&
+		["localhost", "127.0.0.1"].includes(window.location.hostname)
+	const endpoints =
+		isLocalPreview || import.meta.dev
+			? ["/api/course-images", `${base}api/course-images.php`]
+			: [`${base}api/course-images.php`, "/api/course-images"]
+
+	for (const url of endpoints) {
+		try {
+			const res = await fetch(url)
+			if (!res.ok) continue
+			courseImagesIndex.value = await res.json()
+			break
+		} catch {
+			/* try next endpoint */
+		}
 	}
 })
 
@@ -534,6 +562,16 @@ function onLbBackdropClick() {
 		lightboxOpen.value = false
 	}
 }
+
+onUnmounted(() => {
+	const el = lbSwipeRef.value
+	if (!el) return
+	el.removeEventListener("pointerdown", onLbPointerDown)
+	el.removeEventListener("pointermove", onLbPointerMove)
+	el.removeEventListener("pointerup", onLbPointerUp)
+	el.removeEventListener("pointercancel", onLbPointerUp)
+	if (import.meta.client) document.body.style.overflow = ""
+})
 </script>
 
 <style scoped>

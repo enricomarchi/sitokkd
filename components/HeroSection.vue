@@ -8,9 +8,11 @@
 					v-show="i === activeIndex"
 					:key="slide.image"
 					:src="slide.image"
-					:alt="slide.alt"
+					alt=""
+					aria-hidden="true"
 					:fetchpriority="i === 0 ? 'high' : 'low'"
 					:loading="i === 0 ? 'eager' : 'lazy'"
+					:decoding="i === 0 ? 'sync' : 'async'"
 					width="1920"
 					height="1080"
 					class="absolute inset-0 h-full w-full object-cover"
@@ -34,9 +36,7 @@
 				:enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
 			>
 				<img
-					:src="
-						useRuntimeConfig().app.baseURL + 'images/logo/logo.svg'
-					"
+					:src="logoImage"
 					alt="Ki Kai Dojo logo"
 					width="112"
 					height="112"
@@ -110,42 +110,48 @@
 
 <script setup lang="ts">
 const base = useRuntimeConfig().app.baseURL
-
-// Preload della prima hero image per migliorare LCP
-useHead({
-	link: [
-		{
-			rel: "preload",
-			as: "image",
-			href: `${base}images/hero/2b6f09cf-5eda-4cbe-83c9-f8a055d235fc.JPG`,
-		},
-	],
-})
+const logoImage = `${base}images/logo/logo.svg`
+const prefersReducedMotion =
+	import.meta.client &&
+	window.matchMedia("(prefers-reduced-motion: reduce)").matches
+const fallbackHero = `${base}images/hero/2b6f09cf-5eda-4cbe-83c9-f8a055d235fc.JPG`
 
 const activeIndex = ref(0)
-const slides = ref<{ image: string; alt: string }[]>([])
+const slides = ref<{ image: string; alt: string }[]>([
+	{
+		image: fallbackHero,
+		alt: "Allenamento di karate nel dojo",
+	},
+])
 let interval: ReturnType<typeof setInterval>
 
 const currentSlides = computed(() => slides.value)
 
 onMounted(async () => {
-	const url = import.meta.dev
-		? "/api/hero-images"
-		: `${base}api/hero-images.php`
-	try {
-		const res = await fetch(url)
-		if (res.ok) {
+	const isLocalPreview =
+		import.meta.client &&
+		["localhost", "127.0.0.1"].includes(window.location.hostname)
+	const endpoints =
+		isLocalPreview || import.meta.dev
+			? ["/api/hero-images", `${base}api/hero-images.php`]
+			: [`${base}api/hero-images.php`, "/api/hero-images"]
+
+	for (const url of endpoints) {
+		try {
+			const res = await fetch(url)
+			if (!res.ok) continue
 			const files: string[] = await res.json()
 			slides.value = files.map((f) => ({
 				image: `${base}images/hero/${encodeURIComponent(f)}`,
 				alt: f.split(".")[0].replace(/-/g, " "),
 			}))
+			break
+		} catch {
+			/* try next endpoint */
 		}
-	} catch {
-		/* silently fail */
 	}
 
-	if (currentSlides.value.length > 1) {
+	if (!prefersReducedMotion && currentSlides.value.length > 1) {
 		interval = setInterval(() => {
 			activeIndex.value =
 				(activeIndex.value + 1) % currentSlides.value.length
@@ -154,7 +160,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
-	clearInterval(interval)
+	if (interval) clearInterval(interval)
 })
 </script>
 
@@ -178,5 +184,14 @@ onUnmounted(() => {
 }
 .animate-scroll-line {
 	animation: scroll-line 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-fade-enter-active,
+	.hero-fade-leave-active,
+	.animate-scroll-line {
+		animation: none;
+		transition: none;
+	}
 }
 </style>

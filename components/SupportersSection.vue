@@ -41,6 +41,7 @@
 							:src="`${base}images/supporters/${supporter.logo}`"
 							:alt="supporter.name"
 							loading="lazy"
+							decoding="async"
 							class="w-full h-auto object-contain transition-all duration-500"
 						/>
 					</div>

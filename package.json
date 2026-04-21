@@ -2,6 +2,9 @@
 	"name": "karate-dojo",
 	"private": true,
 	"type": "module",
+	"imports": {
+		"#internal/nuxt/paths": "./node_modules/nuxt/dist/core/runtime/nitro/paths.js"
+	},
 	"scripts": {
 		"build": "nuxt build",
 		"dev": "nuxt dev",
@@ -20,6 +23,7 @@
 		"basic-ftp": "^5.2.0",
 		"dotenv": "^17.4.0",
 		"nuxt": "^3.10.3",
+		"sharp": "^0.34.5",
 		"tsx": "^4.21.0"
 	},
 	"dependencies": {

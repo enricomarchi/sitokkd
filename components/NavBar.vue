@@ -1,7 +1,7 @@
 <template>
 	<nav class="fixed w-full z-[40]" aria-label="Navigazione principale">
 		<a
-			href="#philosophy"
+			href="#main-content"
 			class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-20 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded focus:z-[1000]"
 		>
 			Vai al contenuto
