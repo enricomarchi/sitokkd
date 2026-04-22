@@ -12,6 +12,33 @@ useHead({
 		class: "overflow-x-hidden",
 	},
 })
+
+const GA_ID = "G-PTECPP66SD"
+
+const { consent } = useCookieConsent()
+
+function loadGA() {
+	if (!import.meta.client) return
+	if (document.querySelector(`script[src*="${GA_ID}"]`)) return
+	const script = document.createElement("script")
+	script.async = true
+	script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
+	document.head.appendChild(script)
+	window.dataLayer = window.dataLayer || []
+	window.gtag = function () {
+		window.dataLayer.push(arguments)
+	}
+	window.gtag("js", new Date())
+	window.gtag("config", GA_ID, { anonymize_ip: true })
+}
+
+watch(
+	consent,
+	(val) => {
+		if (val === "accepted") loadGA()
+	},
+	{ immediate: true },
+)
 </script>
 
 <style>

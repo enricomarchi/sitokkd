@@ -8,9 +8,9 @@
 				class="max-w-2xl mx-auto bg-ink-900 border border-white/10 p-6 shadow-2xl"
 			>
 				<p class="text-white/70 text-sm leading-relaxed mb-5">
-					Questo sito utilizza solo cookie tecnici necessari al
-					funzionamento. Le mappe di Google Maps nella sezione
-					Contatti vengono caricate solo con il tuo consenso.
+					Questo sito utilizza cookie tecnici necessari al
+					funzionamento e, con il tuo consenso, cookie analitici
+					(Google Analytics) per migliorare l'esperienza utente.
 					<NuxtLink
 						to="/cookie-policy"
 						class="text-accent-400 hover:text-accent-300 underline"
