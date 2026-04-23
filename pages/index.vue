@@ -186,10 +186,10 @@ useHead({
 						"@type": "Person",
 						"@id": "https://www.karatecarbonera.com/#moreno-dona",
 						name: "Moreno Donà",
-						honorificSuffix: "7° Dan",
-						jobTitle: "Maestro di Karate Shotokan – 7° Dan",
+						honorificSuffix: "6° Dan",
+						jobTitle: "Maestro di Karate Shotokan – 6° Dan",
 						description:
-							"Fondatore del Ki Kai Dojo, il Maestro Moreno Donà è cintura nera 7° Dan e istruttore qualificato con una lunga esperienza nell'insegnamento del Karate Shotokan. Ha formato numerosi allievi e molte cinture nere.",
+							"Fondatore del Ki Kai Dojo, il Maestro Moreno Donà è cintura nera 6° Dan e istruttore qualificato con una lunga esperienza nell'insegnamento del Karate Shotokan. Ha formato numerosi allievi e molte cinture nere.",
 						knowsAbout: [
 							"Karate Shotokan",
 							"Arti Marziali",

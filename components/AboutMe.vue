@@ -36,9 +36,10 @@
 							class="w-full aspect-[3/4] object-cover object-top"
 						/>
 					</div>
-					<h3 class="text-2xl font-heading font-bold text-white mb-4">
+					<h3 class="text-2xl font-heading font-bold text-white mb-1">
 						Moreno Donà
 					</h3>
+					<p class="text-accent-400 text-xs uppercase tracking-widest mb-4">6° Dan</p>
 					<p class="text-white/50 text-sm leading-relaxed">
 						Fondatore del Ki Kai Dojo, il Maestro Moreno ha dedicato
 						la sua vita all'insegnamento del karate. Il suo
@@ -65,9 +66,10 @@
 							class="w-full aspect-[3/4] object-cover object-top"
 						/>
 					</div>
-					<h3 class="text-2xl font-heading font-bold text-white mb-4">
+					<h3 class="text-2xl font-heading font-bold text-white mb-1">
 						Gioia Donà
 					</h3>
+					<p class="text-accent-400 text-xs uppercase tracking-widest mb-4">3° Dan</p>
 					<p class="text-white/50 text-sm leading-relaxed">
 						Istruttrice con una particolare attenzione ai giovani
 						atleti. Gioia porta energia e passione in ogni lezione,
