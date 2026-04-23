@@ -65,5 +65,15 @@ const supporters = [
 		logo: "metallica_marcon.png",
 		url: "https://metallicamarcon.it/",
 	},
+	{
+		name: "D & G Custom",
+		logo: "dg_custom.jpg",
+		url: "mailto:info@dgcustom.it",
+	},
+	{
+		name: "Fotostampa Treviso",
+		logo: "fotostampa.jpg",
+		url: "https://www.fotostampa.it/",
+	},
 ]
 </script>
