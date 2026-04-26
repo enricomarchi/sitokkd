@@ -9,8 +9,10 @@
 			<AboutMe />
 			<RefereesSection />
 			<SupportersSection />
+			<FaqSection />
 			<ContactSection />
 		</main>
+		<SeoSection />
 		<FooterSection />
 		<ScrollToTop />
 	</div>
@@ -60,6 +62,19 @@ useHead({
 						areaServed: [
 							{ "@type": "City", name: "Carbonera" },
 							{ "@type": "City", name: "Treviso" },
+							{ "@type": "City", name: "Lancenigo" },
+							{ "@type": "City", name: "Pezzan" },
+							{ "@type": "City", name: "Vacil" },
+							{ "@type": "City", name: "Vascon" },
+							{ "@type": "City", name: "Varago" },
+							{ "@type": "City", name: "Maserada sul Piave" },
+							{ "@type": "City", name: "Breda di Piave" },
+							{ "@type": "City", name: "Candelu" },
+							{ "@type": "City", name: "Pero" },
+							{ "@type": "City", name: "Cavrié" },
+							{ "@type": "City", name: "Olmi" },
+							{ "@type": "City", name: "San Biagio di Callalta" },
+							{ "@type": "City", name: "Fagarè della Battaglia" },
 						],
 						openingHoursSpecification: [
 							{
@@ -213,6 +228,72 @@ useHead({
 						worksFor: {
 							"@id": "https://www.karatecarbonera.com/#organization",
 						},
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://www.karatecarbonera.com/#website",
+						url: "https://www.karatecarbonera.com",
+						name: "Ki Kai Dojo – Karate Carbonera Treviso",
+						description:
+							"Scuola di Karate Shotokan a Carbonera (Treviso). Corsi per bambini, ragazzi e adulti. Prima lezione gratuita.",
+						inLanguage: "it-IT",
+						publisher: {
+							"@id": "https://www.karatecarbonera.com/#organization",
+						},
+					},
+					{
+						"@type": "FAQPage",
+						"@id": "https://www.karatecarbonera.com/#faq",
+						mainEntity: [
+							{
+								"@type": "Question",
+								name: "Dove si trovano i corsi di karate vicino a Treviso?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Il Ki Kai Dojo offre corsi di karate in tre sedi nel comune di Carbonera (TV), a pochi minuti da Treviso: la sede principale presso le Scuole Medie di Carbonera (Viale Brigata Marche), la sede di Saletto e la sede Tina Anselmi. Siamo facilmente raggiungibili da tutto il comune di Treviso e dai comuni limitrofi come Villorba, Paese, Casier e Dosson.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "A che età i bambini possono iniziare il karate?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "I bambini possono iniziare il karate già a partire dai 4 anni. Il corso Tigrotti è pensato appositamente per i più piccoli (4-6 anni) con un approccio ludico-motorio. Dai 7 anni in poi ci sono i corsi per bambini principianti e cinture colorate.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Ci sono corsi di karate per adulti principianti a Treviso?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Sì, il Ki Kai Dojo propone corsi di karate per adulti principianti aperti a chiunque voglia avvicinarsi all'arte marziale, indipendentemente dall'età o dalla forma fisica. Gli adulti possono frequentare anche i corsi di difesa personale basati sul karate Shotokan. Non serve nessuna esperienza precedente.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "La prima lezione di karate è gratuita?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Sì, la prima lezione è completamente gratuita e senza impegno. Puoi venire a provare, conoscere il Maestro Moreno Donà e i nostri istruttori, e capire se il karate fa per te o per il tuo bambino. Contattaci via WhatsApp o telefono per prenotare la tua lezione di prova.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Offrite corsi di difesa personale a Treviso?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Sì. Nella sede Tina Anselmi è attivo un corso di difesa personale basato sulle tecniche del karate Shotokan, aperto a uomini e donne. Il corso insegna come prevenire situazioni di pericolo e come reagire efficacemente in caso di necessità.",
+								},
+							},
+							{
+								"@type": "Question",
+								name: "Il Ki Kai Dojo è affiliato a federazioni ufficiali di karate?",
+								acceptedAnswer: {
+									"@type": "Answer",
+									text: "Sì. Il Ki Kai Dojo ASD è affiliato a FIKTA (Federazione Italiana Karate Tradizionale e Arti Marziali Affini), FIJLKAM, AICS e Libertas. Questo garantisce la qualità dell'insegnamento, la validità delle cinture conseguite e la possibilità di partecipare a gare ufficiali a livello regionale e nazionale.",
+								},
+							},
+						],
 					},
 				],
 			}),

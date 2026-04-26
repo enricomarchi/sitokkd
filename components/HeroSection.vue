@@ -54,7 +54,7 @@
 				:initial="{ opacity: 0, y: 20 }"
 				:enter="{ opacity: 1, y: 0, transition: { delay: 500 } }"
 			>
-				Scuola Karate Shotokan
+				Scuola di Karate Shotokan
 			</p>
 			<div
 				class="w-16 h-px bg-accent-500 mb-6"

@@ -11,7 +11,7 @@
 				<h2
 					class="text-3xl md:text-5xl font-heading font-bold text-ink-900 mb-6"
 				>
-					Più di uno Sport
+					Il Karate Shotokan: Più di uno Sport
 				</h2>
 				<div class="w-12 h-px bg-ink-200 mx-auto mb-6" />
 				<p class="text-ink-400 leading-relaxed">

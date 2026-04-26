@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 	app: {
 		baseURL: "/",
 		head: {
-			title: "Ki Kai Dojo – Scuola di Karate a Carbonera (Treviso)",
+			title: "Ki Kai Dojo – Scuola di Karate a Carbonera (Treviso) | Bambini, Adulti, Difesa Personale",
 			meta: [
 				{ charset: "utf-8" },
 				{
@@ -20,12 +20,12 @@ export default defineNuxtConfig({
 				{
 					name: "description",
 					content:
-						"Ki Kai Dojo ASD – Scuola di Karate Shotokan a Carbonera (Treviso). Corsi per bambini, ragazzi e adulti. Difesa personale, agonismo e cinture colorate. Prima lezione gratuita.",
+						"Ki Kai Dojo ASD – Scuola di Karate Shotokan a Carbonera (Treviso). Corsi di karate per bambini dai 4 anni, ragazzi e adulti. Karate Treviso, difesa personale, agonismo e cinture colorate. Prima lezione gratuita.",
 				},
 				{
 					name: "keywords",
 					content:
-						"karate Carbonera, karate Treviso, corsi karate bambini Treviso, difesa personale Treviso, arti marziali Carbonera, Ki Kai Dojo, karate Shotokan, scuola karate Veneto",
+						"karate Treviso, karate Carbonera, corsi karate bambini Treviso, karate bambini Treviso, karate per bambini, karate adulti Treviso, difesa personale Treviso, arti marziali Carbonera, Ki Kai Dojo, karate Shotokan, scuola karate Veneto, karate ragazzi, tigrotti karate, cinture colorate karate, prima lezione karate gratuita",
 				},
 				{ property: "og:type", content: "website" },
 				{
