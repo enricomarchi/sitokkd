@@ -165,13 +165,14 @@
 import { reactive, onMounted, onBeforeUnmount } from "vue"
 
 const menuItems = [
-	{ text: "Filosofia", href: "#philosophy" },
-	{ text: "Foto", href: "#gallery" },
-	{ text: "Corsi", href: "#courses" },
-	{ text: "Istruttori", href: "#instructors" },
-	{ text: "Arbitri e PDG", href: "#referees" },
-	{ text: "FAQ", href: "#faq" },
-	{ text: "Contatti", href: "#contact" },
+	{ text: "Filosofia", href: "/#philosophy" },
+	{ text: "Foto", href: "/#gallery" },
+	{ text: "Corsi", href: "/#courses" },
+	{ text: "Istruttori", href: "/#instructors" },
+	{ text: "Blog", href: "/blog" },
+	{ text: "Arbitri e PDG", href: "/#referees" },
+	{ text: "FAQ", href: "/#faq" },
+	{ text: "Contatti", href: "/#contact" },
 ]
 
 const base = useRuntimeConfig().app.baseURL

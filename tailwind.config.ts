@@ -6,6 +6,7 @@ export default {
 		"./layouts/**/*.vue",
 		"./pages/**/*.vue",
 		"./plugins/**/*.{js,ts}",
+		"./content/**/*.md",
 		"./app.vue",
 	],
 	theme: {
@@ -59,5 +60,68 @@ export default {
 			},
 		},
 	},
-	plugins: [require("@tailwindcss/typography")],
+	plugins: [
+		require("@tailwindcss/typography"),
+		function ({ addComponents, theme }: any) {
+			addComponents({
+				".prose-blog": {
+					color: theme("colors.ink.700"),
+					lineHeight: "1.85",
+					fontSize: "1.0625rem",
+					"h2, h3, h4": {
+						fontFamily: `${theme("fontFamily.heading")}, sans-serif`,
+						fontWeight: "700",
+						color: theme("colors.ink.900"),
+						letterSpacing: "0.02em",
+					},
+					h2: {
+						fontSize: "1.5rem",
+						marginTop: "2.5rem",
+						marginBottom: "1rem",
+					},
+					h3: {
+						fontSize: "1.2rem",
+						marginTop: "2rem",
+						marginBottom: "0.75rem",
+					},
+					p: {
+						marginBottom: "1.25rem",
+					},
+					"ul, ol": {
+						paddingLeft: "1.5rem",
+						marginBottom: "1.25rem",
+					},
+					li: {
+						marginBottom: "0.4rem",
+					},
+					a: {
+						color: theme("colors.accent.500"),
+						textDecoration: "underline",
+						"&:hover": { color: theme("colors.accent.600") },
+					},
+					blockquote: {
+						borderLeft: `3px solid ${theme("colors.accent.500")}`,
+						paddingLeft: "1.25rem",
+						color: theme("colors.ink.400"),
+						fontStyle: "italic",
+						margin: "1.5rem 0",
+					},
+					"strong, b": {
+						color: theme("colors.ink.900"),
+						fontWeight: "600",
+					},
+					img: {
+						borderRadius: "0",
+						marginTop: "2rem",
+						marginBottom: "2rem",
+						width: "100%",
+					},
+					hr: {
+						borderColor: theme("colors.ink.100"),
+						margin: "2.5rem 0",
+					},
+				},
+			})
+		},
+	],
 } satisfies Config

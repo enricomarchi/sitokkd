@@ -159,10 +159,11 @@ onUnmounted(() => {
 })
 
 const menuItems = [
-	{ text: "Corsi", href: "#courses" },
-	{ text: "Istruttori", href: "#instructors" },
-	{ text: "FAQ", href: "#faq" },
-	{ text: "Contatti", href: "#contact" },
+	{ text: "Corsi", href: "/#courses" },
+	{ text: "Istruttori", href: "/#instructors" },
+	{ text: "Blog", href: "/blog" },
+	{ text: "FAQ", href: "/#faq" },
+	{ text: "Contatti", href: "/#contact" },
 ]
 
 const logoImage = useRuntimeConfig().app.baseURL + "images/logo/logo.svg"

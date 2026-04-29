@@ -6,13 +6,13 @@
 		"#internal/nuxt/paths": "./node_modules/nuxt/dist/core/runtime/nitro/paths.js"
 	},
 	"scripts": {
-		"build": "nuxt build",
+		"build": "tsx scripts/generate-sitemap.ts && nuxt build",
 		"dev": "nuxt dev",
-		"generate": "nuxt generate",
+		"generate": "tsx scripts/generate-sitemap.ts && nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
-		"deploy": "nuxt generate && tsx scripts/deploy-static.ts",
-		"deploy:test": "nuxt generate && tsx scripts/deploy-static.ts --test",
+		"deploy": "tsx scripts/generate-sitemap.ts && nuxt generate && tsx scripts/deploy-static.ts",
+		"deploy:test": "tsx scripts/generate-sitemap.ts && nuxt generate && tsx scripts/deploy-static.ts --test",
 		"deploy:upload": "tsx scripts/deploy-static.ts",
 		"deploy:upload:test": "tsx scripts/deploy-static.ts --test"
 	},
@@ -27,6 +27,7 @@
 		"tsx": "^4.21.0"
 	},
 	"dependencies": {
+		"@nuxt/content": "^3.13.0",
 		"@vueuse/motion": "^2.1.0"
 	}
 }

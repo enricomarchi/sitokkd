@@ -1,5 +1,11 @@
 export default defineNuxtConfig({
-	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt"],
+	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt", "@nuxt/content"],
+
+	content: {
+		highlight: {
+			theme: "github-dark",
+		},
+	},
 
 	css: ["~/assets/fonts/fonts.css"],
 
@@ -101,6 +107,8 @@ export default defineNuxtConfig({
 		compressPublicAssets: true,
 		prerender: {
 			failOnError: false,
+			crawlLinks: true,
+			routes: ["/blog"],
 		},
 	},
 
