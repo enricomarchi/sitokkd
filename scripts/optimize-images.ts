@@ -35,6 +35,7 @@ interface Result {
 	afterKB: number
 	savedKB: number
 	resized: boolean
+	rotated?: boolean
 }
 
 function getAllImages(dir: string): string[] {
@@ -64,9 +65,6 @@ async function optimizeImage(filePath: string): Promise<Result | null> {
 	const stat = statSync(filePath)
 	const beforeKB = Math.round(stat.size / 1024)
 
-	// Salta se sotto la soglia minima
-	if (beforeKB < rule.minKB) return null
-
 	const ext = extname(filePath).toLowerCase()
 
 	// Legge il file come buffer per evitare problemi con spazi/parentesi nei nomi file su Windows
@@ -76,10 +74,20 @@ async function optimizeImage(filePath: string): Promise<Result | null> {
 
 	if (!metadata.width || !metadata.height) return null
 
+	// Se l'immagine ha un tag EXIF Orientation diverso da 1, segnala la necessità di rotazione
+	const needRotate = !!metadata.orientation && metadata.orientation !== 1
+
+	// Supporta flag --force per forzare l'elaborazione di tutte le immagini
+	const force = process.argv.includes("--force")
+
+	// Se sotto soglia e non necessita rotazione e non è forzato, salta
+	if (beforeKB < rule.minKB && !needRotate && !force) return null
+
 	const longestSide = Math.max(metadata.width, metadata.height)
 	const needsResize = longestSide > rule.maxWidth
 
-	let pipeline = sharp(inputBuffer)
+	// Applica automaticamente l'orientamento EXIF prima di ridimensionare/comprimere
+	let pipeline = sharp(inputBuffer).rotate()
 
 	if (needsResize) {
 		pipeline = pipeline.resize({
@@ -103,8 +111,8 @@ async function optimizeImage(filePath: string): Promise<Result | null> {
 	const buffer = await pipeline.toBuffer()
 	const afterKB = Math.round(buffer.length / 1024)
 
-	// Salva solo se effettivamente più piccolo
-	if (afterKB < beforeKB) {
+	// Salva se più piccolo, oppure se l'immagine è stata ruotata (serve correggere l'orientamento anche se la dimensione non cambia)
+	if (afterKB < beforeKB || needRotate) {
 		writeFileSync(filePath, buffer)
 		return {
 			file: relative(imagesDir, filePath),
@@ -112,6 +120,7 @@ async function optimizeImage(filePath: string): Promise<Result | null> {
 			afterKB,
 			savedKB: beforeKB - afterKB,
 			resized: needsResize,
+			rotated: needRotate,
 		}
 	}
 

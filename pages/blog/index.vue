@@ -80,8 +80,8 @@
 			>
 				<NuxtLink
 					v-for="article in filteredArticles"
-					:key="article._path"
-					:to="article._path"
+					:key="article._path ?? article.slug"
+					:to="article._path ?? '/blog/' + (article.slug ?? '')"
 					class="group flex flex-col bg-white border border-ink-100 hover:border-ink-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
 				>
 					<!-- Immagine -->
@@ -108,20 +108,6 @@
 
 					<!-- Contenuto card -->
 					<div class="flex flex-col flex-1 p-6">
-						<!-- Tag -->
-						<div
-							v-if="article.tags?.length"
-							class="flex flex-wrap gap-1 mb-3"
-						>
-							<span
-								v-for="tag in article.tags.slice(0, 2)"
-								:key="tag"
-								class="text-[10px] uppercase tracking-[0.15em] text-accent-500 font-medium"
-							>
-								{{ tag }}
-							</span>
-						</div>
-
 						<h2
 							class="font-heading font-bold text-ink-900 text-lg leading-snug mb-3 group-hover:text-accent-600 transition-colors duration-300"
 						>

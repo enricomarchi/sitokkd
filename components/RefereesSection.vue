@@ -1,5 +1,5 @@
 <template>
-	<section id="referees" class="py-24 md:py-32 bg-ink-800">
+	<section id="referees" class="py-24 md:py-32 bg-ink-50">
 		<div class="container mx-auto px-6">
 			<div class="max-w-2xl mx-auto text-center mb-16">
 				<p
@@ -8,12 +8,12 @@
 					Il nostro impegno
 				</p>
 				<h2
-					class="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
+					class="text-3xl md:text-5xl font-heading font-bold text-ink-900 mb-6"
 				>
 					Arbitri e PDG
 				</h2>
-				<div class="w-12 h-px bg-white/20 mx-auto mb-6" />
-				<p class="text-white/50 leading-relaxed">
+				<div class="w-12 h-px bg-ink-200 mx-auto mb-6" />
+				<p class="text-ink-400 leading-relaxed">
 					Presidenti di Giuria e Arbitri federali che garantiscono
 					competenza e imparzialità nelle competizioni
 				</p>
@@ -32,7 +32,7 @@
 				<div
 					v-for="(person, idx) in referees"
 					:key="person.name"
-					class="relative p-8 bg-white/5 border border-white/10"
+					class="relative p-8 bg-white border border-ink-100"
 					v-motion
 					:initial="{ opacity: 0, y: 40 }"
 					:visible="{
@@ -56,10 +56,10 @@
 						/>
 						<div
 							v-else
-							class="w-full aspect-[3/4] bg-white/5 flex items-center justify-center"
+							class="w-full aspect-[3/4] bg-ink-100 flex items-center justify-center"
 						>
 							<svg
-								class="w-16 h-16 text-white/10"
+								class="w-16 h-16 text-ink-300"
 								fill="none"
 								stroke="currentColor"
 								stroke-width="1"
@@ -81,11 +81,13 @@
 						{{ person.badge }}
 					</span>
 
-					<h3 class="text-xl font-heading font-bold text-white mb-2">
+					<h3
+						class="text-xl font-heading font-bold text-ink-900 mb-2"
+					>
 						{{ person.name }}
 					</h3>
 
-					<p class="text-white/40 text-sm leading-relaxed">
+					<p class="text-ink-400 text-sm leading-relaxed">
 						{{ person.description }}
 					</p>
 				</div>

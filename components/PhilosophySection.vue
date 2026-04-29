@@ -1,5 +1,5 @@
 <template>
-	<section id="philosophy" class="py-24 md:py-32 bg-white">
+	<section id="philosophy" class="py-24 md:py-32 bg-ink-50">
 		<div class="container mx-auto px-6">
 			<!-- Section intro -->
 			<div class="max-w-2xl mx-auto text-center mb-20">

@@ -4,7 +4,7 @@
 		<main id="main-content" tabindex="-1">
 			<HeroSection />
 			<PhilosophySection />
-			<AboutDojo />
+			<BlogPreview />
 			<Courses />
 			<AboutMe />
 			<RefereesSection />
@@ -13,6 +13,7 @@
 			<ContactSection />
 		</main>
 		<SeoSection />
+		<GalleryPreview />
 		<FooterSection />
 		<ScrollToTop />
 	</div>

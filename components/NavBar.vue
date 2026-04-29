@@ -161,6 +161,7 @@ onUnmounted(() => {
 const menuItems = [
 	{ text: "Corsi", href: "/#courses" },
 	{ text: "Istruttori", href: "/#instructors" },
+	{ text: "Foto", href: "/foto" },
 	{ text: "Blog", href: "/blog" },
 	{ text: "FAQ", href: "/#faq" },
 	{ text: "Contatti", href: "/#contact" },

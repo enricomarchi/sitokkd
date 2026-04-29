@@ -7,11 +7,10 @@
 				<img
 					:src="article.image"
 					:alt="article.title"
-					class="w-full h-full object-cover opacity-20"
+					class="w-full h-full object-cover"
 				/>
-				<div
-					class="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/60 to-ink-950"
-				/>
+				<!-- overlay uniforme per oscuramento senza gradient (più scuro) -->
+				<div class="absolute inset-0 bg-ink-950/90" />
 			</div>
 
 			<div class="relative container mx-auto px-6 max-w-3xl text-center">
@@ -34,20 +33,6 @@
 					</svg>
 					Tutti gli articoli
 				</NuxtLink>
-
-				<!-- Tag -->
-				<div
-					v-if="article.tags?.length"
-					class="flex flex-wrap gap-2 justify-center mb-4"
-				>
-					<span
-						v-for="tag in article.tags"
-						:key="tag"
-						class="text-[10px] uppercase tracking-[0.2em] text-accent-400 font-medium"
-					>
-						{{ tag }}
-					</span>
-				</div>
 
 				<h1
 					class="text-3xl md:text-5xl font-heading font-bold text-white mb-6 leading-tight"
@@ -145,12 +130,21 @@ const slug = Array.isArray(route.params.slug)
 	? route.params.slug.join("/")
 	: route.params.slug
 
-const { data: article } = await useAsyncData(`blog-${slug}`, () =>
-	queryCollection("blog")
+const { data: article } = await useAsyncData(`blog-${slug}`, async () => {
+	const bySlug = await queryCollection("blog")
 		.where("slug", "=", slug)
-		.orWhere((q) => q.where("path", "LIKE", `%${slug}`))
-		.first(),
-)
+		.first()
+	if (bySlug) return bySlug
+	// fallback: try matching path or stem
+	const byPath = await queryCollection("blog")
+		.where("path", "LIKE", `%${slug}%`)
+		.first()
+	if (byPath) return byPath
+	const byStem = await queryCollection("blog")
+		.where("stem", "=", slug)
+		.first()
+	return byStem
+})
 
 if (!article.value) {
 	throw createError({

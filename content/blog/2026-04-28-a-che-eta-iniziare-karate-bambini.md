@@ -2,8 +2,9 @@
 title: "A che età si può iniziare karate? Una guida per genitori"
 seoTitle: "A che età iniziare karate? Guida per genitori | Karate Carbonera"
 description: "A che età si inizia il karate? Una guida pratica per genitori, dai 4 anni in su, con i consigli del Maestro Moreno Donà. Lezione di prova gratuita a Carbonera."
-date: 2026-04-29
+date: 2026-04-28
 slug: a-che-eta-iniziare-karate-bambini
+image: /images/blog/a-che-eta-iniziare-karate-bambini.jpg
 tags: [bambini, genitori, corsi, consigli]
 published: true
 ---
