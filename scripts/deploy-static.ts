@@ -124,6 +124,12 @@ async function deploy() {
 			"gallery",
 		])
 
+		// Upload diretto delle immagini blog dal sorgente (indipendente dal build)
+		const localBlogImages = resolve(process.cwd(), "public/images/blog")
+		const remoteBlogImages = posix.join(FTP_DIR, "images/blog")
+		console.log("📤 Upload images/blog/ dal sorgente...")
+		await uploadDir(client, localBlogImages, remoteBlogImages)
+
 		console.log("🎉 Deploy completato con successo!")
 	} catch (err) {
 		console.error("❌ Errore durante il deploy:", err)
