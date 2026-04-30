@@ -2,7 +2,7 @@
 title: "Karate per bambini a Carbonera: i benefici che vanno oltre lo sport"
 seoTitle: "Karate per bambini a Carbonera: benefici oltre lo sport | Karate Carbonera"
 description: "Concentrazione, autocontrollo, fiducia in sé: i benefici del karate per bambini vanno ben oltre l'attività fisica. La nostra esperienza nel dojo di Carbonera."
-date: 2026-04-29
+date: 2026-04-12
 slug: karate-bambini-carbonera-benefici
 image: /images/blog/karate-bambini-carbonera-benefici.jpg
 tags: [bambini, genitori, benefici, educazione]

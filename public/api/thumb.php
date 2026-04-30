@@ -35,7 +35,7 @@ if (!is_dir($cacheDir)) {
     mkdir($cacheDir, 0755, true);
 }
 
-$cacheKey = md5($src . '_' . $maxH . '_v2') . '.webp';
+$cacheKey = md5($src . '_' . $maxH . '_v3') . '.webp';
 $cachePath = $cacheDir . '/' . $cacheKey;
 
 // Serve cached version if fresh

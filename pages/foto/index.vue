@@ -33,7 +33,7 @@
 						:src="img.thumb"
 						:alt="img.alt"
 						loading="lazy"
-						style="aspect-ratio: 1 / 1"
+						style="aspect-ratio: 1 / 1; image-orientation: from-image"
 						class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
 					/>
 				</button>
@@ -69,6 +69,7 @@
 				<img
 					:src="images[activeIndex].src"
 					:alt="images[activeIndex].alt"
+					style="image-orientation: from-image"
 					class="max-h-[90vh] max-w-full object-contain rounded"
 				/>
 

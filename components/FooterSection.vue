@@ -171,7 +171,7 @@ const menuItems = [
 	{ text: "Istruttori", href: "/#instructors" },
 	{ text: "Blog", href: "/blog" },
 	{ text: "Arbitri e PDG", href: "/#referees" },
-	{ text: "FAQ", href: "/#faq" },
+	{ text: "FAQ", href: "/faq" },
 	{ text: "Contatti", href: "/#contact" },
 ]
 

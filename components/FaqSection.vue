@@ -1,24 +1,6 @@
 <template>
-	<section id="faq" class="py-24 md:py-32 bg-white">
+	<section id="faq" class="py-16 md:py-24 bg-white">
 		<div class="container mx-auto px-6">
-			<div class="max-w-2xl mx-auto text-center mb-16">
-				<p
-					class="text-accent-500 text-xs uppercase tracking-[0.3em] mb-4"
-				>
-					Hai qualche dubbio?
-				</p>
-				<h2
-					class="text-3xl md:text-5xl font-heading font-bold text-ink-900 mb-6"
-				>
-					Domande Frequenti
-				</h2>
-				<div class="w-12 h-px bg-ink-200 mx-auto mb-6" />
-				<p class="text-ink-400 leading-relaxed">
-					Tutto quello che devi sapere prima di iniziare il tuo
-					percorso nel karate a Treviso
-				</p>
-			</div>
-
 			<div class="max-w-3xl mx-auto divide-y divide-ink-100">
 				<div
 					v-for="(faq, index) in faqs"

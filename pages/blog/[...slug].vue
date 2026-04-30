@@ -7,7 +7,7 @@
 				<img
 					:src="article.image"
 					:alt="article.title"
-					class="w-full h-full object-cover"
+					class="w-full h-full object-contain"
 				/>
 				<!-- overlay uniforme per oscuramento senza gradient (più scuro) -->
 				<div class="absolute inset-0 bg-ink-950/90" />

@@ -30,12 +30,12 @@
 				>
 					<div
 						v-if="article.image"
-						class="overflow-hidden aspect-[16/9] bg-ink-100"
+						class="overflow-hidden aspect-[16/9] bg-black"
 					>
 						<img
 							:src="article.image"
 							:alt="article.title"
-							class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+							class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
 							loading="lazy"
 						/>
 					</div>

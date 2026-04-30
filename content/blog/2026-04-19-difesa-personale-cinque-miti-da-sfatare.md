@@ -2,7 +2,7 @@
 title: "Difesa personale: cinque miti da sfatare prima di iscriversi a un corso"
 seoTitle: "Difesa personale: 5 miti da sfatare | Carbonera Treviso | Karate Carbonera"
 description: "Cosa offre davvero un corso di difesa personale e cosa no: cinque miti da sfatare prima di iscriversi. I corsi di difesa personale a Carbonera dell'ASD Ki Kai Dojo."
-date: 2026-04-30
+date: 2026-04-19
 slug: difesa-personale-cinque-miti-da-sfatare
 image: /images/blog/difesa-personale-cinque-miti-da-sfatare.jpg
 tags: [difesa-personale, adulti, consigli, sicurezza]

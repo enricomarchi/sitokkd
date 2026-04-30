@@ -2,7 +2,7 @@
 title: "La storia dell'ASD Ki Kai Dojo: oltre quarant'anni di karate a Carbonera"
 seoTitle: "La storia del dojo: 40 anni di karate a Carbonera | Karate Carbonera"
 description: "Dal 1982 ad oggi: la storia dell'ASD Ki Kai Dojo, scuola di karate a Carbonera e Saletto di Breda di Piave guidata dal Maestro Moreno Donà."
-date: 2026-05-01
+date: 2026-04-26
 slug: storia-asd-ki-kai-dojo-karate-carbonera
 image: /images/blog/storia-asd-ki-kai-dojo-karate-carbonera.jpg
 tags: [storia, dojo, carbonera, saletto, maestro-dona]
