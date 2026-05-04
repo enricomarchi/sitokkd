@@ -1,7 +1,7 @@
 import { Client } from "basic-ftp"
 import { config } from "dotenv"
 import { resolve, posix } from "path"
-import { statSync, readdirSync } from "fs"
+import { statSync, readdirSync, writeFileSync } from "fs"
 
 config()
 
@@ -84,6 +84,18 @@ async function deploy() {
 			"❌ Directory .output/public non trovata. Esegui prima: npm run build",
 		)
 		process.exit(1)
+	}
+
+	// In modalità test: sostituisce robots.txt con versione che blocca i crawler
+	if (isTest) {
+		const testRobotsPath = resolve(
+			process.cwd(),
+			".output/public/robots.txt",
+		)
+		writeFileSync(testRobotsPath, "User-agent: *\nDisallow: /\n", "utf-8")
+		console.log(
+			"🤖 robots.txt sostituito con versione noindex per il dominio di test",
+		)
 	}
 
 	try {

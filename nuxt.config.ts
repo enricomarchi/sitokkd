@@ -1,3 +1,5 @@
+const isTest = process.env.NUXT_PUBLIC_IS_TEST === "true"
+
 export default defineNuxtConfig({
 	modules: ["@nuxtjs/tailwindcss", "@vueuse/motion/nuxt", "@nuxt/content"],
 
@@ -33,6 +35,9 @@ export default defineNuxtConfig({
 					content:
 						"karate Treviso, karate Carbonera, corsi karate bambini Treviso, karate bambini Treviso, karate per bambini, karate adulti Treviso, difesa personale Treviso, arti marziali Carbonera, Ki Kai Dojo, karate Shotokan, scuola karate Veneto, karate ragazzi, tigrotti karate, cinture colorate karate, prima lezione karate gratuita",
 				},
+				...(isTest
+					? [{ name: "robots", content: "noindex, nofollow" }]
+					: []),
 				{ property: "og:type", content: "website" },
 				{
 					property: "og:title",

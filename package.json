@@ -12,7 +12,7 @@
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"deploy": "tsx scripts/generate-sitemap.ts && nuxt generate && tsx scripts/deploy-static.ts",
-		"deploy:test": "tsx scripts/generate-sitemap.ts && nuxt generate && tsx scripts/deploy-static.ts --test",
+		"deploy:test": "tsx scripts/generate-sitemap.ts && cross-env NUXT_PUBLIC_IS_TEST=true nuxt generate && tsx scripts/deploy-static.ts --test",
 		"deploy:upload": "tsx scripts/deploy-static.ts",
 		"deploy:upload:test": "tsx scripts/deploy-static.ts --test"
 	},
@@ -21,6 +21,7 @@
 		"@nuxtjs/tailwindcss": "^6.11.4",
 		"@tailwindcss/typography": "^0.5.10",
 		"basic-ftp": "^5.2.0",
+		"cross-env": "^10.1.0",
 		"dotenv": "^17.4.0",
 		"nuxt": "^3.10.3",
 		"sharp": "^0.34.5",
